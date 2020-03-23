@@ -9,4 +9,8 @@ import { Card } from 'src/app/models/service-card.model';
 
 export class ServiceCardComponent{
 @Input() card: Card;
+
+handleClick(){
+console.log();
+}
 }   
