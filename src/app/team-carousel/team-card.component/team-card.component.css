@@ -1,0 +1,10 @@
+.outerClass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.sample-column card-wrapper {
+    height: 50%;
+}

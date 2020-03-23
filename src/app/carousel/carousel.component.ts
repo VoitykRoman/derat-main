@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { IndexImageService } from '../services/index-image.service';
 import { IndexImage } from '../models/index-image.model';

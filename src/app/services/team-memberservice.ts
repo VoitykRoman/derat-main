@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class IndexImageService {
+export class TeamMemberService {
 
     constructor(private http: HttpClient) { }
 
-    getImages() {
-      return  this.http.get('http://localhost:5000/IndexImage');
+    getTeamMembers() {
+      return  this.http.get('http://localhost:5000/TeamMembers');
     }
 }

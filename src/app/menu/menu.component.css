@@ -1,3 +1,7 @@
+.headerMenu {
+    height: 50px;
+}
+
 #brandName {
     float: right;
     margin-top: 60px;

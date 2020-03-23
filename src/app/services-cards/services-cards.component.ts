@@ -1,4 +1,4 @@
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from '../models/service-card.model';
 
 @Component({
