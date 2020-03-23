@@ -15,9 +15,9 @@ export class CarouselComponent implements OnInit {
     showNavigationIndicators = true;
 
     constructor(private indexImageService: IndexImageService) {
-this.indexImageService.getImages().subscribe((img: IndexImage[]) => {
-    this.images = img.map(i => i.imageUrl);
-})
+        this.indexImageService.getImages().subscribe((img: IndexImage[]) => {
+            this.images = img.map(i => i.imageUrl);
+        })
     }
 
     ngOnInit() {
