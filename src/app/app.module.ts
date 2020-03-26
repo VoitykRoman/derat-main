@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule } from "igniteui-angular";
 
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app.component';
@@ -24,6 +24,8 @@ import { FeedbackListComponent } from './feedback-card/feedback-list/feedback-li
 import { FeedbackService } from './services/feedback.service';
 import { LicenseService } from './services/license.service';
 import { ContactsComponent } from './contacts/contacts.component';
+import { GoogleMapComponent } from './googlemap/googlemap.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ContactsComponent } from './contacts/contacts.component';
     FeedbackCardComponent,
     FeedbackRatingComponent,
     FeedbackListComponent,
-    ContactsComponent
+    ContactsComponent,
+    GoogleMapComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { ContactsComponent } from './contacts/contacts.component';
 		IgxAvatarModule,
     IgxExpansionPanelModule,
     IgxListModule,
-    IgxButtonGroupModule
+    IgxButtonGroupModule,
+    IgxComboModule 
   ],
   providers: [IndexImageService,
               TeamMemberService,
@@ -65,6 +70,7 @@ import { ContactsComponent } from './contacts/contacts.component';
   exports: [CarouselComponent],
   bootstrap: [AppComponent,
     CarouselComponent,
+    FooterComponent
   ]
 })
 export class AppModule {
