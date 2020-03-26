@@ -23,6 +23,7 @@ import { FeedbackRatingComponent } from './feedback-card/feedback-rating/feedbac
 import { FeedbackListComponent } from './feedback-card/feedback-list/feedback-list.component';
 import { FeedbackService } from './services/feedback.service';
 import { LicenseService } from './services/license.service';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LicenseService } from './services/license.service';
     LicenseCardComponent,
     FeedbackCardComponent,
     FeedbackRatingComponent,
-    FeedbackListComponent
+    FeedbackListComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
