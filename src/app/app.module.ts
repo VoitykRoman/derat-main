@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule } from "igniteui-angular";
+import {MatMenuModule} from '@angular/material/menu';
 
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app.component';
@@ -30,7 +31,6 @@ import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent,
     CarouselComponent,
     ServicesCardsComponent,
     ServiceCardComponent,
@@ -43,7 +43,8 @@ import { FooterComponent } from './footer/footer.component';
     FeedbackListComponent,
     ContactsComponent,
     GoogleMapComponent,
-    FooterComponent
+    FooterComponent,
+    MenuComponent 
   ],
   imports: [
     BrowserModule,
@@ -61,7 +62,8 @@ import { FooterComponent } from './footer/footer.component';
     IgxExpansionPanelModule,
     IgxListModule,
     IgxButtonGroupModule,
-    IgxComboModule 
+    IgxCarouselModule,
+    MatMenuModule
   ],
   providers: [IndexImageService,
               TeamMemberService,
