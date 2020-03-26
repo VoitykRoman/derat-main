@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { HttpBaseUrl } from '../constants/http.base.url.constant';
 
 @Injectable()
-export class TeamMemberService {
+export class LicenseService {
 
     constructor(private http: HttpClient) { }
 
-    getTeamMembers() {
-      return  this.http.get(`${HttpBaseUrl.httpBaseUrl}/TeamMembers`);
+    getLicenses() {
+      return  this.http.get(`${HttpBaseUrl.httpBaseUrl}/licenses`);
     }
 }

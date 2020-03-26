@@ -7,6 +7,9 @@ interface ITeamCard {
     experience: number;
     avatarUrl: string;
     imageUrl: string;
+    id: number;
+    createdBy: string;
+    createdAt: Date;
 }
 export class TeamCard {
     public name: string;
@@ -16,7 +19,9 @@ export class TeamCard {
     public experience: number;
     public avatarUrl: string;
     public imageUrl: string;
-
+    public id: number;
+    public createdBy: string;
+    public createdAt: Date;
     /**
      *
      */
@@ -28,5 +33,8 @@ export class TeamCard {
         this.experience = card.experience;
         this.avatarUrl = card.avatarUrl;
         this.imageUrl = card.imageUrl;
+        this.id = card.id;
+        this.createdBy = card.createdBy;
+        this.createdAt = card.createdAt;
     }
 }

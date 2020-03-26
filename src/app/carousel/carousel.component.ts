@@ -11,12 +11,19 @@ import { IndexImage } from '../models/index-image.model';
 })
 
 export class CarouselComponent implements OnInit {
-    images: string[] = ['./assets/4.jpg'];
+    images: IndexImage[] = [new IndexImage({
+        imageUrl: 'assets/4.jpg',
+        id: 1,
+        createdBy: 'user1',
+        createdAt: new Date(),
+        title: 'Coronavirus',
+        description: '450k'
+    })];
     showNavigationIndicators = true;
 
     constructor(private indexImageService: IndexImageService) {
         this.indexImageService.getImages().subscribe((img: IndexImage[]) => {
-            this.images = img.map(i => i.imageUrl);
+            this.images = img;
         })
     }
 

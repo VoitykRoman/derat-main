@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule } from "igniteui-angular";
 
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app.component';
@@ -18,6 +18,11 @@ import { TeamMemberService } from './services/team-memberservice';
 import { LicensesButtonsComponent } from './licences-buttons/licences-buttons.component';
 import { LicenseCardComponent } from './licences-buttons/licence-card/license-card.component';
 import { FormsModule } from '@angular/forms';
+import { FeedbackCardComponent } from './feedback-card/feedback-card.component';
+import { FeedbackRatingComponent } from './feedback-card/feedback-rating/feedback-rating.component';
+import { FeedbackListComponent } from './feedback-card/feedback-list/feedback-list.component';
+import { FeedbackService } from './services/feedback.service';
+import { LicenseService } from './services/license.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,10 @@ import { FormsModule } from '@angular/forms';
     TeamCarouselComponent,
     TeamCardComponent,
     LicensesButtonsComponent,
-    LicenseCardComponent
+    LicenseCardComponent,
+    FeedbackCardComponent,
+    FeedbackRatingComponent,
+    FeedbackListComponent
   ],
   imports: [
     BrowserModule,
@@ -37,25 +45,25 @@ import { FormsModule } from '@angular/forms';
     FlexLayoutModule,
     HttpClientModule,
     IgxButtonModule,
-    IgxIconModule,
     IgxCardModule,
     IgxRippleModule,
-    BrowserAnimationsModule,
-    IgxAvatarModule,
     IgxToastModule,
-    BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
 		IgxIconModule,
 		IgxAvatarModule,
-		IgxToastModule,
-		IgxExpansionPanelModule
+    IgxExpansionPanelModule,
+    IgxListModule,
+    IgxButtonGroupModule
   ],
   providers: [IndexImageService,
-              TeamMemberService],
+              TeamMemberService,
+              FeedbackService,
+              LicenseService],
   exports: [CarouselComponent],
   bootstrap: [AppComponent,
-    CarouselComponent]
+    CarouselComponent,
+  ]
 })
 export class AppModule {
 }
