@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule } from "igniteui-angular";
-import {MatMenuModule} from '@angular/material/menu';
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule } from "igniteui-angular";
+import { MatMenuModule } from '@angular/material/menu';
 
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app.component';
@@ -27,6 +27,7 @@ import { LicenseService } from './services/license.service';
 import { ContactsComponent } from './contacts/contacts.component';
 import { GoogleMapComponent } from './googlemap/googlemap.component';
 import { FooterComponent } from './footer/footer.component';
+import { DropDownComponent } from './menu/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { FooterComponent } from './footer/footer.component';
     ContactsComponent,
     GoogleMapComponent,
     FooterComponent,
-    MenuComponent 
+    MenuComponent,
+    DropDownComponent
   ],
   imports: [
     BrowserModule,
@@ -57,18 +59,20 @@ import { FooterComponent } from './footer/footer.component';
     IgxToastModule,
     BrowserAnimationsModule,
     FormsModule,
-		IgxIconModule,
-		IgxAvatarModule,
+    IgxIconModule,
+    IgxAvatarModule,
     IgxExpansionPanelModule,
     IgxListModule,
     IgxButtonGroupModule,
     IgxCarouselModule,
-    MatMenuModule
+    MatMenuModule,
+    IgxDropDownModule,
+    IgxToggleModule
   ],
   providers: [IndexImageService,
-              TeamMemberService,
-              FeedbackService,
-              LicenseService],
+    TeamMemberService,
+    FeedbackService,
+    LicenseService],
   exports: [CarouselComponent],
   bootstrap: [AppComponent,
     CarouselComponent,
