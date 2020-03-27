@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule } from "igniteui-angular";
 import { MatMenuModule } from '@angular/material/menu';
 
 import { MenuComponent } from './menu/menu.component';
@@ -28,6 +28,8 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { GoogleMapComponent } from './googlemap/googlemap.component';
 import { FooterComponent } from './footer/footer.component';
 import { DropDownComponent } from './menu/dropdown/dropdown.component';
+import { CallBackComponent } from './callback/callback.component';
+import { CallBackService } from './services/callback.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { DropDownComponent } from './menu/dropdown/dropdown.component';
     GoogleMapComponent,
     FooterComponent,
     MenuComponent,
-    DropDownComponent
+    DropDownComponent,
+    CallBackComponent
   ],
   imports: [
     BrowserModule,
@@ -67,12 +70,18 @@ import { DropDownComponent } from './menu/dropdown/dropdown.component';
     IgxCarouselModule,
     MatMenuModule,
     IgxDropDownModule,
-    IgxToggleModule
+    IgxToggleModule,
+    IgxSelectModule,
+    IgxInputGroupModule,
+    IgxComboModule,
+    IgxDatePickerModule,
+    IgxTimePickerModule
   ],
   providers: [IndexImageService,
     TeamMemberService,
     FeedbackService,
-    LicenseService],
+    LicenseService,
+    CallBackService],
   exports: [CarouselComponent],
   bootstrap: [AppComponent,
     CarouselComponent,
