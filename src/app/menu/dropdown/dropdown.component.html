@@ -1,7 +1,7 @@
 <a [igxToggleAction]="dropdown" [igxDropDownItemNavigation]="dropdown">{{name}}</a>
 <igx-drop-down #dropdown [width]="'100px'">
     <igx-drop-down-item *ngFor="let item of items" style="background-color: #333;">
-        <a href="{{item.link}}" target="_blank" style="color: white;">
+        <a href="{{item.link}}" style="color: white;">
             {{ item.title }}
            </a>
     </igx-drop-down-item>

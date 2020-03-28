@@ -11,11 +11,11 @@ export class MenuComponent {
 
     aboutUsReferences: MenuReference[] = [{
         title: "Our team",
-        link: "https://github.com/VoitykRoman"
+        link: "#team"
     },
     {
         title: "Our licenses",
-        link: "https://github.com/VoitykRoman"
+        link: "#licenses"
     }];
 servicesReferences: MenuReference[] = [{
     title: 'Deratization',

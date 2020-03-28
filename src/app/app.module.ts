@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule } from "igniteui-angular";
 import { MatMenuModule } from '@angular/material/menu';
+import {Routes, RouterModule} from '@angular/router';
 
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app.component';
@@ -31,6 +32,12 @@ import { DropDownComponent } from './menu/dropdown/dropdown.component';
 import { CallBackComponent } from './callback/callback.component';
 import { CallBackService } from './services/callback.service';
 
+// const appRoutes: Routes =[
+//   { path: '', component: HomeComponent},
+//   { path: 'about', component: AboutComponent},
+//   { path: '**', component: NotFoundComponent }
+// ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +60,7 @@ import { CallBackService } from './services/callback.service';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(appRoutes),
     NgbModule,
     FlexLayoutModule,
     HttpClientModule,
