@@ -9,8 +9,4 @@ import { TeamCard } from 'src/app/models/team-card.model';
 
 export class TeamCardComponent{
 @Input() teamCard: TeamCard;
-
-nextCard(){
-    
-}
 }   

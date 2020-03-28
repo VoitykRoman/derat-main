@@ -31,12 +31,18 @@ import { FooterComponent } from './footer/footer.component';
 import { DropDownComponent } from './menu/dropdown/dropdown.component';
 import { CallBackComponent } from './callback/callback.component';
 import { CallBackService } from './services/callback.service';
+import { HomeComponent } from './home/home.component';
+import { ServiceComponent } from './service/service.component';
+import { PriceCalculatorComponent } from './service/price-calculator/price-calculator.component';
 
-// const appRoutes: Routes =[
-//   { path: '', component: HomeComponent},
-//   { path: 'about', component: AboutComponent},
-//   { path: '**', component: NotFoundComponent }
-// ];
+const appRoutes: Routes = [
+  {
+    path: "", component: HomeComponent
+  },
+  {
+    path: "services", component: ServiceComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -56,7 +62,10 @@ import { CallBackService } from './services/callback.service';
     FooterComponent,
     MenuComponent,
     DropDownComponent,
-    CallBackComponent
+    CallBackComponent,
+    HomeComponent,
+    ServiceComponent,
+    PriceCalculatorComponent
   ],
   imports: [
     BrowserModule,

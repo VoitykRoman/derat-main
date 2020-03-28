@@ -1,0 +1,25 @@
+<igx-expansion-panel>
+    <igx-expansion-panel-header>
+        <igx-expansion-panel-title>
+            {{serviceCalculator.customerType}}
+        </igx-expansion-panel-title>
+        <igx-expansion-panel-description>
+            {{serviceCalculator.title}}
+        </igx-expansion-panel-description>
+        <igx-avatar src='https://www.infragistics.com/angular-demos/assets/images/card/avatars/photographer.jpg' roundShape="true "></igx-avatar>
+    </igx-expansion-panel-header>
+    <igx-expansion-panel-body>
+        <igx-list>
+            <igx-list-item isHeader="true">Price-List</igx-list-item>
+            <igx-list-item>Initial value - {{serviceCalculator.initialValue}}$</igx-list-item>
+            <igx-list-item>Per square meter - {{serviceCalculator.perMetr}}$</igx-list-item>
+        </igx-list>
+        <hr>
+        <h6>Price calculator</h6>
+        <igx-input-group>
+            <input igxInput name="area" type="number" [(ngModel)]="area" (input)="calculatePrice($event)" />
+            <label igxLabel for="area">Enter area</label>
+        </igx-input-group>
+        <p> Total price: {{price}}$</p>
+    </igx-expansion-panel-body>
+</igx-expansion-panel>

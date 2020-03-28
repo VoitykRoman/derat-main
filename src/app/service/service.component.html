@@ -1,0 +1,14 @@
+<div style="height: 70px;">
+</div>
+<h1>{{services[0].title}}</h1>
+<p style="text-align: justify; margin-left: 10px;">
+    <img src="{{services[0].imageUrl}}" style="float: right; margin: 7px 0 7px 10px"> {{services[0].description}}
+</p>
+
+<h3>How it works</h3>
+<p>{{services[0].instruction}}</p>
+<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="center center">
+    <app-main-price-calculator *ngFor='let calc of services[0].priceCalculator' [serviceCalculator]="calc"></app-main-price-calculator>
+</div>
+
+<app-main-callback id="callback"></app-main-callback>
