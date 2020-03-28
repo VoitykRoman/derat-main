@@ -42,4 +42,16 @@ new Card({
     subtitle: "DeratControl",
     title: "Disinfection"
 })];
+sw(){
+   if(window.innerWidth <= 450)
+   return 1;
+
+   if(window.innerWidth < 1080 && window.innerWidth > 450)
+   return 2;
+
+   if(window.innerWidth >= 1080)
+   return 3;
+
+
+}
 }
