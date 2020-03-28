@@ -1,0 +1,39 @@
+<div class="carousel-animation-wrapper">
+    <!-- <div class="action-wrapper">
+        <span style="margin: 0 5px 0 10px;">Current animation: </span>
+        <span style="max-width: 100px;">
+            <igx-select #select [(ngModel)]="carousel.animationType">
+                <igx-select-item *ngFor="let animation of animations" [value]="animation">
+                    {{animation | titlecase}}
+                </igx-select-item>
+            </igx-select>
+        </span>
+    </div> -->
+    <div class="carousel-wrapper">
+        <igx-carousel #carousel>
+            <igx-slide *ngFor="let image of images;">
+                <div class="slide-wrapper">
+                    <igx-card>
+                        <igx-card-header>
+                            <h4 igxCardHeaderTitle>{{image.title}}</h4>
+                        </igx-card-header>
+
+                        <igx-card-content>
+                            <p>{{image.description}}</p>
+                        </igx-card-content>
+
+                        <igx-card-media>
+                            <img [src]="image.imageUrl" style="width: 100%;">
+                        </igx-card-media>
+
+
+                        <!-- <igx-card-actions>
+                                <a  igxButton href="{{slide.link}}" target="_blank" style="text-decoration: none;">visit page</a>
+                            </igx-card-actions> -->
+                    </igx-card>
+                </div>
+            </igx-slide>
+        </igx-carousel>
+    </div>
+</div>
+<hr>

@@ -1,0 +1,24 @@
+<igx-expansion-panel>
+    <igx-expansion-panel-header [iconPosition]="'right'">
+        <igx-expansion-panel-title>
+            {{license.name}}
+        </igx-expansion-panel-title>
+        <igx-expansion-panel-description *ngIf="panel.collapsed">
+            Issued by {{license.issuedBy}}
+        </igx-expansion-panel-description>
+        <igx-expansion-panel-icon>
+            <span class="example-icon" *ngIf="panel.collapsed">Show more</span>
+            <span class="example-icon" *ngIf="!panel.collapsed">Collapse</span>
+        </igx-expansion-panel-icon>
+    </igx-expansion-panel-header>
+    <igx-expansion-panel-body>
+        <div>
+            <igx-avatar [src]="license.imageUrl" roundShape="true" size="large">
+            </igx-avatar>
+        </div>
+        <p>
+            {{license.description}}
+        </p>
+        <a [href]="license.readMoreUrl" target="_blank">Read more</a>
+    </igx-expansion-panel-body>
+</igx-expansion-panel>
