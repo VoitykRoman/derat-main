@@ -13,9 +13,9 @@
 }
 
 .input {
-    width: 500px;
+    width: 100%;
 }
 
 .igx-input-group__input {
-    width: 500px;
+    width: 100%;
 }

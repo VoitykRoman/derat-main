@@ -2,7 +2,7 @@
     <section class="sample-content">
         <article class="sample-column">
             <form class="input-group-form" (submit)="onSubmit()">
-                <h4 class="sample-title">Book your movie ticket</h4>
+                <h4 class="sample-title">Order a call back</h4>
                 <div class="container">
                     <igx-input-group>
                         <input igxInput name="fullName" type="text" [(ngModel)]="callBack.fullName" required="required" />
@@ -52,7 +52,7 @@
                             </igx-input-group>
                         </ng-template>
                     </igx-time-picker>
-                    <button igxButton="raised" igxRipple>Book</button>
+                    <button igxButton="raised" igxRipple>Submit</button>
                 </div>
             </form>
         </article>
