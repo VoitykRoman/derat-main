@@ -1,8 +1,19 @@
 <a [igxToggleAction]="dropdown" [igxDropDownItemNavigation]="dropdown">{{name}}</a>
+
 <igx-drop-down #dropdown [width]="'100px'">
+
     <igx-drop-down-item *ngFor="let item of items" style="background-color: #333;">
-        <a href="{{item.link}}" style="color: white;">
-            {{ item.title }}
-           </a>
+        <div *ngIf='isService'>
+            <a style="color: white;" (click)='redirectToService(item.link)'> 
+                {{ item.title }}
+               </a>
+        </div>
+        <div *ngIf='!isService'>
+            <a (click)='redirectTo(item.link)' style="color: white;">
+                    {{ item.title }}
+                </a>
+        </div>
     </igx-drop-down-item>
+
+
 </igx-drop-down>

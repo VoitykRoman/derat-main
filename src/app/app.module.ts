@@ -41,6 +41,9 @@ const appRoutes: Routes = [
   },
   {
     path: "services", component: ServiceComponent
+  },
+  {
+    path: 'licenses', component: LicensesButtonsComponent
   }
 ];
 
@@ -107,3 +110,4 @@ const appRoutes: Routes = [
 })
 export class AppModule {
 }
+

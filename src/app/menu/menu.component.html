@@ -6,14 +6,14 @@
 
 
 <div class="topnav" id="myTopnav">
-    <a href="#home" class="active">Home</a>
+    <a class="active" (click)='redirectToHome()'>Home</a>
     <a>
-        <app-main-dropdown [items]="aboutUsReferences" name="About us"></app-main-dropdown>
+        <app-main-dropdown [items]="aboutUsReferences" name="About us" [isService]='false'></app-main-dropdown>
     </a>
     <a>
-        <app-main-dropdown [items]="servicesReferences" name="Services"></app-main-dropdown>
+        <app-main-dropdown [items]="servicesReferences" name="Services" [isService]='true'></app-main-dropdown>
     </a>
-    <a href="#contacts">Contact us</a>
+    <a (click)='redirectToContacts()'>Contact us</a>
     <a href="#signup">Sign up</a>
     <a href="javascript:void(0);" class="icon" (click)="zoom()">
         <i class="fa fa-bars"></i>

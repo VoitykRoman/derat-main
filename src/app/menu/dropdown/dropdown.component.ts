@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { MenuReference } from 'src/app/models/menu-reference';
+import { Router } from '@angular/router';
 @Component({
     // tslint:disable-next-line:component-selector
     selector: "app-main-dropdown",
@@ -7,6 +8,32 @@ import { MenuReference } from 'src/app/models/menu-reference';
     templateUrl: "./dropdown.component.html"
 })
 export class DropDownComponent {
- @Input() public items: MenuReference[];
- @Input() public name: string;
+    @Input() public items: MenuReference[];
+    @Input() public name: string;
+    @Input() isService: boolean;
+
+    /**
+     *
+     */
+    constructor(private router: Router) {
+    }
+    redirectToService(order) {
+        this.router.navigate(['/services'], {
+            queryParams: {
+                service: order
+            }
+        })
+    }
+
+    redirectTo(link: string) {
+        if(this.router.url.split('?')[0] == '/'){
+            document.getElementById(link).scrollIntoView({block: "start", behavior: "smooth"});
+        }
+        this.router.navigate([''], {
+            queryParams: {
+                id: link
+            }
+        });
+
+    }
 }
