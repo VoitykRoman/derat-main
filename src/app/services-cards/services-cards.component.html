@@ -1,17 +1,17 @@
 <h3 style="text-align: center;">Our Services</h3>
 
 <div *ngIf="sw()==3">
-    <div fxLayoutAlign="center center" fxLayoutGap="32px">
+    <div fxLayoutAlign="center" fxLayoutGap="32px">
         <app-main-service-card *ngFor="let card of cards" [card]="card"></app-main-service-card>
     </div>
 </div>
 
 <div *ngIf="sw()==2">
-    <div fxLayoutAlign="center center" fxLayoutGap="32px">
+    <div fxLayoutAlign="start start" fxLayoutGap="32px">
         <app-main-service-card [card]="cards[0]"></app-main-service-card>
         <app-main-service-card [card]="cards[1]"></app-main-service-card>
     </div>
-    <div fxLayoutAlign="center center" fxLayoutGap="32px">
+    <div fxLayoutAlign="start start" fxLayoutGap="32px">
         <app-main-service-card [card]="cards[2]"></app-main-service-card>
         <app-main-service-card [card]="cards[3]"></app-main-service-card>
     </div>
