@@ -14,9 +14,11 @@
         <app-main-dropdown [items]="servicesReferences" name="Services" [isService]='true'></app-main-dropdown>
     </a>
     <a (click)='redirectToContacts()'>Contact us</a>
-    <a href="#signup">Sign up</a>
+    <a *ngIf='isAdmin()'>Admin menu</a>
+    <a (click)="redirectToLogin()" *ngIf='!currentUser'>Sign up</a>
+    <a (click)="logout()" *ngIf='currentUser'>Logout</a>
     <a href="javascript:void(0);" class="icon" (click)="zoom()">
-        <i class="fa fa-bars"></i>
+        <i class="fa fa-bars "></i>
     </a>
     <a href="https://web.telegram.org/#/login" target="_blank">
         <igx-icon name="white-telegram" fontSet="filter-icons"></igx-icon>
@@ -27,5 +29,4 @@
     <a href="https://www.instagram.com/kistudent/" target="_blank">
         <igx-icon name="white-instagram" fontSet="filter-icons"></igx-icon>
     </a>
-
 </div>

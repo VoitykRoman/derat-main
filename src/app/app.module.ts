@@ -19,7 +19,6 @@ import { TeamCardComponent } from './team-carousel/team-card.component/team-card
 import { TeamMemberService } from './services/team-memberservice';
 import { LicensesButtonsComponent } from './licences-buttons/licences-buttons.component';
 import { LicenseCardComponent } from './licences-buttons/licence-card/license-card.component';
-import { FormsModule } from '@angular/forms';
 import { FeedbackCardComponent } from './feedback-card/feedback-card.component';
 import { FeedbackRatingComponent } from './feedback-card/feedback-rating/feedback-rating.component';
 import { FeedbackListComponent } from './feedback-card/feedback-list/feedback-list.component';
@@ -34,6 +33,11 @@ import { CallBackService } from './services/callback.service';
 import { HomeComponent } from './home/home.component';
 import { ServiceComponent } from './service/service.component';
 import { PriceCalculatorComponent } from './service/price-calculator/price-calculator.component';
+import { LoginComponent } from './main/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthenticationService } from './main/services/authentication.service';
+import { RegisterComponent } from './main/register/register.component';
 
 const appRoutes: Routes = [
   {
@@ -43,7 +47,10 @@ const appRoutes: Routes = [
     path: "services", component: ServiceComponent
   },
   {
-    path: 'licenses', component: LicensesButtonsComponent
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'register', component: RegisterComponent
   }
 ];
 
@@ -68,7 +75,9 @@ const appRoutes: Routes = [
     CallBackComponent,
     HomeComponent,
     ServiceComponent,
-    PriceCalculatorComponent
+    PriceCalculatorComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +90,6 @@ const appRoutes: Routes = [
     IgxRippleModule,
     IgxToastModule,
     BrowserAnimationsModule,
-    FormsModule,
     IgxIconModule,
     IgxAvatarModule,
     IgxExpansionPanelModule,
@@ -95,13 +103,19 @@ const appRoutes: Routes = [
     IgxInputGroupModule,
     IgxComboModule,
     IgxDatePickerModule,
-    IgxTimePickerModule
+    IgxTimePickerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
+
   ],
   providers: [IndexImageService,
     TeamMemberService,
     FeedbackService,
     LicenseService,
-    CallBackService],
+    CallBackService,
+    AuthenticationService],
+    
   exports: [CarouselComponent],
   bootstrap: [AppComponent,
     CarouselComponent,

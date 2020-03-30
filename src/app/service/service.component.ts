@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, AfterViewInit } from "@angular/core";
 import { Service } from '../models/service.model';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 
@@ -8,7 +8,7 @@ import { Route, Router, ActivatedRoute } from '@angular/router';
     styleUrls: ['./service.component.css'],
 })
 
-export class ServiceComponent {
+export class ServiceComponent implements AfterViewInit  {
 
     services: Service[] = [{
         title: "Deratization",
@@ -134,5 +134,9 @@ export class ServiceComponent {
         this.router.queryParamMap.subscribe(i => {
             this.i=+i.get('service');
         })
+    }
+
+    ngAfterViewInit() {
+        window.scrollTo(0,0);
     }
 }
