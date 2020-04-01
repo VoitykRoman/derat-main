@@ -1,0 +1,69 @@
+<div style="height: 70px;">
+</div>
+<div class="content-wrap" igxLayout>
+    <igx-nav-drawer id="navigation" [pin]="true" [pinThreshold]="0">
+        <ng-template igxDrawer>
+            <span igxDrawerItem [isHeader]="true"> Admin menu </span>
+            <span igxDrawerItem igxRipple routerLink='projects'>
+              <igx-icon fontSet="material">home</igx-icon>
+              <span >Projects</span>
+            </span>
+            <span igxDrawerItem igxRipple routerLink='organizations'>
+                <igx-icon fontSet="material">home</igx-icon>
+                <span>Organizations</span>
+            </span>
+            <span igxDrawerItem igxRipple>
+                <igx-icon fontSet="material">home</igx-icon>
+                <span>Clients control menu</span>
+            </span>
+            <span igxDrawerItem igxRipple>
+                <igx-icon fontSet="material">home</igx-icon>
+                <span>Employees control menu</span>
+            </span>
+            <span igxDrawerItem igxRipple>
+                <igx-icon fontSet="material">home</igx-icon>
+                <span>Admins control menu</span>
+            </span>
+            <span igxDrawerItem igxRipple>
+                <igx-icon fontSet="material">home</igx-icon>
+                <span>Main page media menu</span>
+            </span>
+            <span igxDrawerItem igxRipple>
+                <igx-icon fontSet="material">home</igx-icon>
+                <span>Send email</span>
+            </span>
+        </ng-template>
+        <ng-template igxDrawerMini>
+            <span igxDrawerItem igxRipple routerLink='projects'>
+              <igx-icon fontSet="material" >home</igx-icon>
+          </span>
+            <span igxDrawerItem igxRipple routerLink='organizations'>
+            <igx-icon fontSet="material">home</igx-icon>
+        </span>
+            <span igxDrawerItem igxRipple>
+            <igx-icon fontSet="material">home</igx-icon>
+        </span>
+            <span igxDrawerItem igxRipple>
+            <igx-icon fontSet="material">home</igx-icon>
+        </span>
+            <span igxDrawerItem igxRipple>
+            <igx-icon fontSet="material">home</igx-icon>
+        </span>
+            <span igxDrawerItem igxRipple>
+            <igx-icon fontSet="material">home</igx-icon>
+        </span>
+            <span igxDrawerItem igxRipple>
+            <igx-icon fontSet="material">home</igx-icon>
+        </span>
+        </ng-template>
+    </igx-nav-drawer>
+
+    <main igxFlex>
+        <!-- <button (click)="drawer.toggle()"> Menu </button> -->
+        <span igxButton="icon" igxToggleAction="navigation">
+        <igx-icon fontSet="material">menu</igx-icon>
+        
+      </span>
+        <router-outlet style="margin-left: 20px;"></router-outlet>
+    </main>
+</div>

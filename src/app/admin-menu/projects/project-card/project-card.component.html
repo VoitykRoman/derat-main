@@ -1,0 +1,18 @@
+<igx-card>
+    <igx-card-header class="compact">
+        <igx-avatar src={{project.avatarUrl}} roundShape="true"></igx-avatar>
+        <div class="igx-card-header__tgroup">
+            <h3 class="igx-card-header__title--small">{{project.name}}</h3>
+            <h5 class="igx-card-header__subtitle">{{project.organization.name}}</h5>
+        </div>
+    </igx-card-header>
+    <igx-card-actions>
+        <div class="igx-card-actions__bgroup">
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='openDetails()'>Details</button>
+            <button *ngIf='project.status!="active"' (click)='changeProjectStatusToActive()' type="button" class="btn btn-primary" style="margin-right: 5px;">Mark as active</button>
+            <button *ngIf='project.status!="pending"' (click)='changeProjectStatusToPending()' type="button" class="btn btn-primary" style="margin-right: 5px;">Mark as pending</button>
+            <button *ngIf='project.status!="done"' (click)='changeProjectStatusToDone()' type="button" class="btn btn-primary">Mark as done</button>
+        </div>
+    </igx-card-actions>
+
+</igx-card>

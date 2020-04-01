@@ -1,0 +1,14 @@
+<igx-tabs>
+    <igx-tabs-group label="Organizations" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-organization-card *ngFor='let organization of organizationsPagination' [organization]='organization'></app-organization-card>
+            <ngb-pagination [collectionSize]="organizations.length" [(page)]="activePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+            </ngb-pagination>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Create organization" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-create-organization></app-create-organization>
+        </div>
+    </igx-tabs-group>
+</igx-tabs>

@@ -85,6 +85,9 @@ export class MenuComponent {
         this.router.navigate(['/login']);
     }
 
+    redirectToAdminMenu() {
+        this.router.navigate(['/admin']);
+    }
 
     //zoom
     zoom() {

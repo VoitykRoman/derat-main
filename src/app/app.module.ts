@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule, IgxNavigationDrawerModule, IgxLayoutModule, IgxTabsModule, IgxAutocompleteModule } from "igniteui-angular";
 import { MatMenuModule } from '@angular/material/menu';
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { MenuComponent } from './menu/menu.component';
 import { AppComponent } from './app.component';
@@ -38,6 +38,32 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthenticationService } from './main/services/authentication.service';
 import { RegisterComponent } from './main/register/register.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+import { ProjectsComponent } from './admin-menu/projects/projects.component';
+import { CreateProjectComponent, AutocompletePipeStartsWith } from './admin-menu/projects/create-project/create-project.component';
+import { Base64Service } from './shared/base64.service';
+import { ProjectsService } from './admin-menu/services/projects.service';
+import { OrganizationsService } from './admin-menu/services/organizations.service';
+import { UserService } from './main/services/user.service';
+import { ProjectCardComponent } from './admin-menu/projects/project-card/project-card.component';
+import { OrganizationsComponent } from './admin-menu/organizations/organizations.component';
+import { OrganizationCardComponent } from './admin-menu/organizations/organization-card/organization-card.component';
+import { CreateOrganizationComponent } from './admin-menu/organizations/create-organization/create-organization.component';
+import { ProjectsDetailsComponent } from './admin-menu/projects/project-details/project-details.component';
+import { EmployeeCardComponent } from './admin-menu/projects/project-details/employee-card/employee-card.component';
+import { AddEmployeeComponent } from './admin-menu/projects/project-details/add-employee/add-employee.component';
+
+const adminRoutes: Routes = [
+  {
+    path: 'projects', component: ProjectsComponent
+  },
+  {
+    path: 'organizations', component: OrganizationsComponent
+  },
+  {
+    path: 'projects/:id', component: ProjectsDetailsComponent
+  }
+]
 
 const appRoutes: Routes = [
   {
@@ -51,8 +77,13 @@ const appRoutes: Routes = [
   },
   {
     path: 'register', component: RegisterComponent
+  },
+  {
+    path: 'admin', component: AdminMenuComponent, children: adminRoutes
   }
 ];
+
+
 
 @NgModule({
   declarations: [
@@ -77,7 +108,18 @@ const appRoutes: Routes = [
     ServiceComponent,
     PriceCalculatorComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminMenuComponent,
+    ProjectsComponent,
+    CreateProjectComponent,
+    AutocompletePipeStartsWith,
+    ProjectCardComponent,
+    OrganizationCardComponent,
+    OrganizationsComponent,
+    CreateOrganizationComponent,
+    ProjectsDetailsComponent,
+    EmployeeCardComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -106,7 +148,11 @@ const appRoutes: Routes = [
     IgxTimePickerModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    IgxNavigationDrawerModule,
+    IgxLayoutModule,
+    IgxTabsModule,
+    IgxAutocompleteModule
 
   ],
   providers: [IndexImageService,
@@ -114,8 +160,12 @@ const appRoutes: Routes = [
     FeedbackService,
     LicenseService,
     CallBackService,
-    AuthenticationService],
-    
+    AuthenticationService,
+    Base64Service,
+    ProjectsService,
+    OrganizationsService,
+    UserService],
+
   exports: [CarouselComponent],
   bootstrap: [AppComponent,
     CarouselComponent,

@@ -1,0 +1,27 @@
+<div class="custom-file">
+    <input accept="image/*" type="file" class="custom-file-input" id="customFile" (change)="onFileChanged($event)">
+    <label class="custom-file-label" for="customFile">Choose file</label>
+</div>
+<div class="sample-wrapper">
+    <section class="sample-content">
+        <article class="sample-column">
+            <form>
+                <igx-input-group>
+                    <input igxInput name="fullName" type="text" required="required" [(ngModel)]="project.name" />
+                    <label igxLabel for="fullName">Project name</label>
+                </igx-input-group>
+            </form>
+        </article>
+    </section>
+</div>
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="organizations" [valueKey]="'organization'" [displayKey]="'organization'" [(ngModel)]="organizationSelected" placeholder="Select organization" searchPlaceholder="Search..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'employee'" [displayKey]="'employee'" [(ngModel)]="project.employees" placeholder="Select employee" searchPlaceholder="Search..." [type]='"line"'>
+</igx-combo>
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="services" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="project.services" placeholder="Select services that you interested for" searchPlaceholder="Search..."
+    [type]='"line"'>
+</igx-combo>
+<div class="button-sample-custom">
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+</div>

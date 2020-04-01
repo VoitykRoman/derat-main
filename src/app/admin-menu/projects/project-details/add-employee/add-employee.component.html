@@ -1,0 +1,5 @@
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'employee'" [displayKey]="'employee'" [(ngModel)]="employeesToAdd" placeholder="Select employee" searchPlaceholder="Search..." [type]='"line"'>
+</igx-combo>
+<div class="button-sample-custom">
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+</div>
