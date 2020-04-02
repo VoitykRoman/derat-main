@@ -52,6 +52,12 @@ import { CreateOrganizationComponent } from './admin-menu/organizations/create-o
 import { ProjectsDetailsComponent } from './admin-menu/projects/project-details/project-details.component';
 import { EmployeeCardComponent } from './admin-menu/projects/project-details/employee-card/employee-card.component';
 import { AddEmployeeComponent } from './admin-menu/projects/project-details/add-employee/add-employee.component';
+import { OrganizationsDetailsComponent } from './admin-menu/organizations/organizations-details/organizations-details.component';
+import { FacilitiesListComponent } from './admin-menu/organizations/organizations-details/facilities-list/facilities-list.component';
+import { AddFacilityComponent } from './admin-menu/organizations/organizations-details/add-facility/add-facility.component';
+import { FacilityService } from './admin-menu/services/facility.service';
+import { ClientCardComponent } from './admin-menu/organizations/organizations-details/client-card/client-card.component';
+import { AddClientComponent } from './admin-menu/organizations/organizations-details/add-client/add-client.component';
 
 const adminRoutes: Routes = [
   {
@@ -62,6 +68,9 @@ const adminRoutes: Routes = [
   },
   {
     path: 'projects/:id', component: ProjectsDetailsComponent
+  },
+  {
+    path: 'organizations/:id', component: OrganizationsDetailsComponent
   }
 ]
 
@@ -119,7 +128,12 @@ const appRoutes: Routes = [
     CreateOrganizationComponent,
     ProjectsDetailsComponent,
     EmployeeCardComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    OrganizationsDetailsComponent,
+    FacilitiesListComponent,
+    AddFacilityComponent,
+    ClientCardComponent,
+    AddClientComponent
   ],
   imports: [
     BrowserModule,
@@ -164,7 +178,8 @@ const appRoutes: Routes = [
     Base64Service,
     ProjectsService,
     OrganizationsService,
-    UserService],
+    UserService,
+    FacilityService],
 
   exports: [CarouselComponent],
   bootstrap: [AppComponent,

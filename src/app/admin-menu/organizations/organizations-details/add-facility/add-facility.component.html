@@ -1,0 +1,27 @@
+<div class="sample-wrapper">
+    <section class="sample-content">
+        <article class="sample-column">
+            <form>
+                <igx-input-group>
+                    <input igxInput name="fullName" type="text" required="required" [(ngModel)]="facility.name" />
+                    <label igxLabel for="fullName">Facility name</label>
+                </igx-input-group>
+            </form>
+        </article>
+    </section>
+</div>
+<div class="sample-wrapper">
+    <section class="sample-content">
+        <article class="sample-column">
+            <form>
+                <igx-input-group>
+                    <input igxInput name="address" type="text" required="required" [(ngModel)]="facility.address" />
+                    <label igxLabel for="address">Facility address</label>
+                </igx-input-group>
+            </form>
+        </article>
+    </section>
+</div>
+<div class="button-sample-custom">
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+</div>

@@ -1,0 +1,28 @@
+<igx-tabs *ngIf='obs | async'>
+    <igx-tabs-group label="Organization details" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <h2>{{organization.name}}</h2>
+            <igx-avatar src={{organization.avatarUrl}} roundShape="true"></igx-avatar>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Facilities" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-facility-card *ngFor='let facility of organization.facilities' [facility]='facility'></app-facility-card>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Add Facility" icon="library_music" id="addFacility">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-add-facility [organization]='organization'></app-add-facility>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Clients" icon="library_music" id="addFacility">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-client-card *ngFor='let client of organization.clients' [client]='client' [organizationId]='organization.id'></app-client-card>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Add clients" icon="library_music" id="AddClients">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-add-client></app-add-client>
+        </div>
+    </igx-tabs-group>
+</igx-tabs>

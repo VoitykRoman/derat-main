@@ -17,7 +17,7 @@ export class AddEmployeeComponent {
     projectEmployeesIds: number[];
     project: Project;
     users: User[];
-
+ @Input() projectId;
     constructor(userService: UserService,
         private projectService: ProjectsService) {
         projectService.getProjectById(1).subscribe((e: Project) => {

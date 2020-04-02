@@ -16,7 +16,7 @@ export class EmployeeCardComponent {
     }
     removeEmployee() {
         this.projectService.removeEmployeeFromProject(this.employee.id, this.projectId).subscribe(e => {
-
+            
         });
     }
 }
