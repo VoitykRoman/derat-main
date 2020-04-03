@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Organization } from '../../models/organization.model';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { OrganizationsService } from '../../services/organizations.service';
 
 @Component({
     selector: "app-organization-card",
@@ -9,15 +11,32 @@ import { Router } from '@angular/router';
 })
 export class OrganizationCardComponent {
 
-   @Input() organization:Organization;
+    @Input() organization: Organization;
 
-   /**
-    *
-    */
-   constructor(private router: Router) {
-      
-   }
-   openDetails(){
-    this.router.navigate(['admin', 'organizations', this.organization.id]);
-}
+    /**
+     *
+     */
+    constructor(private router: Router,
+        private authenticationService: AuthenticationService,
+        private organizationsService: OrganizationsService) {
+
+    }
+
+    isAdmin() {
+        return this.authenticationService.currentUserValue.role == 'admin'
+    }
+
+    isClient() {
+        return this.authenticationService.currentUserValue.role == 'client'
+    }
+
+    delete() {
+        this.organizationsService.deleteOrganization(this.organization.id).subscribe(e => {
+
+        })
+    }
+
+    openDetails() {
+        this.router.navigate(['menu', 'organizations', this.organization.id]);
+    }
 }

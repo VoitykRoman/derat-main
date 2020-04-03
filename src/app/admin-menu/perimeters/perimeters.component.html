@@ -1,0 +1,29 @@
+<igx-tabs>
+    <igx-tabs-group label="Perimeter" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <h3 class="igx-card-header__title--small">{{perimeter.name}}</h3>
+            <h5 class="igx-card-header__subtitle">Type: {{perimeter.type}}</h5>
+            <h3 class="igx-card-header__title--small" *ngIf='ifStatus()'>Status: {{perimeter.status}}</h3>
+            <h3 class="igx-card-header__title--small" *ngIf='ifStatus()'>Last action date: {{perimeter.lastAction | date}}</h3>
+            <h5 class="igx-card-header__subtitle">Service: {{perimeter.service}}</h5>
+        </div>
+        <div class="igx-card-actions__bgroup" *ngIf='!isClient()'>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='markAsReviewed()' *ngIf='ifStatus()'>Mark as reviewed</button>
+        </div>
+
+    </igx-tabs-group>
+    <igx-tabs-group label="Traps" icon="library_music" id="active" *ngIf='!ifStatus() '>
+        <div style="margin: 10px 3px 3px 1px">
+            <app-trap-card *ngFor='let trap of pagination' [trap]='trap'></app-trap-card>
+            <ngb-pagination [collectionSize]="perimeter.traps.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+            </ngb-pagination>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Create Trap" icon="library_music" id="active" *ngIf='!ifStatus() && isAdmin()'>
+        <div style="margin: 10px 3px 3px 1px">
+
+            <app-create-trap></app-create-trap>
+        </div>
+    </igx-tabs-group>
+
+</igx-tabs>

@@ -1,0 +1,17 @@
+<igx-card>
+    <igx-card-header class="compact">
+        <div class="igx-card-header__tgroup">
+            <h3 class="igx-card-header__title--small">{{perimeter.name}}</h3>
+            <h5 class="igx-card-header__subtitle">Type: {{perimeter.type}}</h5>
+            <h3 class="igx-card-header__title--small" *ngIf='ifStatus()'>Status: {{perimeter.status}}</h3>
+            <h5 class="igx-card-header__subtitle">Service: {{perimeter.service}}</h5>
+            <h5 class="igx-card-header__subtitle">Assigned employee: {{perimeter.employee.firstName}} {{perimeter.employee.lastName}}</h5>
+        </div>
+    </igx-card-header>
+    <igx-card-actions>
+        <div class="igx-card-actions__bgroup">
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='openDetails()'>Details</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='deletePerimeter()' *ngIf='isAdmin()'>Delete</button>
+        </div>
+    </igx-card-actions>
+</igx-card>

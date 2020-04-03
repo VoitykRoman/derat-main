@@ -3,26 +3,37 @@
         <div style="margin: 10px 3px 3px 1px">
             <h2>{{organization.name}}</h2>
             <igx-avatar src={{organization.avatarUrl}} roundShape="true"></igx-avatar>
+
+
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Facilities" icon="library_music" id="active">
         <div style="margin: 10px 3px 3px 1px">
-            <app-facility-card *ngFor='let facility of organization.facilities' [facility]='facility'></app-facility-card>
+            <app-facility-card *ngFor='let facility of fPagination' [facility]='facility'></app-facility-card>
+            <ngb-pagination [collectionSize]="organization.facilities.length" [(page)]="fPage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+            </ngb-pagination>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Add Facility" icon="library_music" id="addFacility">
+    <igx-tabs-group label="Add Facility" icon="library_music" id="addFacility" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-add-facility [organization]='organization'></app-add-facility>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Clients" icon="library_music" id="addFacility">
+    <igx-tabs-group label="Clients" icon="library_music" id="addFacility" *ngIf='isAdmin() || isClient()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-client-card *ngFor='let client of organization.clients' [client]='client' [organizationId]='organization.id'></app-client-card>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Add clients" icon="library_music" id="AddClients">
+    <igx-tabs-group label="Add clients" icon="library_music" id="AddClients" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-add-client></app-add-client>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Projects" icon="library_music" id="AddClients" *ngIf='isAdmin() || isClient()'>
+        <div style="margin: 10px 3px 3px 1px">
+            <app-projects-org-card *ngFor='let project of projectsPagination' [project]='project'></app-projects-org-card>
+            <ngb-pagination [collectionSize]="organization.projects.length" [(page)]="projectsPage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+            </ngb-pagination>
         </div>
     </igx-tabs-group>
 </igx-tabs>

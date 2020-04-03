@@ -8,6 +8,9 @@
                 <p>status: {{project.status}}</p>
                 <p>Services: {{project.services}}</p>
                 <p>Organization: {{project.organization.name}}</p>
+                <div class="button-sample-custom">
+                    <button igxButton="raised" igxRipple="white" (click)='goToOrganization()'>Organization</button>
+                </div>
             </div>
             <div style="float: right;">
                 <div class="list-sample">
@@ -25,15 +28,15 @@
     </igx-tabs-group>
     <igx-tabs-group label="Employees" icon="library_music" id="employ">
         <div style="margin: 10px 3px 3px 1px">
-            <app-employee-card *ngFor='let employee of employeesPagination' [employee]='employee' [projectId]='project.id'></app-employee-card>
+            <app-employee-card *ngFor='let employee of employeesPagination ' [employee]='employee ' [projectId]='project.id '></app-employee-card>
 
             <ngb-pagination [collectionSize]="employees.length" [(page)]="ePage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
             </ngb-pagination>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Add employees" icon="library_music" id="employ">
+    <igx-tabs-group label="Add employees" icon="library_music" id="employ" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-add-employee [projectId]=project.id></app-add-employee>
+            <app-add-employee></app-add-employee>
         </div>
     </igx-tabs-group>
 </igx-tabs>

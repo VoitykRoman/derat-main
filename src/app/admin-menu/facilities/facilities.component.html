@@ -1,0 +1,26 @@
+<igx-tabs *ngIf='obs | async'>
+    <igx-tabs-group label="Facility" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <h3>{{facility.name}}</h3>
+            <p>Address: {{facility.address}}</p>
+            <p>Organization: {{facility.organization.name}}</p>
+
+            <div class="igx-card-actions__bgroup">
+                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='delete()' *ngIf='isAdmin()'>Delete</button>
+            </div>
+        </div>
+
+    </igx-tabs-group>
+    <igx-tabs-group label="Perimeters" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-petimeter-card *ngFor='let perimeter of perimeters' [perimeter]='perimeter'></app-petimeter-card>
+            <ngb-pagination [collectionSize]="facility.perimeters.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+            </ngb-pagination>
+        </div>
+    </igx-tabs-group>
+    <igx-tabs-group label="Add perimeter" icon="library_music" id="active" *ngIf='isAdmin()'>
+        <div style="margin: 10px 3px 3px 1px">
+            <app-add-perimeter></app-add-perimeter>
+        </div>
+    </igx-tabs-group>
+</igx-tabs>

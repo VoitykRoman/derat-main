@@ -7,8 +7,8 @@ import { HttpBaseUrl } from 'src/app/constants/http.base.url.constant';
 export class ProjectsService {
 
   constructor(private http: HttpClient) { }
-  getAllProjects() {
-    return this.http.get(`${HttpBaseUrl.httpBaseUrl}/projects`);
+  getAllProjects(id: number) {
+    return this.http.get(`${HttpBaseUrl.httpBaseUrl}/projects?id=` + id);
   }
 
   createProject(body) {
@@ -27,7 +27,11 @@ export class ProjectsService {
     return this.http.post(`${HttpBaseUrl.httpBaseUrl}/projects/removeEmployeeFromProject?employeeId=` + employeeId + `&projectId=` + projectId, {});
   }
 
-  addEmployeesToProject(body){
+  addEmployeesToProject(body) {
     return this.http.post(`${HttpBaseUrl.httpBaseUrl}/projects/AddEmployeeToProject`, body);
+  }
+
+  deleteProject(id: number) {
+    return this.http.delete(`${HttpBaseUrl.httpBaseUrl}/projects/DeleteProject?id=` + id);
   }
 }

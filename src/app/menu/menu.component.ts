@@ -44,7 +44,7 @@ export class MenuComponent {
     }]
     currentUser: User;
 
-    constructor(private router: Router, private authenticationService: AuthenticationService) {
+    constructor(private router: Router, public authenticationService: AuthenticationService) {
         this.authenticationService.currentUser.subscribe(u => {
             this.currentUser = u;
         })
@@ -86,7 +86,7 @@ export class MenuComponent {
     }
 
     redirectToAdminMenu() {
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/menu']);
     }
 
     //zoom

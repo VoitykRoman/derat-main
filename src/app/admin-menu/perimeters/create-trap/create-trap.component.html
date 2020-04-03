@@ -1,0 +1,42 @@
+<div class="sample-wrapper">
+    <section class="sample-content">
+        <article class="sample-column">
+            <form>
+                <igx-input-group>
+                    <input igxInput name="fullName" type="text" required="required" [(ngModel)]="selectedPlace" />
+                    <label igxLabel for="fullName">Trap place</label>
+                </igx-input-group>
+            </form>
+        </article>
+    </section>
+</div>
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="types" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Select trap type" searchPlaceholder="Search..." [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+
+<div class="sample-wrapper date-picker-wrapper">
+    <div>
+        <igx-date-picker id="date-picker" [(ngModel)]='date'></igx-date-picker>
+    </div>
+</div>
+
+<div class="container">
+    <igx-slider [minValue]="1" [maxValue]="7" [step]="1" [(ngModel)]="task.completion"></igx-slider>
+    <h5 class="igx-card-header__subtitle">Review every {{task.completion}} days</h5>
+</div>
+
+<div class="sample-wrapper">
+    <section class="sample-content">
+        <article class="sample-column">
+            <form>
+                <igx-input-group>
+                    <input igxInput name="Comment" type="text" required="required" [(ngModel)]="selectedComment" />
+                    <label igxLabel for="Comment">Comment</label>
+                </igx-input-group>
+            </form>
+        </article>
+    </section>
+</div>
+
+<div class="button-sample-custom">
+    <button igxButton="raised" igxRipple="white" (click)='createTrap()'>Submit</button>
+</div>

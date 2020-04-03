@@ -7,8 +7,8 @@ import { HttpBaseUrl } from 'src/app/constants/http.base.url.constant';
 export class OrganizationsService {
 
   constructor(private http: HttpClient) { }
-  getAllOrganizations() {
-    return this.http.get(`${HttpBaseUrl.httpBaseUrl}/organizations`);
+  getAllOrganizations(id) {
+    return this.http.get(`${HttpBaseUrl.httpBaseUrl}/organizations?id=` + id);
   }
   createOrganization(organization) {
     return this.http.post(`${HttpBaseUrl.httpBaseUrl}/organizations`, organization);
@@ -29,4 +29,9 @@ export class OrganizationsService {
   addClient(body) {
     return this.http.post(`${HttpBaseUrl.httpBaseUrl}/organizations/addclient`, body);
   }
+
+  deleteOrganization(id: number) {
+    return this.http.delete(`${HttpBaseUrl.httpBaseUrl}/organizations/DeleteOrganization?id=` + id);
+  }
+
 }

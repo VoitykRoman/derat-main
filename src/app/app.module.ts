@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule, IgxNavigationDrawerModule, IgxLayoutModule, IgxTabsModule, IgxAutocompleteModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule, IgxNavigationDrawerModule, IgxLayoutModule, IgxTabsModule, IgxAutocompleteModule, IgxSliderModule } from "igniteui-angular";
 import { MatMenuModule } from '@angular/material/menu';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -58,6 +58,16 @@ import { AddFacilityComponent } from './admin-menu/organizations/organizations-d
 import { FacilityService } from './admin-menu/services/facility.service';
 import { ClientCardComponent } from './admin-menu/organizations/organizations-details/client-card/client-card.component';
 import { AddClientComponent } from './admin-menu/organizations/organizations-details/add-client/add-client.component';
+import { ProjectsOrgComponent } from './admin-menu/organizations/organizations-details/projects/projects.component';
+import { FacilitiesComponent } from './admin-menu/facilities/facilities.component';
+import { PerimeterCardComponent } from './admin-menu/facilities/perimeter-card/perimeter-card.component';
+import { AddPerimeterComponent } from './admin-menu/facilities/add-perimeter/add-perimeter.component';
+import { PerimeterService } from './admin-menu/services/perimeters.service';
+import { PerimetersComponent } from './admin-menu/perimeters/perimeters.component';
+import { TrapCardComponent } from './admin-menu/perimeters/trap-card/trap-card.component';
+import { CreateTrapComponent } from './admin-menu/perimeters/create-trap/create-trap.component';
+import { TrapService } from './admin-menu/services/trap.service';
+import { TrapsComponent } from './admin-menu/traps/traps.component';
 
 const adminRoutes: Routes = [
   {
@@ -71,6 +81,15 @@ const adminRoutes: Routes = [
   },
   {
     path: 'organizations/:id', component: OrganizationsDetailsComponent
+  },
+  {
+    path: 'facilities/:id', component: FacilitiesComponent
+  },
+  {
+    path: 'perimeters/:id', component: PerimetersComponent
+  },
+  {
+    path: 'traps/:id', component: TrapsComponent
   }
 ]
 
@@ -88,7 +107,7 @@ const appRoutes: Routes = [
     path: 'register', component: RegisterComponent
   },
   {
-    path: 'admin', component: AdminMenuComponent, children: adminRoutes
+    path: 'menu', component: AdminMenuComponent, children: adminRoutes
   }
 ];
 
@@ -133,7 +152,15 @@ const appRoutes: Routes = [
     FacilitiesListComponent,
     AddFacilityComponent,
     ClientCardComponent,
-    AddClientComponent
+    AddClientComponent,
+    ProjectsOrgComponent,
+    FacilitiesComponent,
+    PerimeterCardComponent,
+    AddPerimeterComponent,
+    PerimetersComponent,
+    TrapCardComponent,
+    CreateTrapComponent,
+    TrapsComponent
   ],
   imports: [
     BrowserModule,
@@ -156,7 +183,6 @@ const appRoutes: Routes = [
     IgxDropDownModule,
     IgxToggleModule,
     IgxSelectModule,
-    IgxInputGroupModule,
     IgxComboModule,
     IgxDatePickerModule,
     IgxTimePickerModule,
@@ -166,7 +192,9 @@ const appRoutes: Routes = [
     IgxNavigationDrawerModule,
     IgxLayoutModule,
     IgxTabsModule,
-    IgxAutocompleteModule
+    IgxAutocompleteModule,
+    IgxSliderModule,
+    IgxInputGroupModule
 
   ],
   providers: [IndexImageService,
@@ -179,7 +207,9 @@ const appRoutes: Routes = [
     ProjectsService,
     OrganizationsService,
     UserService,
-    FacilityService],
+    FacilityService,
+    PerimeterService,
+    TrapService],
 
   exports: [CarouselComponent],
   bootstrap: [AppComponent,

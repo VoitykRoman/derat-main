@@ -1,0 +1,25 @@
+<div class="sample-wrapper">
+    <section class="sample-content">
+        <article class="sample-column">
+            <form>
+                <igx-input-group>
+                    <input igxInput name="fullName" type="text" required="required" [(ngModel)]="selectedName" />
+                    <label igxLabel for="fullName">Perimeter name</label>
+                </igx-input-group>
+            </form>
+        </article>
+    </section>
+</div>
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="types" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Select perimeter type" searchPlaceholder="Search..." [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="services" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="serviceSelected" placeholder="Select service" searchPlaceholder="Search..." [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+
+<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'employee'" [displayKey]="'employee'" [(ngModel)]="selectedEmployee" placeholder="Select employee" searchPlaceholder="Search..." [type]='"line"'
+    (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+
+<div class="button-sample-custom">
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+</div>

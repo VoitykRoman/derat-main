@@ -14,7 +14,7 @@
         <app-main-dropdown [items]="servicesReferences" name="Services" [isService]='true'></app-main-dropdown>
     </a>
     <a (click)='redirectToContacts()'>Contact us</a>
-    <a *ngIf='isAdmin()' (click)='redirectToAdminMenu()'>Admin menu</a>
+    <a *ngIf='authenticationService.currentUserValue' (click)='redirectToAdminMenu()'>Menu</a>
     <a (click)="redirectToLogin()" *ngIf='!currentUser'>Sign up</a>
     <a (click)="logout()" *ngIf='currentUser'>Logout</a>
     <a href="javascript:void(0);" class="icon" (click)="zoom()">

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { OrganizationsService } from '../services/organizations.service';
 import { Organization } from '../models/organization.model';
+import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { User } from 'src/app/main/models/user.model';
 
 @Component({
     selector: "app-projects",
@@ -9,15 +11,24 @@ import { Organization } from '../models/organization.model';
 })
 export class OrganizationsComponent {
 
-    organizations:Organization[];
+    organizations: Organization[];
+    currentUser: User;
+    constructor(private organizationsService: OrganizationsService,
+        public authenticationService: AuthenticationService) {
+            // authenticationService.currentUserValue.id
+            organizationsService.getAllOrganizations(authenticationService.currentUserValue.id).toPromise().then((w: Organization[]) => {
+              this.organizations = w;       
+        }) 
+}
+                                                       
 
-    constructor(private organizationsService: OrganizationsService) {
-        organizationsService.getAllOrganizations().subscribe((e:Organization[]) => {
-            this.organizations = e;
-        })
+    isAdmin(){
+        return this.authenticationService.currentUserValue.role == 'admin'
     }
 
-
+    isClient(){
+        return this.authenticationService.currentUserValue.role == 'client'
+    }
 
     activePage = 1;
     pendingPage = 1;

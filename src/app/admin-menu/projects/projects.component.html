@@ -1,5 +1,5 @@
-<igx-tabs>
-    <igx-tabs-group label="Active" icon="library_music" id="active">
+<igx-tabs *ngIf='obs | async'>
+    <igx-tabs-group label="Active" icon="library_music" id="active" *ngIf='activeProjects'>
         <div style="margin: 10px 3px 3px 1px">
             <app-project-card *ngFor='let project of activePagination' [project]='project'></app-project-card>
             <ngb-pagination [collectionSize]="activeProjects.length" [(page)]="activePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
@@ -13,7 +13,7 @@
             </ngb-pagination>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Done" icon="info">
+    <igx-tabs-group label="Done" icon="info" *ngIf='doneProjects'>
         <div style="margin: 3px">
             <app-project-card *ngFor='let project of donePagination' [project]='project'></app-project-card>
             <ngb-pagination [collectionSize]="doneProjects.length" [(page)]="donePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
@@ -21,7 +21,7 @@
         </div>
 
     </igx-tabs-group>
-    <igx-tabs-group label="Create new project" icon="info">
+    <igx-tabs-group label="Create new project" icon="info" *ngIf='isAdmin()'>
         <div style="margin: 3px">
             <app-create-project></app-create-project>
         </div>

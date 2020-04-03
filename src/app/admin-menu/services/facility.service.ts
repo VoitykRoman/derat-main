@@ -14,7 +14,11 @@ export class FacilityService {
     return this.http.post(`${HttpBaseUrl.httpBaseUrl}/facilities`, facility);
   }
 
-  getFacilityById(id: number) {
-    return this.http.get(`${HttpBaseUrl.httpBaseUrl}/facilities/GetFacilityById?id=` + id);
+  getFacilityById(id: number, userId: number) {
+    return this.http.get(`${HttpBaseUrl.httpBaseUrl}/facilities/GetFacilityById?id=` + id + '&userId=' + userId);
+  }
+
+  deleteFacility(id: number) {
+    return this.http.delete(`${HttpBaseUrl.httpBaseUrl}/facilities/DeleteFacility?id=` + id);
   }
 }

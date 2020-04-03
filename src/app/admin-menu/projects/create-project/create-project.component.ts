@@ -7,6 +7,7 @@ import { OrganizationsService } from '../../services/organizations.service';
 import { UserService } from 'src/app/main/services/user.service';
 import { ProjectsService } from '../../services/projects.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/main/services/authentication.service';
 
 @Component({
     selector: "app-create-project",
@@ -34,8 +35,10 @@ export class CreateProjectComponent {
         private organizationsService: OrganizationsService,
         private userService: UserService,
         private projectService: ProjectsService,
-        private router: Router) {
-        organizationsService.getAllOrganizations().subscribe((o: Organization[]) => {
+        private router: Router,
+        private authenticationService: AuthenticationService) {
+            
+        organizationsService.getAllOrganizations(this.authenticationService.currentUserValue.id).subscribe((o: Organization[]) => {
             this.organizations = o.map(e => {
                 return { organization: e.name }
             });

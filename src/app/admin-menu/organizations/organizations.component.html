@@ -6,7 +6,7 @@
             </ngb-pagination>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Create organization" icon="library_music" id="active">
+    <igx-tabs-group label="Create organization" icon="library_music" id="active" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-create-organization></app-create-organization>
         </div>

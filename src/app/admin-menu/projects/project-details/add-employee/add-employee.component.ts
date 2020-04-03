@@ -3,6 +3,7 @@ import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
 import { ProjectsService } from 'src/app/admin-menu/services/projects.service';
 import { EmployeeProject, Project } from 'src/app/admin-menu/models/project.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: "app-add-employee",
@@ -17,10 +18,12 @@ export class AddEmployeeComponent {
     projectEmployeesIds: number[];
     project: Project;
     users: User[];
- @Input() projectId;
+
     constructor(userService: UserService,
-        private projectService: ProjectsService) {
-        projectService.getProjectById(1).subscribe((e: Project) => {
+        private projectService: ProjectsService,
+        private route: ActivatedRoute) {
+        const projectId = +this.route.snapshot.paramMap.get('id');
+        projectService.getProjectById(projectId).subscribe((e: Project) => {
             const stamp = e;
             this.project = stamp;
 
@@ -33,16 +36,16 @@ export class AddEmployeeComponent {
         }).add(e => {
             userService.getAllEmployee().subscribe((data: User[]) => {
                 this.users = data;
-                this.employees = this.users.filter((e: User) =>  {
-                    if(!this.projectEmployeesIds.includes(e.id))
-                    return e;
+                this.employees = this.users.filter((e: User) => {
+                    if (!this.projectEmployeesIds.includes(e.id))
+                        return e;
                 });
                 this.employeesToShow = this.employees.map(e => {
                     return { employee: e.firstName + " " + e.lastName + " " + e.id }
                 });
             });
         });
-        }
+    }
 
     onSubmit() {
         let employeesIds: number[] = [];

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Project } from '../../models/project.model';
 import { ProjectsService } from '../../services/projects.service';
 import { Router } from '@angular/router';
-import { ProjectStatuses } from 'src/app/shared/project-statuses.enum';
+import { AuthenticationService } from 'src/app/main/services/authentication.service';
 
 @Component({
     selector: "app-project-card",
@@ -15,25 +15,39 @@ export class ProjectCardComponent implements OnInit {
     @Input() project: Project;
 
     constructor(private projectService: ProjectsService,
-                private router: Router) {
+        private router: Router,
+        private authenticationService: AuthenticationService) {
     }
-    ngOnInit(){
+    ngOnInit() {
 
-}
-    openDetails(){
-        this.router.navigate(['admin', 'projects', this.project.id]);
+    }
+    openDetails() {
+        this.router.navigate(['menu', 'projects', this.project.id]);
     }
     changeProjectStatusToPending() {
-        this.projectService.changeProjectStatus(this.project.id, "pending").subscribe(e => {
+        this.projectService.changeProjectStatus(this.project.id, "pending").subscribe(() => {
         });
     }
     changeProjectStatusToActive() {
-        this.projectService.changeProjectStatus(this.project.id, "active").subscribe(e => {
+        this.projectService.changeProjectStatus(this.project.id, "active").subscribe(() => {
         });
     }
     changeProjectStatusToDone() {
-        this.projectService.changeProjectStatus(this.project.id, "done").subscribe(e => {
+        this.projectService.changeProjectStatus(this.project.id, "done").subscribe(() => {
         });
     }
+    isAdmin() {
+        return this.authenticationService.currentUserValue.role == 'admin'
+    }
 
+    isClient() {
+        return this.authenticationService.currentUserValue.role == 'client'
+    }
+
+    delete() {
+        this.projectService.deleteProject(this.project.id).subscribe(() => {
+
+        })
+
+    }
 }

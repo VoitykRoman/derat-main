@@ -1,14 +1,16 @@
 <igx-card>
     <igx-card-header class="compact">
         <div class="igx-card-header__tgroup">
-            <h3 class="igx-card-header__title--small">{{facility.name}} </h3>
-            <h5 class="igx-card-header__subtitle">{{facility.address}}</h5>
+            <h3 class="igx-card-header__title--small">{{project.name}} </h3>
+            <igx-avatar src={{project.avatarUrl}} roundShape="true"></igx-avatar>
+            <h5 class="igx-card-header__subtitle">{{project.status}}</h5>
+            <h5 class="igx-card-header__subtitle">{{project.services}}</h5>
+
         </div>
     </igx-card-header>
     <igx-card-actions>
         <div class="igx-card-actions__bgroup">
             <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='details()'>Details</button>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='deleteFacility()' *ngIf='isAdmin()'>Delete</button>
         </div>
     </igx-card-actions>
 

@@ -12,4 +12,6 @@ export class Perimeter{
     facility: Facility;
     employee: User;
     service: string;
+    status: string;
+    lastAction: Date;
 }

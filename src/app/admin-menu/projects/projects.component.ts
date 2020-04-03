@@ -7,6 +7,7 @@ import { Organization } from '../models/organization.model';
 import { Services } from 'src/app/shared/services.enum';
 import { User } from 'src/app/main/models/user.model';
 import { UserService } from 'src/app/main/services/user.service';
+import { AuthenticationService } from 'src/app/main/services/authentication.service';
 
 @Component({
     selector: "app-projects",
@@ -29,16 +30,27 @@ export class ProjectsComponent {
         Services.Disinfection,
         Services.Disinsection
     ]
+
+    obs;
     constructor(private projectService: ProjectsService,
         private organizationsService: OrganizationsService,
-        private userService: UserService) {
-        projectService.getAllProjects().subscribe((p: Project[]) => {
-            this.projects = p;
-            this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
-            this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
-            this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
-           
-        });
+        private userService: UserService,
+        private authenticationService: AuthenticationService) {
+        this.obs = projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise();
+        const promise = projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise()
+            .then((p: Project[]) => {
+                this.projects = p;
+                this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
+                this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
+                this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
+            });
+        // projectService.getAllProjects(this.authenticationService.currentUserValue.id).subscribe((p: Project[]) => {
+        //     this.projects = p;
+        //     this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
+        //     this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
+        //     this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
+
+        // });
     }
 
     changeProjectStatus(id: number) {
@@ -47,6 +59,13 @@ export class ProjectsComponent {
         });
     }
 
+    isAdmin() {
+        return this.authenticationService.currentUserValue.role == 'admin'
+    }
+
+    isClient() {
+        return this.authenticationService.currentUserValue.role == 'client'
+    }
 
     activePage = 1;
     pendingPage = 1;

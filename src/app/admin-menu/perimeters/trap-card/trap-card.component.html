@@ -1,8 +1,10 @@
 <igx-card>
     <igx-card-header class="compact">
-        <igx-avatar src={{organization.avatarUrl}} roundShape="true"></igx-avatar>
         <div class="igx-card-header__tgroup">
-            <h3 class="igx-card-header__title--small">{{organization.name}}</h3>
+            <h3 class="igx-card-header__title--small">{{trap.place}}</h3>
+            <h5 class="igx-card-header__subtitle">Type: {{trap.type}}</h5>
+            <h5 class="igx-card-header__subtitle">Status: {{trap.status}}</h5>
+            <h5 class="igx-card-header__subtitle">Next review date: {{trap.nextReviewTime | date}}</h5>
         </div>
     </igx-card-header>
     <igx-card-actions>
