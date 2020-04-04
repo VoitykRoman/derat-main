@@ -1,0 +1,83 @@
+<div class="d-flex justify-content-between p-2" fxLayout="row" fxLayoutAlign="start center">
+    <div class="sample-wrapper">
+        <igx-expansion-panel [animationSettings]="animationSettingsCustom" class="content__collapsible">
+            <igx-expansion-panel-header>
+                <igx-expansion-panel-title class="sample-title">Add a new index image</igx-expansion-panel-title>
+            </igx-expansion-panel-header>
+            <igx-expansion-panel-body class="body">
+                <igx-input-group class="group">
+                    <label igxLabel for="fullName">Image url</label>
+                    <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newIndexImage.imageUrl" value='ngModel' />
+                    <igx-suffix>
+                        <igx-icon>person</igx-icon>
+                    </igx-suffix>
+                </igx-input-group>
+                <igx-input-group class="group">
+                    <label igxLabel for="phone">Title</label>
+                    <input igxInput autocomplete="off" type="text" name="phone" [(ngModel)]="newIndexImage.title" value='ngModel' />
+                    <igx-suffix>
+                        <igx-icon>phone</igx-icon>
+                    </igx-suffix>
+
+                </igx-input-group>
+                <igx-input-group class="group">
+                    <label igxLabel for="email">Description</label>
+                    <input igxInput autocomplete="off" type="text" name="email" [(ngModel)]="newIndexImage.description" />
+                    <igx-suffix>
+                        <igx-icon>email</igx-icon>
+                    </igx-suffix>
+                </igx-input-group>
+                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='createNewIndexImage()'>Submit</button>
+            </igx-expansion-panel-body>
+        </igx-expansion-panel>
+    </div>
+    <input style="float: right;" accept="image/*" type="file" id="customFile" (change)="onNewFileChanged($event)">
+</div>
+<igx-input-group type="search" class="search">
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <input #search igxInput placeholder="Search index images" [(ngModel)]="searchIndex">
+    <igx-suffix *ngIf="search.value.length > 0" (click)="searchIndex = null">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+
+<div class="list-sample">
+    <igx-list [displayDensity]="density">
+        <igx-list-item isHeader="true">Index images</igx-list-item>
+        <igx-list-item igxRipple igxRippleTarget=".igx-list__item-content" #item *ngFor="let indexImage of indexImages | igxFilter: filterIndexImages;">
+            <igx-avatar igxListThumbnail [src]="indexImage.imageUrl" roundShape="true"></igx-avatar>
+            <span igxListLineTitle>{{ indexImage.title }}</span>
+            <span igxListLineSubTitle>{{ indexImage.description }}</span>
+            <input accept="image/*" type="file" id="customFile" (change)="onFileChanged($event, indexImage)">
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">Edit</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)=' deleteIndexImage(indexImage.id) '>Delete</button>
+            <igx-dialog #form title="Update user" leftButtonLabel="Cancel" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateIndexImage(indexImage, $event)" rightButtonLabel="Update" [closeOnOutsideSelect]="true">
+                <form class="signInForm">
+                    <igx-input-group>
+                        <igx-prefix>
+                            <igx-icon>person</igx-icon>
+                        </igx-prefix>
+                        <label igxLabel for="username">Image url</label>
+                        <input igxInput id="username" type="text" [(ngModel)]='indexImage.imageUrl ' value='ngModel ' name='imageUrl ' />
+                    </igx-input-group>
+                    <igx-input-group>
+                        <igx-prefix>
+                            <igx-icon>person</igx-icon>
+                        </igx-prefix>
+                        <label igxLabel for="lasname">Title</label>
+                        <input igxInput id="lastname" type="text" [(ngModel)]='indexImage.title ' value='ngModel ' name='Title ' />
+                    </igx-input-group>
+                    <igx-input-group>
+                        <igx-prefix>
+                            <igx-icon>person</igx-icon>
+                        </igx-prefix>
+                        <label igxLabel for="email">Description</label>
+                        <input igxInput id="email" type="text" [(ngModel)]='indexImage.description ' value='ngModel ' name='Description ' />
+                    </igx-input-group>
+                </form>
+            </igx-dialog>
+        </igx-list-item>
+    </igx-list>
+</div>

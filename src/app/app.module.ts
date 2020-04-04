@@ -71,6 +71,10 @@ import { TrapsComponent } from './admin-menu/traps/traps.component';
 import { UsersMenuComponent } from './admin-menu/users-menu/users-menu.component';
 import { UsersListComponent } from './admin-menu/users-menu/user-list/user-list.component';
 import { CreateUserComponent } from './admin-menu/users-menu/create-user/create-user.component';
+import { MediaMenuComponent } from './admin-menu/media-menu/media-menu.component';
+import { IndexImageListComponent } from './admin-menu/media-menu/index-image-list/index-image-list.component';
+import { LicensesListComponent } from './admin-menu/media-menu/licenses-list/licenses-list.component';
+import { TeamMemberListComponent } from './admin-menu/media-menu/team-member-list/team-member-list.component';
 
 const adminRoutes: Routes = [
   {
@@ -96,6 +100,9 @@ const adminRoutes: Routes = [
   },
   {
     path: 'usersmenu', component: UsersMenuComponent
+  },
+  {
+    path: 'mediamenu', component: MediaMenuComponent
   }
 ]
 
@@ -169,7 +176,11 @@ const appRoutes: Routes = [
     TrapsComponent,
     UsersMenuComponent,
     UsersListComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    MediaMenuComponent,
+    IndexImageListComponent,
+    LicensesListComponent,
+    TeamMemberListComponent
   ],
   imports: [
     BrowserModule,

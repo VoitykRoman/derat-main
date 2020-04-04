@@ -33,12 +33,16 @@ export class CreateOrganizationComponent {
     }
 
     onSubmit() {
-        let employeesIds: number[] = [];
-        this.organization.clients.forEach(e => {
-            employeesIds.push(+e.split(" ")[2])
-        })
-        this.organization.clients = employeesIds;
-
+        if (this.organization.clients != undefined) {
+            let employeesIds: number[] = [];
+            this.organization.clients.forEach(e => {
+                employeesIds.push(+e.split(" ")[2])
+            })
+            this.organization.clients = employeesIds;
+        }
+        else {
+            this.organization.clients = [];
+        }
         this.organizationsService.createOrganization(this.organization).subscribe(dd => {
 
         });
