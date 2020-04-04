@@ -20,12 +20,12 @@ export class UserService {
         return this.http.post(`${HttpBaseUrl.httpBaseUrl}/users/createuser`, user);
     }
 
-    update(user: User) {
-        return this.http.put(`${HttpBaseUrl.httpBaseUrl}/users/updateuser/` + user.id, user);
+    update(user) {
+        return this.http.put(`${HttpBaseUrl.httpBaseUrl}/users/updateuser/`, user);
     }
 
     delete(id: number) {
-        return this.http.delete(`${HttpBaseUrl.httpBaseUrl}/users/DeleteUser` + id);
+        return this.http.delete(`${HttpBaseUrl.httpBaseUrl}/users/DeleteUser?id=` + id);
     }
 
     getUserseByRole(role: string){

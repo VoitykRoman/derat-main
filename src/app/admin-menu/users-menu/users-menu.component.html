@@ -1,0 +1,14 @@
+<igx-tabs>
+    <igx-tabs-group label="Clients" icon="library_music" id="active">
+        <app-user-list [users]='clients'></app-user-list>
+    </igx-tabs-group>
+    <igx-tabs-group label="Employees" icon="library_music" id="active">
+        <app-user-list [users]='employees'></app-user-list>
+    </igx-tabs-group>
+    <igx-tabs-group label="Admins" icon="library_music" id="active">
+        <app-user-list [users]='admins'></app-user-list>
+    </igx-tabs-group>
+    <igx-tabs-group label="Create user" icon="library_music" id="active">
+        <app-create-user></app-create-user>
+    </igx-tabs-group>
+</igx-tabs>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule, IgxNavigationDrawerModule, IgxLayoutModule, IgxTabsModule, IgxAutocompleteModule, IgxSliderModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule, IgxNavigationDrawerModule, IgxLayoutModule, IgxTabsModule, IgxAutocompleteModule, IgxSliderModule, IgxFilterModule, IgxDialogModule, IgxRadioModule } from "igniteui-angular";
 import { MatMenuModule } from '@angular/material/menu';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -68,6 +68,9 @@ import { TrapCardComponent } from './admin-menu/perimeters/trap-card/trap-card.c
 import { CreateTrapComponent } from './admin-menu/perimeters/create-trap/create-trap.component';
 import { TrapService } from './admin-menu/services/trap.service';
 import { TrapsComponent } from './admin-menu/traps/traps.component';
+import { UsersMenuComponent } from './admin-menu/users-menu/users-menu.component';
+import { UsersListComponent } from './admin-menu/users-menu/user-list/user-list.component';
+import { CreateUserComponent } from './admin-menu/users-menu/create-user/create-user.component';
 
 const adminRoutes: Routes = [
   {
@@ -90,6 +93,9 @@ const adminRoutes: Routes = [
   },
   {
     path: 'traps/:id', component: TrapsComponent
+  },
+  {
+    path: 'usersmenu', component: UsersMenuComponent
   }
 ]
 
@@ -160,7 +166,10 @@ const appRoutes: Routes = [
     PerimetersComponent,
     TrapCardComponent,
     CreateTrapComponent,
-    TrapsComponent
+    TrapsComponent,
+    UsersMenuComponent,
+    UsersListComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -194,8 +203,10 @@ const appRoutes: Routes = [
     IgxTabsModule,
     IgxAutocompleteModule,
     IgxSliderModule,
-    IgxInputGroupModule
-
+    IgxInputGroupModule,
+    IgxFilterModule,
+    IgxDialogModule,
+    IgxRadioModule
   ],
   providers: [IndexImageService,
     TeamMemberService,
