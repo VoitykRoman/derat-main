@@ -20,9 +20,13 @@
                 <igx-icon fontSet="material">home</igx-icon>
                 <span>Main page media menu</span>
             </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='email'>
                 <igx-icon fontSet="material">home</igx-icon>
                 <span>Send email</span>
+            </span>
+            <span igxDrawerItem igxRipple routerLink='callback'>
+                <igx-icon fontSet="material">home</igx-icon>
+                <span>Callbacks menu</span>
             </span>
         </ng-template>
         <ng-template igxDrawerMini>
@@ -38,7 +42,10 @@
             <span igxDrawerItem igxRipple routerLink='mediamenu'>
             <igx-icon fontSet="material">home</igx-icon>
         </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='email'>
+            <igx-icon fontSet="material">home</igx-icon>
+        </span>
+            <span igxDrawerItem igxRipple routerLink='callback'>
             <igx-icon fontSet="material">home</igx-icon>
         </span>
         </ng-template>
@@ -54,6 +61,8 @@
     </main>
 </div>
 
+
+<!-- CLIENT-->
 <div class="content-wrap" igxLayout *ngIf='isClient()'>
     <igx-nav-drawer id="navigation" [pin]="true" [pinThreshold]="0">
         <ng-template igxDrawer>
@@ -62,15 +71,11 @@
                 <igx-icon fontSet="material">home</igx-icon>
                 <span>Organizations</span>
             </span>
-            <span igxDrawerItem igxRipple>
-                <igx-icon fontSet="material">home</igx-icon>
-                <span>Profile Settings</span>
-            </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='feedback'>
                 <igx-icon fontSet="material">home</igx-icon>
                 <span>Feedback</span>
             </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='support'>
                 <igx-icon fontSet="material">home</igx-icon>
                 <span>Support</span>
             </span>
@@ -79,13 +84,10 @@
             <span igxDrawerItem igxRipple routerLink='organizations'>
               <igx-icon fontSet="material" >home</igx-icon>
           </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='feedback'>
             <igx-icon fontSet="material">home</igx-icon>
         </span>
-            <span igxDrawerItem igxRipple>
-            <igx-icon fontSet="material">home</igx-icon>
-        </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='support'>
             <igx-icon fontSet="material">home</igx-icon>
         </span>
         </ng-template>
@@ -101,6 +103,9 @@
     </main>
 </div>
 
+
+
+<!-- EMPLOYEE-->
 <div class="content-wrap" igxLayout *ngIf='isEmployee()'>
     <igx-nav-drawer id="navigation" [pin]="true" [pinThreshold]="0">
         <ng-template igxDrawer>
@@ -109,16 +114,16 @@
                 <igx-icon fontSet="material">home</igx-icon>
                 <span>Projects</span>
             </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='support'>
                 <igx-icon fontSet="material">home</igx-icon>
-                <span>Profile Settings</span>
+                <span>Support</span>
             </span>
         </ng-template>
         <ng-template igxDrawerMini>
             <span igxDrawerItem igxRipple routerLink='projects'>
               <igx-icon fontSet="material" >home</igx-icon>
           </span>
-            <span igxDrawerItem igxRipple>
+            <span igxDrawerItem igxRipple routerLink='support'>
             <igx-icon fontSet="material">home</igx-icon>
         </span>
         </ng-template>

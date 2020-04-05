@@ -1,4 +1,4 @@
-<igx-tabs>
+<igx-tabs *ngIf='authenticationService.currentUserValue'>
     <igx-tabs-group label="Perimeter" icon="library_music" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h3 class="igx-card-header__title--small">{{perimeter.name}}</h3>
@@ -8,7 +8,7 @@
             <h5 class="igx-card-header__subtitle">Service: {{perimeter.service}}</h5>
         </div>
         <div class="igx-card-actions__bgroup" *ngIf='!isClient()'>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='markAsReviewed()' *ngIf='ifStatus()'>Mark as reviewed</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='markAsReviewed()' *ngIf='ifStatus() && !isClient()'>Mark as reviewed</button>
         </div>
 
     </igx-tabs-group>

@@ -1,4 +1,4 @@
-<igx-tabs>
+<igx-tabs *ngIf='isAdmin()'>
     <igx-tabs-group label="Clients" icon="library_music" id="active">
         <app-user-list [users]='clients'></app-user-list>
     </igx-tabs-group>

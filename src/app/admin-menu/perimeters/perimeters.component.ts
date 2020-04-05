@@ -18,7 +18,7 @@ export class PerimetersComponent implements OnInit {
     pageSize = 2;
     constructor(private route: ActivatedRoute,
         private perimeterService: PerimeterService,
-        private authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService) {
         // const perimeterId = +this.route.snapshot.paramMap.get('id');
         // this.obs = perimeterService.getPerimeterById(perimeterId);
         // const perimeterPromise = perimeterService.getPerimeterById(perimeterId).toPromise();

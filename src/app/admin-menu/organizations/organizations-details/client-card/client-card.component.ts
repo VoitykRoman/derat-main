@@ -9,19 +9,24 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
     templateUrl: "./client-card.component.html"
 })
 
-export class ClientCardComponent {
+export class ClientCardComponent implements OnInit {
     @Input() client: User;
     @Input() organizationId: number;
-
+    initials: string;
     constructor(private organizationServce: OrganizationsService,
-                private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService) {
     }
 
-    isAdmin(){
+    ngOnInit() {
+        const first = this.client.firstName[0].toUpperCase();
+        const second = this.client.lastName[0].toUpperCase();
+        this.initials = first + second;
+    }
+    isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
 
-    isClient(){
+    isClient() {
         return this.authenticationService.currentUserValue.role == 'client'
     }
     removeClient() {

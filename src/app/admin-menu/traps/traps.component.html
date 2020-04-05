@@ -1,4 +1,4 @@
-<igx-tabs *ngIf='obs | async'>
+<igx-tabs *ngIf='authenticationService.currentUserValue && obs | async'>
     <igx-tabs-group label="Traps" icon="library_music" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h3 class="igx-card-header__title--small">{{trap.place}}</h3>

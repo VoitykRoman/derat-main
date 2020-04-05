@@ -22,8 +22,14 @@ export class UsersListComponent implements OnInit {
         this.users.forEach(element => {
             element.fullName = element.firstName + " " + element.lastName
         });
+
     }
 
+    getInitials(user: User) {
+        const first = user.firstName[0].toUpperCase();
+        const second = user.lastName[0].toUpperCase();
+        return first + second;
+    }
     public updateUser(user: User, event) {
         const userToUpdate = {
             id: user.id,
@@ -39,7 +45,7 @@ export class UsersListComponent implements OnInit {
         })
     }
 
-    deleteUser(id: number){
+    deleteUser(id: number) {
         this.userService.delete(id).toPromise().then(e => {
             location.reload();
         })

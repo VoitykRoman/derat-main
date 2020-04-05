@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Project } from '../models/project.model';
 import { ProjectStatuses } from 'src/app/shared/project-statuses.enum';
 import { ProjectsService } from '../services/projects.service';
@@ -14,7 +14,7 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
     styleUrls: ["./projects.component.scss"],
     templateUrl: "./projects.component.html"
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
     projects: Project[];
     activeProjects;
     pendingProjects;
@@ -33,26 +33,19 @@ export class ProjectsComponent {
 
     obs;
     constructor(private projectService: ProjectsService,
-        private organizationsService: OrganizationsService,
-        private userService: UserService,
         private authenticationService: AuthenticationService) {
-        this.obs = projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise();
-        const promise = projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise()
+    }
+
+    ngOnInit() {
+        this.obs = this.projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise();
+        const promise = this.projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise()
             .then((p: Project[]) => {
                 this.projects = p;
                 this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
                 this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
                 this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
             });
-        // projectService.getAllProjects(this.authenticationService.currentUserValue.id).subscribe((p: Project[]) => {
-        //     this.projects = p;
-        //     this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
-        //     this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
-        //     this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
-
-        // });
     }
-
     changeProjectStatus(id: number) {
         this.projectService.changeProjectStatus(id, "active").subscribe(e => {
 

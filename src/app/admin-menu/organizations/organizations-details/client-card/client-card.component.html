@@ -1,10 +1,11 @@
 <igx-card>
     <igx-card-header class="compact">
-        <!-- <igx-avatar src={{employee.avatarUrl}} roundShape="true"></igx-avatar> -->
+        <igx-avatar src={{client.avatarUrl}} roundShape="true" *ngIf='client.avatarUrl' size="large"></igx-avatar>
+        <igx-avatar initials='{{initials}}' [roundShape]="'true'" bgColor="#ADBDBB" color="#424242" size="large" *ngIf='!client.avatarUrl'></igx-avatar>
         <div class="igx-card-header__tgroup">
             <h3 class="igx-card-header__title--small">{{client.firstName}} {{client.lastName}} {{client.id}}</h3>
             <h5 class="igx-card-header__subtitle">{{client.phone}}</h5>
-            <!-- <h5 class="igx-card-header__subtitle">{{employee.email}}</h5> -->
+            <h5 class="igx-card-header__subtitle">{{client.email}}</h5>
         </div>
     </igx-card-header>
     <igx-card-actions>

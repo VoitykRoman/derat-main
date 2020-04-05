@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { OrganizationsService } from 'src/app/admin-menu/services/organizations.service';
 import { Organization } from 'src/app/admin-menu/models/organization.model';
 import { User } from 'src/app/main/models/user.model';
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: "./add-client.component.html"
 })
 
-export class AddClientComponent {
+export class AddClientComponent implements OnInit {
 
     clientsToAdd;
     clients;
@@ -24,11 +24,14 @@ export class AddClientComponent {
     constructor(private organizationService: OrganizationsService,
         private userService: UserService,
         private route: ActivatedRoute) {
+    }
+
+    ngOnInit() {
         const organizationId = +this.route.snapshot.paramMap.get('id');
-        const orgPromise = organizationService.getOrganizationById(organizationId).toPromise();
+        const orgPromise = this.organizationService.getOrganizationById(organizationId).toPromise();
         orgPromise.then((e: Organization) => {
             this.organization = e;
-            const clientsProm = userService.getAllClients().toPromise();
+            const clientsProm = this.userService.getAllClients().toPromise();
             clientsProm.then((users: User[]) => {
                 this.organizationClientsIds = this.organization.clients.map((e) => {
                     return e.id;

@@ -15,7 +15,7 @@ export class FacilitiesComponent {
     obs;
     constructor(private facilityService: FacilityService,
         private route: ActivatedRoute,
-        private authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService) {
         const facilityId = +this.route.snapshot.paramMap.get('id');
         this.obs = facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id);
         const facilityPromise = facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id).toPromise();

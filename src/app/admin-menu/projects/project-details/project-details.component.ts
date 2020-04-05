@@ -20,7 +20,7 @@ export class ProjectsDetailsComponent {
     constructor(private projectsService: ProjectsService,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService:AuthenticationService) {
+        public authenticationService:AuthenticationService) {
         const projectId = +this.route.snapshot.paramMap.get('id');
         projectsService.getProjectById(projectId).subscribe((e: Project) => {
             this.project = e;

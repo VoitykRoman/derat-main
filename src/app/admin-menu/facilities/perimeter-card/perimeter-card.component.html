@@ -5,7 +5,7 @@
             <h5 class="igx-card-header__subtitle">Type: {{perimeter.type}}</h5>
             <h3 class="igx-card-header__title--small" *ngIf='ifStatus()'>Status: {{perimeter.status}}</h3>
             <h5 class="igx-card-header__subtitle">Service: {{perimeter.service}}</h5>
-            <h5 class="igx-card-header__subtitle">Assigned employee: {{perimeter.employee.firstName}} {{perimeter.employee.lastName}}</h5>
+            <h5 class="igx-card-header__subtitle" *ngIf='perimeter.employee'>Assigned employee: {{perimeter.employee.firstName}} {{perimeter.employee.lastName}}</h5>
         </div>
     </igx-card-header>
     <igx-card-actions>

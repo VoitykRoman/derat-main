@@ -1,0 +1,13 @@
+<div class="sample-wrapper" *ngIf='!isAdmin()'>
+    <section class="sample-content">
+        <article class="sample-column">
+            <form>
+                <igx-input-group>
+                    <input igxInput name="fullName" type="text" required="required" [(ngModel)]='content' />
+                    <label igxLabel for="fullName">Ask a question</label>
+                </igx-input-group>
+            </form>
+        </article>
+    </section>
+</div>
+<button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="onSubmit()">Submit</button>

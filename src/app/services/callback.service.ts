@@ -7,7 +7,15 @@ import { CallBack } from '../models/callback.model';
 export class CallBackService {
 
     constructor(private http: HttpClient) { }
-    postCallBack(body: CallBack) {
-        return this.http.post<CallBack>(`${HttpBaseUrl.httpBaseUrl}/callbacks`, body);
+    postCallBack(body) {
+        return this.http.post(`${HttpBaseUrl.httpBaseUrl}/callbacks`, body);
+    }
+
+    getAll() {
+        return this.http.get(`${HttpBaseUrl.httpBaseUrl}/callbacks`);
+    }
+
+    delete(id: number) {
+        return this.http.delete(`${HttpBaseUrl.httpBaseUrl}/callbacks?id=` + id);
     }
 }

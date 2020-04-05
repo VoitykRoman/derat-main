@@ -17,7 +17,6 @@ export class TeamMemberListComponent implements OnInit {
         position: '',
         phone: '',
         experience: '',
-        avatarUrl: '',
         imageUrl: ''
     }
 
@@ -48,7 +47,7 @@ export class TeamMemberListComponent implements OnInit {
         })
     }
 
-    updateLicense(teamMember: TeamCard, event) {
+    updateTeamMember(teamMember: TeamCard, event) {
 
         const teamMemberToUpdate = {
             id: teamMember.id,
@@ -57,7 +56,6 @@ export class TeamMemberListComponent implements OnInit {
             position: teamMember.position,
             phone: teamMember.phone,
             experience: teamMember.experience,
-            avatarUrl: teamMember.avatarUrl,
             imageUrl: teamMember.imageUrl
         }
 

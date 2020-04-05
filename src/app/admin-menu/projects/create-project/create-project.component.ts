@@ -66,6 +66,7 @@ export class CreateProjectComponent {
             .filter(e => e.name == this.organizationSelected[0]).map(w => w.id)[0];
 
         let employeesIds: number[] = [];
+        if(this.project.employees)
         this.project.employees.forEach(e => {
             employeesIds.push(+e.split(" ")[2])
         })

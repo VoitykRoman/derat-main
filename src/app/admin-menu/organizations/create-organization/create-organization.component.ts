@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Base64Service } from 'src/app/shared/base64.service';
 import { OrganizationsService } from '../../services/organizations.service';
 import { UserService } from 'src/app/main/services/user.service';
@@ -10,7 +10,7 @@ import { User } from 'src/app/main/models/user.model';
     templateUrl: "./create-organization.component.html"
 })
 
-export class CreateOrganizationComponent {
+export class CreateOrganizationComponent implements OnInit {
 
     organization = {
         name: undefined,
@@ -24,14 +24,16 @@ export class CreateOrganizationComponent {
     constructor(private base64Service: Base64Service,
         private organizationsService: OrganizationsService,
         private userService: UserService) {
-        userService.getAllClients().subscribe((e: User[]) => {
+    }
+
+    ngOnInit() {
+        this.userService.getAllClients().subscribe((e: User[]) => {
             this.clients = e;
             this.clientsToShow = this.clients.map(e => {
                 return { client: e.firstName + " " + e.lastName + " " + e.id }
             });
         });
     }
-
     onSubmit() {
         if (this.organization.clients != undefined) {
             let employeesIds: number[] = [];

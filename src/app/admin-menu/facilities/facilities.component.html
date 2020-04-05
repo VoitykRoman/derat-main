@@ -1,4 +1,4 @@
-<igx-tabs *ngIf='obs | async'>
+<igx-tabs *ngIf='authenticationService.currentUserValue && obs | async'>
     <igx-tabs-group label="Facility" icon="library_music" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h3>{{facility.name}}</h3>
@@ -20,7 +20,7 @@
     </igx-tabs-group>
     <igx-tabs-group label="Add perimeter" icon="library_music" id="active" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-add-perimeter></app-add-perimeter>
+            <app-add-perimeter [facility]='facility'></app-add-perimeter>
         </div>
     </igx-tabs-group>
 </igx-tabs>

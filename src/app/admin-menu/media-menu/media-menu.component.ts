@@ -5,6 +5,7 @@ import { LicenseService } from 'src/app/services/license.service';
 import { LicenseCard } from 'src/app/models/license-card.model';
 import { TeamMemberService } from 'src/app/services/team-memberservice';
 import { TeamCard } from 'src/app/models/team-card.model';
+import { AuthenticationService } from 'src/app/main/services/authentication.service';
 
 @Component({
     selector: "app-media-menu",
@@ -18,8 +19,13 @@ export class MediaMenuComponent implements OnInit {
     teamMembers: TeamCard[];
     constructor(private indexImageService: IndexImageService,
         private licenseService: LicenseService,
-        private teamMemberService: TeamMemberService) {
+        private teamMemberService: TeamMemberService,
+        private authenticationService: AuthenticationService) {
 
+    }
+
+    isAdmin() {
+        return this.authenticationService.currentUserValue.role == 'admin';
     }
     ngOnInit() {
         this.indexImageService.getImages().toPromise().then((e: IndexImage[]) => {

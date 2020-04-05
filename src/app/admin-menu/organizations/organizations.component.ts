@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrganizationsService } from '../services/organizations.service';
 import { Organization } from '../models/organization.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
@@ -9,24 +9,27 @@ import { User } from 'src/app/main/models/user.model';
     styleUrls: ["./organizations.component.scss"],
     templateUrl: "./organizations.component.html"
 })
-export class OrganizationsComponent {
+export class OrganizationsComponent implements OnInit {
 
+    loading = true;
     organizations: Organization[];
     currentUser: User;
     constructor(private organizationsService: OrganizationsService,
         public authenticationService: AuthenticationService) {
-            // authenticationService.currentUserValue.id
-            organizationsService.getAllOrganizations(authenticationService.currentUserValue.id).toPromise().then((w: Organization[]) => {
-              this.organizations = w;       
-        }) 
-}
-                                                       
+    }
 
-    isAdmin(){
+    ngOnInit() {
+        this.organizationsService.getAllOrganizations(this.authenticationService.currentUserValue.id).toPromise().then((w: Organization[]) => {
+            this.organizations = w;
+            this.loading = false;
+        });
+    }
+
+    isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
 
-    isClient(){
+    isClient() {
         return this.authenticationService.currentUserValue.role == 'client'
     }
 

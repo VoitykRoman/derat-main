@@ -1,8 +1,9 @@
-<igx-tabs *ngIf='obs | async'>
+<img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==">
+<igx-tabs *ngIf='!loading && authenticationService.currentUserValue && obs | async'>
     <igx-tabs-group label="Organization details" icon="library_music" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h2>{{organization.name}}</h2>
-            <igx-avatar src={{organization.avatarUrl}} roundShape="true"></igx-avatar>
+            <igx-avatar src={{organization.avatarUrl}} roundShape="true" *ngIf='organization.avatarUrl'></igx-avatar>
 
 
         </div>
@@ -21,7 +22,9 @@
     </igx-tabs-group>
     <igx-tabs-group label="Clients" icon="library_music" id="addFacility" *ngIf='isAdmin() || isClient()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-client-card *ngFor='let client of organization.clients' [client]='client' [organizationId]='organization.id'></app-client-card>
+            <app-client-card *ngFor='let client of cPagination' [client]='client' [organizationId]='organization.id'></app-client-card>
+            <ngb-pagination [collectionSize]="organization.clients.length" [(page)]="fPage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+            </ngb-pagination>
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Add clients" icon="library_music" id="AddClients" *ngIf='isAdmin()'>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
-import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule, IgxNavigationDrawerModule, IgxLayoutModule, IgxTabsModule, IgxAutocompleteModule, IgxSliderModule, IgxFilterModule, IgxDialogModule, IgxRadioModule } from "igniteui-angular";
+import { IgxButtonModule, IgxIconModule, IgxCardModule, IgxRippleModule, IgxAvatarModule, IgxToastModule, IgxExpansionPanelModule, IgxListModule, IgxButtonGroupModule, IgxComboModule, IgxCarouselModule, IgxDropDownModule, IgxToggleModule, IgxSelectModule, IgxInputGroupModule, IgxDatePickerModule, IgxTimePickerModule, IgxNavigationDrawerModule, IgxLayoutModule, IgxTabsModule, IgxAutocompleteModule, IgxSliderModule, IgxFilterModule, IgxDialogModule, IgxRadioModule, IgxChipsModule } from "igniteui-angular";
 import { MatMenuModule } from '@angular/material/menu';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -75,6 +75,14 @@ import { MediaMenuComponent } from './admin-menu/media-menu/media-menu.component
 import { IndexImageListComponent } from './admin-menu/media-menu/index-image-list/index-image-list.component';
 import { LicensesListComponent } from './admin-menu/media-menu/licenses-list/licenses-list.component';
 import { TeamMemberListComponent } from './admin-menu/media-menu/team-member-list/team-member-list.component';
+import { EmailComponent } from './admin-menu/email/email.component';
+import { EmailFilterPipe } from './admin-menu/email/email-filter-pipe';
+import { EmailService } from './admin-menu/services/email.service';
+import { CallbackAdminComponent } from './admin-menu/callback/callback.component';
+import { CallbackAdminCardComponent } from './admin-menu/callback/callback-card/callback-card.component';
+import { ProfileComponent } from './admin-menu/profile/profile.component';
+import { LeftFeedbackComponent } from './admin-menu/left-feedback/left-feedback.component';
+import { SupportComponent } from './admin-menu/support/support.component';
 
 const adminRoutes: Routes = [
   {
@@ -103,6 +111,21 @@ const adminRoutes: Routes = [
   },
   {
     path: 'mediamenu', component: MediaMenuComponent
+  },
+  {
+    path: 'email', component: EmailComponent
+  },
+  {
+    path: 'callback', component: CallbackAdminComponent
+  },
+  {
+    path: '', component: ProfileComponent
+  },
+  {
+    path: 'feedback', component: LeftFeedbackComponent
+  },
+  {
+    path: 'support', component: SupportComponent
   }
 ]
 
@@ -180,7 +203,14 @@ const appRoutes: Routes = [
     MediaMenuComponent,
     IndexImageListComponent,
     LicensesListComponent,
-    TeamMemberListComponent
+    TeamMemberListComponent,
+    EmailComponent,
+    EmailFilterPipe,
+    CallbackAdminComponent,
+    CallbackAdminCardComponent,
+    ProfileComponent,
+    LeftFeedbackComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
@@ -217,7 +247,8 @@ const appRoutes: Routes = [
     IgxInputGroupModule,
     IgxFilterModule,
     IgxDialogModule,
-    IgxRadioModule
+    IgxRadioModule,
+    IgxChipsModule
   ],
   providers: [IndexImageService,
     TeamMemberService,
@@ -231,7 +262,8 @@ const appRoutes: Routes = [
     UserService,
     FacilityService,
     PerimeterService,
-    TrapService],
+    TrapService,
+    EmailService],
 
   exports: [CarouselComponent],
   bootstrap: [AppComponent,

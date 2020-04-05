@@ -10,9 +10,8 @@ import { CallBackService } from '../services/callback.service';
 export class CallBackComponent {
 
     constructor(private callbackService: CallBackService) {
-        this.callbackService.postCallBack(this.callBack);
     }
-    public callBack: CallBack = {
+    public callBack = {
         dateTime: new Date(),
         email: undefined,
         fullName: undefined,

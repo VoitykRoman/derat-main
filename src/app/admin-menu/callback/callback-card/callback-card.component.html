@@ -1,0 +1,16 @@
+<igx-card>
+    <igx-card-header class="compact">
+        <div class="igx-card-header__tgroup">
+            <h3 class="igx-card-header__title--small">{{callback.fullName}}</h3>
+            <h3 class="igx-card-header__title--small">{{callback.email}} </h3>
+            <h3 class="igx-card-header__title--small">{{callback.phone}}</h3>
+            <h3 class="igx-card-header__title--small">{{callback.services}}</h3>
+            <h3 class="igx-card-header__title--small">{{callback.dateTime}}</h3>
+        </div>
+    </igx-card-header>
+    <igx-card-actions>
+        <div class="igx-card-actions__bgroup">
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='delete()'>Delete</button>
+        </div>
+    </igx-card-actions>
+</igx-card>

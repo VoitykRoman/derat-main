@@ -1,0 +1,60 @@
+<div *ngIf='authenticationService.currentUserValue'>
+    <igx-avatar src="{{user.avatarUrl}}" roundShape="true" size="large" *ngIf='user.avatarUrl'></igx-avatar>
+    <igx-avatar initials='{{initials}}' [(ngModel)]='initials' [roundShape]="'true'" bgColor="#ADBDBB" color="#424242" size="large" *ngIf='!user.avatarUrl' id="initialsAvatar"></igx-avatar>
+    <br>
+    <h5 class="igx-card-header__subtitle">First name: {{user.firstName}}</h5>
+    <h5 class="igx-card-header__subtitle">Last name: {{user.lastName}}</h5>
+    <h5 class="igx-card-header__subtitle">Email: {{user.email}}</h5>
+    <h5 class="igx-card-header__subtitle">Phone: {{user.phone}}</h5>
+    <h5 class="igx-card-header__subtitle" *ngIf='isClient() && user.organization'>Organization: {{user.organization.name}}</h5>
+    <h6 class="igx-card-header__subtitle">Choose new avatar</h6>
+    <input accept="image/*" type="file" id="customFile" (change)="onFileChanged($event)">
+
+    <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">Edit</button>
+    <igx-dialog #form title="Update user" leftButtonLabel="Cancel" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateUser($event)" rightButtonLabel="Update" [closeOnOutsideSelect]="true">
+        <form class="signInForm">
+            <igx-input-group>
+                <igx-prefix>
+                    <igx-icon>person</igx-icon>
+                </igx-prefix>
+                <label igxLabel for="username">First name</label>
+                <input igxInput id="username" type="text" [(ngModel)]='user.firstName ' value='ngModel ' name='firstName ' />
+            </igx-input-group>
+            <igx-input-group>
+                <igx-prefix>
+                    <igx-icon>person</igx-icon>
+                </igx-prefix>
+                <label igxLabel for="lasname">Last name</label>
+                <input igxInput id="lastname" type="text" [(ngModel)]='user.lastName ' value='ngModel ' name='lastName ' />
+            </igx-input-group>
+            <igx-input-group>
+                <igx-prefix>
+                    <igx-icon>person</igx-icon>
+                </igx-prefix>
+                <label igxLabel for="email">Email</label>
+                <input igxInput id="email" type="email" [(ngModel)]='user.email ' value='ngModel ' name='email ' />
+            </igx-input-group>
+            <igx-input-group>
+                <igx-prefix>
+                    <igx-icon>person</igx-icon>
+                </igx-prefix>
+                <label igxLabel for="email">Phone</label>
+                <input igxInput id="email" type="text" [(ngModel)]='user.phone ' value='ngModel ' name='phone ' />
+            </igx-input-group>
+            <igx-input-group>
+                <igx-prefix>
+                    <igx-icon>person</igx-icon>
+                </igx-prefix>
+                <label igxLabel for="email">Password</label>
+                <input igxInput id="email" type="password" [(ngModel)]='user.password ' value='ngModel ' name='password ' />
+            </igx-input-group>
+            <igx-input-group>
+                <igx-prefix>
+                    <igx-icon>person</igx-icon>
+                </igx-prefix>
+                <label igxLabel for="email">Avatar url</label>
+                <input igxInput id="email" type="text" [(ngModel)]='user.avatarUrl ' value='ngModel ' name='avatarUrl ' />
+            </igx-input-group>
+        </form>
+    </igx-dialog>
+</div>

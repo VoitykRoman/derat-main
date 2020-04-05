@@ -1,4 +1,4 @@
-<igx-tabs *ngIf='obs | async'>
+<igx-tabs *ngIf=' !isClient() && obs | async'>
     <igx-tabs-group label="Active" icon="library_music" id="active" *ngIf='activeProjects'>
         <div style="margin: 10px 3px 3px 1px">
             <app-project-card *ngFor='let project of activePagination' [project]='project'></app-project-card>

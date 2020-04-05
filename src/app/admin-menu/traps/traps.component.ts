@@ -16,7 +16,7 @@ export class TrapsComponent {
     constructor(private trapService: TrapService,
         private route: ActivatedRoute,
         private router:Router,
-        private authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService) {
         const trapId = +this.route.snapshot.paramMap.get('id');
         this.obs = this.trapService.getTrapById(trapId);
         const trapPromise = this.trapService.getTrapById(trapId).toPromise();

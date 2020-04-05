@@ -1,4 +1,4 @@
-<igx-tabs>
+<igx-tabs *ngIf='isAdmin()'>
     <igx-tabs-group label="Index images" icon="library_music" id="active">
         <app-index-image-list [indexImages]='indexImages'></app-index-image-list>
     </igx-tabs-group>

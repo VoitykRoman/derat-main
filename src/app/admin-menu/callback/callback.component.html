@@ -1,0 +1,9 @@
+<igx-tabs *ngIf='isAdmin() && obs | async'>
+    <igx-tabs-group label="Callbacks" icon="library_music" id="active">
+        <div style="margin: 10px 3px 3px 1px">
+            <app-callback-admin-card *ngFor='let callback of callbackPagination' [callback]='callback'></app-callback-admin-card>
+            <ngb-pagination [collectionSize]="callbacks.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+            </ngb-pagination>
+        </div>
+    </igx-tabs-group>
+</igx-tabs>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Facility } from '../../models/facility.model';
 import { IComboSelectionChangeEventArgs } from 'igniteui-angular';
 import { Project, EmployeeProject } from '../../models/project.model';
@@ -12,7 +12,7 @@ import { PerimeterService } from '../../services/perimeters.service';
     selector: "app-add-perimeter",
     templateUrl: "./add-perimeter.component.html"
 })
-export class AddPerimeterComponent {
+export class AddPerimeterComponent implements OnInit {
 
     @Input() facility: Facility;
 
@@ -24,7 +24,7 @@ export class AddPerimeterComponent {
             type: 'outer'
         }
     ];
-    
+
     selectedType;
 
     serviceSelected;
@@ -32,38 +32,33 @@ export class AddPerimeterComponent {
     employeesToShow;
     selectedEmployee;
     employees: User[];
-    selectedName; 
+    selectedName;
     constructor(private userSerivce: UserService,
         private route: ActivatedRoute,
         private facilityService: FacilityService,
         private perimeterService: PerimeterService) {
 
-        // const facilityId = +this.route.snapshot.paramMap.get('id');
-        // const facilityPromise = facilityService.getFacilityById(facilityId).toPromise();
-        // facilityPromise.then((e: Facility) => {
 
-        //     this.facility = e;
-
-            this.employees = this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0].employeesLnk
-                .map((emp: EmployeeProject) => {
-                    return emp.employee
-                });
-
-            this.employeesToShow = this.employees.map(e => {
-                return { employee: e.firstName + " " + e.lastName + " " + e.id }
-            })
-
-            const services = this.facility.organization.projects
-                .filter((e: Project) => e.organizationId == this.facility.organization.id)[0].services.split(',');
-
-            this.services = services.map(e => {
-                return {
-                    service: e
-                }
-            });
-        // })
     }
+    ngOnInit() {
+        this.employees = this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0].employeesLnk
+            .map((emp: EmployeeProject) => {
+                return emp.employee
+            });
 
+        this.employeesToShow = this.employees.map(e => {
+            return { employee: e.firstName + " " + e.lastName + " " + e.id }
+        })
+
+        const services = this.facility.organization.projects
+            .filter((e: Project) => e.organizationId == this.facility.organization.id)[0].services.split(',');
+
+        this.services = services.map(e => {
+            return {
+                service: e
+            }
+        });
+    }
     onSubmit() {
         let employeesIds: number[] = [];
         this.selectedEmployee.forEach(e => {

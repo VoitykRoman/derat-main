@@ -18,4 +18,5 @@ export class User {
     projectsLnk: EmployeeProject[]
     traps: Trap[];
     perimeters: Perimeter[]
+    avatarUrl: string;
 }

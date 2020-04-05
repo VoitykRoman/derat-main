@@ -19,7 +19,6 @@ export class OrganizationCardComponent {
     constructor(private router: Router,
         private authenticationService: AuthenticationService,
         private organizationsService: OrganizationsService) {
-
     }
 
     isAdmin() {

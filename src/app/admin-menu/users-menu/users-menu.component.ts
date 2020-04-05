@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
+import { AuthenticationService } from 'src/app/main/services/authentication.service';
 
 @Component({
     selector: "app-users-menu",
@@ -10,7 +11,8 @@ import { User } from 'src/app/main/models/user.model';
 export class UsersMenuComponent implements OnInit {
 
     users: User[]
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,
+        private authenticationService: AuthenticationService) {
     }
 
     ngOnInit() {
@@ -19,13 +21,17 @@ export class UsersMenuComponent implements OnInit {
         })
     }
 
+    isAdmin() {
+        return this.authenticationService.currentUserValue.role == 'admin';
+    }
+
     get clients() {
-        return this.users.filter(e => e.role =='client');
+        return this.users.filter(e => e.role == 'client');
     }
     get admins() {
-        return this.users.filter(e => e.role =='admin');
+        return this.users.filter(e => e.role == 'admin');
     }
     get employees() {
-        return this.users.filter(e => e.role =='employee');
+        return this.users.filter(e => e.role == 'employee');
     }
 }

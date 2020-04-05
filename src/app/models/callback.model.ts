@@ -1,4 +1,5 @@
- export class CallBack{
+export class CallBack {
+    id: number;
     dateTime: Date;
     email: string;
     fullName: string;
