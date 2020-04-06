@@ -1,6 +1,6 @@
-import { Component, Pipe, PipeTransform } from "@angular/core";
+import { Component, Pipe, PipeTransform, Output } from "@angular/core";
 import { Base64Service } from 'src/app/shared/base64.service';
-import { IComboSelectionChangeEventArgs } from "igniteui-angular";
+import { IComboSelectionChangeEventArgs, IgxToastPosition } from "igniteui-angular";
 import { Organization } from '../../models/organization.model';
 import { User } from 'src/app/main/models/user.model';
 import { OrganizationsService } from '../../services/organizations.service';
@@ -8,6 +8,7 @@ import { UserService } from 'src/app/main/services/user.service';
 import { ProjectsService } from '../../services/projects.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { EventEmitter } from 'protractor';
 
 @Component({
     selector: "app-create-project",
@@ -21,9 +22,9 @@ export class CreateProjectComponent {
         organizationId: undefined,
         employees: undefined,
         avatarUrl: undefined
-    }
+    };
     selectedFile: File
-
+    success;
     services;
     organizationsEntities: Organization[];
     organizations;
@@ -37,11 +38,12 @@ export class CreateProjectComponent {
         private projectService: ProjectsService,
         private router: Router,
         private authenticationService: AuthenticationService) {
-            
+
         organizationsService.getAllOrganizations(this.authenticationService.currentUserValue.id).subscribe((o: Organization[]) => {
             this.organizations = o.map(e => {
-                return { organization: e.name }
-            });
+                if (e.projects.length == 0)
+                    return { organization: e.name }
+            }).filter(e => e != undefined);
             this.organizationsEntities = o;
         });
         userService.getAllEmployee().subscribe((e: User[]) => {
@@ -58,22 +60,23 @@ export class CreateProjectComponent {
             { service: "Disinfection" }
         ];
     }
+    toastPosition: IgxToastPosition;
 
     onSubmit() {
-
         this.project.services = this.project.services.join();
         this.project.organizationId = this.organizationsEntities
             .filter(e => e.name == this.organizationSelected[0]).map(w => w.id)[0];
 
         let employeesIds: number[] = [];
-        if(this.project.employees)
-        this.project.employees.forEach(e => {
-            employeesIds.push(+e.split(" ")[2])
-        })
+        if (this.project.employees)
+            this.project.employees.forEach(e => {
+                employeesIds.push(+e.split(" ")[2])
+            })
         this.project.employees = employeesIds;
+        this.toastPosition = IgxToastPosition.Middle;
 
-        this.projectService.createProject(this.project).subscribe(dd => {
-
+        this.projectService.createProject(this.project).toPromise().then(dd => {
+            location.reload();
         });
     }
 

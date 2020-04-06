@@ -17,6 +17,7 @@ export class MediaMenuComponent implements OnInit {
     indexImages: IndexImage[];
     licenses: LicenseCard[];
     teamMembers: TeamCard[];
+    loading = true;
     constructor(private indexImageService: IndexImageService,
         private licenseService: LicenseService,
         private teamMemberService: TeamMemberService,
@@ -36,6 +37,8 @@ export class MediaMenuComponent implements OnInit {
         })
         this.teamMemberService.getTeamMembers().toPromise().then((e: TeamCard[]) => {
             this.teamMembers = e;
+            this.loading = false;
         })
+        
     }
 }

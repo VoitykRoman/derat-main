@@ -32,6 +32,7 @@ export class ProjectsComponent implements OnInit {
     ]
 
     obs;
+    loading = true;
     constructor(private projectService: ProjectsService,
         private authenticationService: AuthenticationService) {
     }
@@ -44,6 +45,7 @@ export class ProjectsComponent implements OnInit {
                 this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
                 this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
                 this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
+                this.loading = false;
             });
     }
     changeProjectStatus(id: number) {

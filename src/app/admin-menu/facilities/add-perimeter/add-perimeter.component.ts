@@ -37,27 +37,31 @@ export class AddPerimeterComponent implements OnInit {
         private route: ActivatedRoute,
         private facilityService: FacilityService,
         private perimeterService: PerimeterService) {
-
-
     }
+
     ngOnInit() {
-        this.employees = this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0].employeesLnk
-            .map((emp: EmployeeProject) => {
-                return emp.employee
+        // if (this.facility.organization.projects && this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0] != undefined)
+            this.employees = this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0].employeesLnk
+                .map((emp: EmployeeProject) => {
+                    return emp.employee
+                });
+
+        // if (this.employees)
+            this.employeesToShow = this.employees.map(e => {
+                return { employee: e.firstName + " " + e.lastName + " " + e.id }
+            })
+
+        // if (this.facility.organization.projects
+        //     .filter((e: Project) => e.organizationId == this.facility.organization.id)[0] != undefined) {
+            const services = this.facility.organization.projects
+                .filter((e: Project) => e.organizationId == this.facility.organization.id)[0].services.split(',');
+
+            this.services = services.map(e => {
+                return {
+                    service: e
+                }
             });
-
-        this.employeesToShow = this.employees.map(e => {
-            return { employee: e.firstName + " " + e.lastName + " " + e.id }
-        })
-
-        const services = this.facility.organization.projects
-            .filter((e: Project) => e.organizationId == this.facility.organization.id)[0].services.split(',');
-
-        this.services = services.map(e => {
-            return {
-                service: e
-            }
-        });
+        // }
     }
     onSubmit() {
         let employeesIds: number[] = [];
@@ -73,8 +77,8 @@ export class AddPerimeterComponent implements OnInit {
             facilityId: this.facility.id
         }
 
-        this.perimeterService.createPerimeter(perimeter).subscribe(e => {
-
+        this.perimeterService.createPerimeter(perimeter).toPromise().then(e => {
+            location.reload();
         })
     }
     public setWeaponsLimit(event: IComboSelectionChangeEventArgs) {

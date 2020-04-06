@@ -19,17 +19,17 @@ export class FacilitiesListComponent {
         private authenticationService: AuthenticationService) {
     }
 
-    isAdmin(){
+    isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
 
-    isClient(){
+    isClient() {
         return this.authenticationService.currentUserValue.role == 'client'
     }
 
     deleteFacility() {
-        this.organizationService.deleteFacility(this.facility.id).subscribe(e => {
-
+        this.organizationService.deleteFacility(this.facility.id).toPromise().then(e => {
+            location.reload();
         });
     }
     details() {

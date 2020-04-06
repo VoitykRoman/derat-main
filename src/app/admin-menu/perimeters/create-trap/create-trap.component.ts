@@ -10,7 +10,7 @@ import { TrapService } from '../../services/trap.service';
     selector: "app-create-trap",
     templateUrl: "./create-trap.component.html"
 })
-export class CreateTrapComponent implements OnInit{
+export class CreateTrapComponent implements OnInit {
     types = [
         { type: 'mechanical' },
         { type: 'glue' }
@@ -37,22 +37,16 @@ export class CreateTrapComponent implements OnInit{
     constructor(private perimeterService: PerimeterService,
         private route: ActivatedRoute,
         private trapService: TrapService) {
-        // const perimeterId = +this.route.snapshot.paramMap.get('id');
-        // this.obs = perimeterService.getPerimeterById(perimeterId);
-        // const perimeterPromise = perimeterService.getPerimeterById(perimeterId).toPromise();
-        // perimeterPromise.then((e: Perimeter) => {
-        //     this.perimeter = e;
-        // })
-
     }
-ngOnInit(){
-    const perimeterId = +this.route.snapshot.paramMap.get('id');
-    this.obs = this.perimeterService.getPerimeterById(perimeterId);
-    const perimeterPromise = this.perimeterService.getPerimeterById(perimeterId).toPromise();
-    perimeterPromise.then((e: Perimeter) => {
-        this.perimeter = e;
-    })
-}
+
+    ngOnInit() {
+        const perimeterId = +this.route.snapshot.paramMap.get('id');
+        this.obs = this.perimeterService.getPerimeterById(perimeterId);
+        const perimeterPromise = this.perimeterService.getPerimeterById(perimeterId).toPromise();
+        perimeterPromise.then((e: Perimeter) => {
+            this.perimeter = e;
+        })
+    }
 
     public updateTask(event) {
         if (!isNaN(parseInt(event.value, 10))) {
@@ -78,7 +72,8 @@ ngOnInit(){
             endDate: this.date,
             reviewEveryDays: this.task.completion
         }
-        this.trapService.createTrap(body).subscribe(e => {
+        this.trapService.createTrap(body).toPromise().then(e => {
+            location.reload();
         })
     }
 }

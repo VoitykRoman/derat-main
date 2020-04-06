@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
 import { ProjectsService } from 'src/app/admin-menu/services/projects.service';
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: "./add-employee.component.html"
 })
 
-export class AddEmployeeComponent {
+export class AddEmployeeComponent  implements OnInit{
     employeesToAdd;
     employees;
     employeesToShow;
@@ -19,11 +19,14 @@ export class AddEmployeeComponent {
     project: Project;
     users: User[];
 
-    constructor(userService: UserService,
+    constructor(private userService: UserService,
         private projectService: ProjectsService,
         private route: ActivatedRoute) {
+    }
+
+    ngOnInit(){
         const projectId = +this.route.snapshot.paramMap.get('id');
-        projectService.getProjectById(projectId).subscribe((e: Project) => {
+        this.projectService.getProjectById(projectId).subscribe((e: Project) => {
             const stamp = e;
             this.project = stamp;
 
@@ -34,7 +37,7 @@ export class AddEmployeeComponent {
                 return e.employeeId;
             });
         }).add(e => {
-            userService.getAllEmployee().subscribe((data: User[]) => {
+            this.userService.getAllEmployee().subscribe((data: User[]) => {
                 this.users = data;
                 this.employees = this.users.filter((e: User) => {
                     if (!this.projectEmployeesIds.includes(e.id))
@@ -46,7 +49,6 @@ export class AddEmployeeComponent {
             });
         });
     }
-
     onSubmit() {
         let employeesIds: number[] = [];
         this.employeesToAdd.forEach(e => {
@@ -56,8 +58,8 @@ export class AddEmployeeComponent {
             employeesIds,
             projectId: this.project.id
         }
-        this.projectService.addEmployeesToProject(body).subscribe(() => {
-
+        this.projectService.addEmployeesToProject(body).toPromise().then(() => {
+            location.reload();
         });
 
     }

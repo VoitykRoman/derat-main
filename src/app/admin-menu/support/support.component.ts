@@ -10,12 +10,13 @@ import { EmailService } from '../services/email.service';
 export class SupportComponent implements OnInit {
 
     content;
+    loading = true;
     constructor(private authenticationService: AuthenticationService,
         private emailService: EmailService) {
     }
 
     ngOnInit() {
-
+this.loading = false;
     }
     onSubmit() {
         const body = {
@@ -25,7 +26,7 @@ export class SupportComponent implements OnInit {
             role: this.authenticationService.currentUserValue.role
         }
         this.emailService.SendEmailToSupport(body).toPromise().then(e => {
-
+            location.reload();
         })
     }
     isAdmin() {

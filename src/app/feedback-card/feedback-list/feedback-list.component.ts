@@ -10,7 +10,7 @@ import { Feedback } from 'src/app/models/feedback.model';
 
 export class FeedbackListComponent implements OnInit {
 
-@Input()  public feedbacksResult: Feedback[]; 
+  @Input() public feedbacksResult: Feedback[];
   public density = "comfortable";
   page = 1;
   pageSize = 2;
@@ -18,16 +18,17 @@ export class FeedbackListComponent implements OnInit {
    *
    */
   constructor(private feedbackService: FeedbackService) {
-        feedbackService.getFeedbacks().subscribe((feedbacks: Feedback[]) => {
-            this.feedbacksResult = feedbacks;
-        })
+
   }
   public ngOnInit() {
+    this.feedbackService.getFeedbacks().subscribe((feedbacks: Feedback[]) => {
+      this.feedbacksResult = feedbacks;
+    })
   }
 
   get feedbacks(): Feedback[] {
     return this.feedbacksResult
-      .map((feedback, i) => ({id: i + 1, ...feedback}))
+      .map((feedback, i) => ({ id: i + 1, ...feedback }))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 }

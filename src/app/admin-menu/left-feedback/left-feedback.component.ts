@@ -13,6 +13,7 @@ export class LeftFeedbackComponent implements OnInit {
     selected = 0;
     hovered = 0;
     deletable = false;
+    loading = true;
     feedback: Feedback = {
         id: undefined,
         rating: 10,
@@ -31,7 +32,9 @@ export class LeftFeedbackComponent implements OnInit {
                 if (e) {
                     this.feedback = e;
                     this.deletable = true;
+                    this.loading = false;
                 }
+                this.loading = false;
             })
     }
     onSubmit() {
@@ -42,6 +45,7 @@ export class LeftFeedbackComponent implements OnInit {
             userId: this.authenticationService.currentUserValue.id
         }
         this.feedbackService.postFeedback(body).toPromise().then(e => {
+            location.reload();
         })
     }
 

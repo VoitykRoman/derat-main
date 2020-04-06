@@ -13,19 +13,14 @@ export class PerimetersComponent implements OnInit {
 
     obs;
     perimeter: Perimeter;
-
+    loading = true;
     page = 1;
     pageSize = 2;
     constructor(private route: ActivatedRoute,
         private perimeterService: PerimeterService,
         public authenticationService: AuthenticationService) {
-        // const perimeterId = +this.route.snapshot.paramMap.get('id');
-        // this.obs = perimeterService.getPerimeterById(perimeterId);
-        // const perimeterPromise = perimeterService.getPerimeterById(perimeterId).toPromise();
-        // perimeterPromise.then((e: Perimeter) => {
-        //     this.perimeter = e;
-        // });
     }
+
     ifStatus() {
         return this.perimeter.service != 'Deratization'
     }
@@ -35,23 +30,24 @@ export class PerimetersComponent implements OnInit {
         const perimeterPromise = this.perimeterService.getPerimeterById(perimeterId).toPromise();
         perimeterPromise.then((e: Perimeter) => {
             this.perimeter = e;
+            this.loading = false;
         });
     }
 
     markAsReviewed() {
-        this.perimeterService.markAsReviewed(this.perimeter.id).subscribe(e => {
-
+        this.perimeterService.markAsReviewed(this.perimeter.id).toPromise().then(e => {
+            location.reload();
         })
     }
-    isAdmin(){
+    isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
 
-    isClient(){
+    isClient() {
         return this.authenticationService.currentUserValue.role == 'client'
     }
 
-    
+
     get pagination(): Trap[] {
         return this.perimeter.traps
             .map((feedback, i) => ({ id: i + 1, ...feedback }))

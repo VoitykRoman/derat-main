@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CallBack } from '../models/callback.model';
 import { CallBackService } from '../services/callback.service';
 
@@ -7,9 +7,13 @@ import { CallBackService } from '../services/callback.service';
     styleUrls: ["./callback.component.scss"],
     templateUrl: "./callback.component.html"
 })
-export class CallBackComponent {
-
+export class CallBackComponent implements OnInit {
+    loading = true;
     constructor(private callbackService: CallBackService) {
+    }
+
+    ngOnInit() {
+        this.loading = false;
     }
     public callBack = {
         dateTime: new Date(),

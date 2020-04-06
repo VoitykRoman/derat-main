@@ -13,7 +13,7 @@ export class FeedbackCardComponent implements OnInit {
   public feedbacks: Feedback[];
   summaryRating: number = 0;
   rating: number;
-
+  loading = true;
   constructor(private feedbackService: FeedbackService) {
   }
   obs;
@@ -24,6 +24,7 @@ export class FeedbackCardComponent implements OnInit {
       this.summaryRating = 0;
       this.feedbacks.forEach(f => this.summaryRating += f.rating);
       this.rating = Math.round(this.summaryRating / this.feedbacks.length);
+      this.loading = false;
     })
 
   }

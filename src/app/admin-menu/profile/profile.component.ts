@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authenticationService.currentUserValue;
-    console.log(this.initials);
     const first = this.user.firstName[0].toUpperCase();
     const second = this.user.lastName[0].toUpperCase();
     this.initials = first + second;

@@ -57,8 +57,8 @@ export class AddClientComponent implements OnInit {
             clientsIds,
             organizationId: this.organization.id
         }
-        this.organizationService.addClient(body).subscribe(e => {
-
-        });
-    }
+        this.organizationService.addClient(body).toPromise().then(e => {
+            location.reload();
+    });
+}
 }

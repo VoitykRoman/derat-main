@@ -22,15 +22,16 @@ export class TrapCardComponent {
     }
 
     delete() {
-        this.trapService.deleteTrap(this.trap.id).subscribe(e => {
+        this.trapService.deleteTrap(this.trap.id).toPromise().then(e => {
+            location.reload();
         })
     }
 
-    isAdmin(){
+    isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
 
-    isClient(){
+    isClient() {
         return this.authenticationService.currentUserValue.role == 'client'
     }
 

@@ -19,8 +19,8 @@ export class AddFacilityComponent {
 
     onSubmit() {
         this.facility.organizationId = this.organization.id;
-        this.facilityService.createFacility(this.facility).subscribe(e => {
-
+        this.facilityService.createFacility(this.facility).toPromise().then(e => {
+            location.reload();
         });
     }
 }

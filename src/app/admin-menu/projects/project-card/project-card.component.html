@@ -3,7 +3,7 @@
         <igx-avatar src={{project.avatarUrl}} roundShape="true"></igx-avatar>
         <div class="igx-card-header__tgroup">
             <h3 class="igx-card-header__title--small">{{project.name}}</h3>
-            <h5 class="igx-card-header__subtitle">{{project.organization.name}}</h5>
+            <h5 class="igx-card-header__subtitle" *ngIf='project.organization'>{{project.organization.name}}</h5>
         </div>
     </igx-card-header>
     <igx-card-actions>

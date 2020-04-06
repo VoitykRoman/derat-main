@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FacilityService } from '../services/facility.service';
 import { ActivatedRoute } from '@angular/router';
 import { Facility } from '../models/facility.model';
@@ -9,21 +9,25 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
     selector: "app-projects",
     templateUrl: "./facilities.component.html"
 })
-export class FacilitiesComponent {
+export class FacilitiesComponent implements OnInit {
 
     facility: Facility;
     obs;
+    loading = true;
     constructor(private facilityService: FacilityService,
         private route: ActivatedRoute,
         public authenticationService: AuthenticationService) {
+        
+    }
+    ngOnInit() {
         const facilityId = +this.route.snapshot.paramMap.get('id');
-        this.obs = facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id);
-        const facilityPromise = facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id).toPromise();
+        this.obs = this.facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id);
+        const facilityPromise = this.facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id).toPromise();
         facilityPromise.then((e: Facility) => {
             this.facility = e;
+            this.loading = false;
         })
     }
-
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }

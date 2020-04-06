@@ -30,8 +30,8 @@ export class OrganizationCardComponent {
     }
 
     delete() {
-        this.organizationsService.deleteOrganization(this.organization.id).subscribe(e => {
-
+        this.organizationsService.deleteOrganization(this.organization.id).toPromise().then(e => {
+            location.reload();
         })
     }
 

@@ -30,8 +30,8 @@ export class ClientCardComponent implements OnInit {
         return this.authenticationService.currentUserValue.role == 'client'
     }
     removeClient() {
-        this.organizationServce.removeClient(this.client.id, this.organizationId).subscribe(e => {
-
+        this.organizationServce.removeClient(this.client.id, this.organizationId).toPromise().then(e => {
+            location.reload();
         });
     }
 }

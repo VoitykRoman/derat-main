@@ -22,6 +22,7 @@ export class EmployeeCardComponent implements OnInit{
         const second = this.employee.lastName[0].toUpperCase();
         this.initials = first + second;
     }
+    
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
@@ -31,8 +32,8 @@ export class EmployeeCardComponent implements OnInit{
     }
 
     removeEmployee() {
-        this.projectService.removeEmployeeFromProject(this.employee.id, this.projectId).subscribe(e => {
-
+        this.projectService.removeEmployeeFromProject(this.employee.id, this.projectId).toPromise().then(e => {
+            location.reload();
         });
     }
 }

@@ -71,9 +71,9 @@ export class EmailComponent implements OnInit {
         private userService: UserService,
         private emailService: EmailService,
         private authenticationService: AuthenticationService) { }
-        isAdmin(){
-            return this.authenticationService.currentUserValue.role == 'admin'
-        }
+    isAdmin() {
+        return this.authenticationService.currentUserValue.role == 'admin'
+    }
     ngOnInit() {
         this.userService.getAll().toPromise().then((e: User[]) => {
             this.dropDownList = e.map((e: User) => {
@@ -216,7 +216,7 @@ export class EmailComponent implements OnInit {
         for (i = 0; i < this.dropDownList.length; i++) {
             if (
                 ev.newSelection.elementRef.nativeElement.textContent ===
-                this.dropDownList[i].name ||  ev.newSelection.elementRef.nativeElement.textContent.substring(2, ev.newSelection.elementRef.nativeElement.textContent.length ) ===
+                this.dropDownList[i].name || ev.newSelection.elementRef.nativeElement.textContent.substring(2, ev.newSelection.elementRef.nativeElement.textContent.length) ===
                 this.dropDownList[i].name
             ) {
                 this.chipList.push({

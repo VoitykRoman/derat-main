@@ -25,15 +25,18 @@ export class ProjectCardComponent implements OnInit {
         this.router.navigate(['menu', 'projects', this.project.id]);
     }
     changeProjectStatusToPending() {
-        this.projectService.changeProjectStatus(this.project.id, "pending").subscribe(() => {
+        this.projectService.changeProjectStatus(this.project.id, "pending").toPromise().then(() => {
+            location.reload();
         });
     }
     changeProjectStatusToActive() {
-        this.projectService.changeProjectStatus(this.project.id, "active").subscribe(() => {
+        this.projectService.changeProjectStatus(this.project.id, "active").toPromise().then(() => {
+            location.reload();
         });
     }
     changeProjectStatusToDone() {
-        this.projectService.changeProjectStatus(this.project.id, "done").subscribe(() => {
+        this.projectService.changeProjectStatus(this.project.id, "done").toPromise().then(() => {
+            location.reload();
         });
     }
     isAdmin() {
@@ -45,8 +48,8 @@ export class ProjectCardComponent implements OnInit {
     }
 
     delete() {
-        this.projectService.deleteProject(this.project.id).subscribe(() => {
-
+        this.projectService.deleteProject(this.project.id).toPromise().then(() => {
+            location.reload();
         })
 
     }

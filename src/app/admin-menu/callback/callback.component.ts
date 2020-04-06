@@ -13,6 +13,7 @@ export class CallbackAdminComponent implements OnInit {
     obs;
     page = 1;
     pageSize = 3;
+    loading = true;
     constructor(private callbackService: CallBackService,
         private authenticationService: AuthenticationService) {
     }
@@ -25,6 +26,7 @@ export class CallbackAdminComponent implements OnInit {
         this.obs = this.callbackService.getAll();
         this.callbackService.getAll().toPromise().then((e: CallBack[]) => {
             this.callbacks = e;
+            this.loading = false;
         })
     }
 

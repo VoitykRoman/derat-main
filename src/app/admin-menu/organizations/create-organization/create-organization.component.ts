@@ -45,8 +45,8 @@ export class CreateOrganizationComponent implements OnInit {
         else {
             this.organization.clients = [];
         }
-        this.organizationsService.createOrganization(this.organization).subscribe(dd => {
-
+        this.organizationsService.createOrganization(this.organization).toPromise().then(dd => {
+            location.reload();
         });
     }
 

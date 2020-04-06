@@ -22,8 +22,8 @@ export class PerimeterCardComponent {
         return this.perimeter.service != 'Deratization'
     }
     deletePerimeter() {
-        this.perimeterService.deletePerimeter(this.perimeter.id).subscribe(e => {
-
+        this.perimeterService.deletePerimeter(this.perimeter.id).toPromise().then(e => {
+            location.reload();
         })
     }
     isAdmin(){

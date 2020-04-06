@@ -10,7 +10,8 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
 })
 export class UsersMenuComponent implements OnInit {
 
-    users: User[]
+    users: User[];
+    loading = true;
     constructor(private userService: UserService,
         private authenticationService: AuthenticationService) {
     }
@@ -18,6 +19,7 @@ export class UsersMenuComponent implements OnInit {
     ngOnInit() {
         this.userService.getAll().toPromise().then((e: User[]) => {
             this.users = e;
+            this.loading = false;
         })
     }
 

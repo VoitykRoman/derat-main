@@ -11,23 +11,20 @@ import { IgxCarouselComponent } from 'igniteui-angular';
     providers: [NgbCarouselConfig]  // add NgbCarouselConfig to the component providers
 })
 
-export class CarouselComponent  {
+export class CarouselComponent implements OnInit {
     @ViewChild("carousel", { static: true }) public carousel: IgxCarouselComponent;
     public animations = ["slide", "fade", "none"];
-    
-    images: IndexImage[] = [new IndexImage({
-        imageUrl: 'assets/4.jpg',
-        id: 1,
-        createdBy: 'user1',
-        createdAt: new Date(),
-        title: 'Coronavirus',
-        description: '450k'
-    })];
+    loading = true;
+    images: IndexImage[];
     showNavigationIndicators = true;
 
     constructor(private indexImageService: IndexImageService) {
+    }
+
+    ngOnInit() {
         this.indexImageService.getImages().subscribe((img: IndexImage[]) => {
             this.images = img;
+            this.loading = false;
         })
     }
 }

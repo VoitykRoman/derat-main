@@ -5,7 +5,7 @@ import { CallBackService } from 'src/app/services/callback.service';
 @Component({
     selector: "app-callback-admin-card",
     templateUrl: "./callback-card.component.html",
-    })
+})
 export class CallbackAdminCardComponent {
     @Input() callback: CallBack;
 
@@ -17,7 +17,7 @@ export class CallbackAdminCardComponent {
 
     delete() {
         this.callbackService.delete(this.callback.id).toPromise().then(e => {
-
+            location.reload();
         })
     }
 }
