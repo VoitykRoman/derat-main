@@ -7,6 +7,7 @@ import { ProjectStatuses } from 'src/app/shared/project-statuses.enum';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { Facility } from '../../models/facility.model';
 import { User } from 'src/app/main/models/user.model';
+import { IgxFilterOptions } from 'igniteui-angular';
 
 @Component({
     selector: "app-project-details",
@@ -21,6 +22,8 @@ export class OrganizationsDetailsComponent implements OnInit {
     fPage = 1;
     cPage = 1;
     loading = true;
+    searchFacility;
+    searchClient;
     constructor(private route: ActivatedRoute,
         private organizationsService: OrganizationsService,
         public authenticationService: AuthenticationService) {
@@ -46,6 +49,20 @@ export class OrganizationsDetailsComponent implements OnInit {
         this.organizationsService.deleteOrganization(this.organization.id).subscribe(e => {
 
         })
+    }
+
+    get filterFacilities(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "name";
+        fo.inputValue = this.searchFacility;
+        return fo;
+    }
+
+    get filterClients(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "lastName";
+        fo.inputValue = this.searchClient;
+        return fo;
     }
     get fPagination(): Facility[] {
         return this.organization.facilities

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Facility } from '../models/facility.model';
 import { Perimeter } from '../models/Perimeter.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { IgxFilterOptions } from 'igniteui-angular';
 
 @Component({
     selector: "app-projects",
@@ -14,6 +15,7 @@ export class FacilitiesComponent implements OnInit {
     facility: Facility;
     obs;
     loading = true;
+    searchPerimeter;
     constructor(private facilityService: FacilityService,
         private route: ActivatedRoute,
         public authenticationService: AuthenticationService) {
@@ -36,6 +38,12 @@ export class FacilitiesComponent implements OnInit {
         return this.authenticationService.currentUserValue.role == 'client'
     }
 
+    get filterPerimeters(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "name";
+        fo.inputValue = this.searchPerimeter;
+        return fo;
+    }
     delete() {
         this.facilityService.deleteFacility(this.facility.id).subscribe(e => {
 

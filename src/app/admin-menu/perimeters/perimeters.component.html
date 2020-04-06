@@ -1,6 +1,6 @@
 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==">
 <igx-tabs *ngIf='!loading && authenticationService.currentUserValue'>
-    <igx-tabs-group label="Perimeter" icon="library_music" id="active">
+    <igx-tabs-group label="Perimeter" icon="info" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h3 class="igx-card-header__title--small">{{perimeter.name}}</h3>
             <h5 class="igx-card-header__subtitle">Type: {{perimeter.type}}</h5>
@@ -13,14 +13,29 @@
         </div>
 
     </igx-tabs-group>
-    <igx-tabs-group label="Traps" icon="library_music" id="active" *ngIf='!ifStatus() '>
+    <igx-tabs-group label="Traps" icon="place" id="active" *ngIf='!ifStatus() '>
         <div style="margin: 10px 3px 3px 1px">
-            <app-trap-card *ngFor='let trap of pagination' [trap]='trap'></app-trap-card>
-            <ngb-pagination [collectionSize]="perimeter.traps.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
-            </ngb-pagination>
+            <igx-input-group type="search" class="search">
+                <igx-prefix>
+                    <igx-icon>search</igx-icon>
+                </igx-prefix>
+                <input #search igxInput placeholder="Search trap" [(ngModel)]="searchTrap">
+                <igx-suffix *ngIf="search.value.length > 0" (click)="searchTrap = null">
+                    <igx-icon>clear</igx-icon>
+                </igx-suffix>
+            </igx-input-group>
+            <div *ngIf='!searchTrap'>
+                <app-trap-card *ngFor='let trap of pagination' [trap]='trap'></app-trap-card>
+                <ngb-pagination [collectionSize]="perimeter.traps.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+                </ngb-pagination>
+            </div>
+            <div *ngIf='searchTrap'>
+                <app-trap-card *ngFor='let trap of perimeter.traps | igxFilter: filterTraps' [trap]='trap'></app-trap-card>
+            </div>
+
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Create Trap" icon="library_music" id="active" *ngIf='!ifStatus() && !isClient()'>
+    <igx-tabs-group label="Create Trap" icon="add" id="active" *ngIf='!ifStatus() && !isClient()'>
         <div style="margin: 10px 3px 3px 1px">
 
             <app-create-trap></app-create-trap>

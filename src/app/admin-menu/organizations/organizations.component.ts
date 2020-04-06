@@ -3,6 +3,7 @@ import { OrganizationsService } from '../services/organizations.service';
 import { Organization } from '../models/organization.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { User } from 'src/app/main/models/user.model';
+import { IgxFilterOptions } from 'igniteui-angular';
 
 @Component({
     selector: "app-projects",
@@ -17,7 +18,7 @@ export class OrganizationsComponent implements OnInit {
     constructor(private organizationsService: OrganizationsService,
         public authenticationService: AuthenticationService) {
     }
-
+    searchOrganization;
     ngOnInit() {
         this.organizationsService.getAllOrganizations(this.authenticationService.currentUserValue.id).toPromise().then((w: Organization[]) => {
             this.organizations = w;
@@ -33,6 +34,15 @@ export class OrganizationsComponent implements OnInit {
         return this.authenticationService.currentUserValue.role == 'client'
     }
 
+
+    get filterOrganizations(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "name";
+        fo.inputValue = this.searchOrganization;
+        return fo;
+    }
+
+    
     activePage = 1;
     pendingPage = 1;
     donePage = 1;

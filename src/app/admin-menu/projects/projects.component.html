@@ -1,28 +1,72 @@
 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==">
-<igx-tabs *ngIf='!loading && !isClient() && obs | async'>
-    <igx-tabs-group label="Active" icon="library_music" id="active" *ngIf='activeProjects'>
+<igx-tabs *ngIf='!loading && !isClient() && obs | async' id='active1'>
+    <igx-tabs-group label="Active" icon="autorenew" id="active" *ngIf='activeProjects'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-project-card *ngFor='let project of activePagination' [project]='project'></app-project-card>
-            <ngb-pagination [collectionSize]="activeProjects.length" [(page)]="activePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
-            </ngb-pagination>
+            <igx-input-group type="search" class="search">
+                <igx-prefix>
+                    <igx-icon>search</igx-icon>
+                </igx-prefix>
+                <input #search igxInput placeholder="Search Projects" [(ngModel)]="searchActiveProject">
+                <igx-suffix *ngIf="search.value.length > 0" (click)="searchActiveProject = null">
+                    <igx-icon>clear</igx-icon>
+                </igx-suffix>
+            </igx-input-group>
+            <div *ngIf='!searchActiveProject'>
+                <app-project-card *ngFor='let project of activePagination | igxFilter: filterActiveProjects' [project]='project'></app-project-card>
+                <ngb-pagination [collectionSize]="activeProjects.length" [(page)]="activePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"> </ngb-pagination>
+            </div>
+            <div *ngIf='searchActiveProject'>
+                <app-project-card *ngFor='let project of activeProjects | igxFilter: filterActiveProjects' [project]='project'></app-project-card>
+            </div>
+
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Pending" icon="favorite">
+    <igx-tabs-group label="Pending" icon="update">
         <div style="margin: 3px">
-            <app-project-card *ngFor='let project of pendingPagination' [project]='project'></app-project-card>
-            <ngb-pagination [collectionSize]="pendingProjects.length" [(page)]="pendingPage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
-            </ngb-pagination>
+            <igx-input-group type="search" class="search">
+                <igx-prefix>
+                    <igx-icon>search</igx-icon>
+                </igx-prefix>
+                <input #search igxInput placeholder="Search Projects" [(ngModel)]="searchPendingProject">
+                <igx-suffix *ngIf="search.value.length > 0" (click)="searchPendingProject = null">
+                    <igx-icon>clear</igx-icon>
+                </igx-suffix>
+            </igx-input-group>
+            <div *ngIf='!searchPendingProject'>
+                <app-project-card *ngFor='let project of pendingPagination ' [project]='project'></app-project-card>
+                <ngb-pagination [collectionSize]="pendingProjects.length" [(page)]="pendingPage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+                </ngb-pagination>
+            </div>
+            <div *ngIf='searchPendingProject'>
+                <app-project-card *ngFor='let project of pendingProjects | igxFilter: filterPendingProjects' [project]='project'></app-project-card>
+            </div>
+
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Done" icon="info" *ngIf='doneProjects'>
+    <igx-tabs-group label="Done" icon="done" *ngIf='doneProjects'>
         <div style="margin: 3px">
-            <app-project-card *ngFor='let project of donePagination' [project]='project'></app-project-card>
-            <ngb-pagination [collectionSize]="doneProjects.length" [(page)]="donePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
-            </ngb-pagination>
+            <igx-input-group type="search" class="search">
+                <igx-prefix>
+                    <igx-icon>search</igx-icon>
+                </igx-prefix>
+                <input #search igxInput placeholder="Search Projects" [(ngModel)]="searchDoneProject">
+                <igx-suffix *ngIf="search.value.length > 0" (click)="searchDoneProject = null">
+                    <igx-icon>clear</igx-icon>
+                </igx-suffix>
+            </igx-input-group>
+            <div *ngIf='!searchDoneProject'>
+                <app-project-card *ngFor='let project of donePagination' [project]='project'></app-project-card>
+                <ngb-pagination [collectionSize]="doneProjects.length" [(page)]="donePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
+                </ngb-pagination>
+            </div>
+            <div *ngIf='searchDoneProject'>
+                <app-project-card *ngFor='let project of doneProjects | igxFilter: filterDoneProjects' [project]='project'></app-project-card>
+            </div>
+
         </div>
 
     </igx-tabs-group>
-    <igx-tabs-group label="Create new project" icon="info" *ngIf='isAdmin()'>
+    <igx-tabs-group label="Create new project" icon="playlist_add" *ngIf='isAdmin()'>
         <div style="margin: 3px">
             <app-create-project (init)='ngOnInit()'></app-create-project>
         </div>

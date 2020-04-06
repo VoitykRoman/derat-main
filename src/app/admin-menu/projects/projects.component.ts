@@ -8,6 +8,7 @@ import { Services } from 'src/app/shared/services.enum';
 import { User } from 'src/app/main/models/user.model';
 import { UserService } from 'src/app/main/services/user.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { IgxFilterOptions } from 'igniteui-angular';
 
 @Component({
     selector: "app-projects",
@@ -32,6 +33,9 @@ export class ProjectsComponent implements OnInit {
     ]
 
     obs;
+    searchActiveProject;
+    searchPendingProject;
+    searchDoneProject;
     loading = true;
     constructor(private projectService: ProjectsService,
         private authenticationService: AuthenticationService) {
@@ -47,6 +51,9 @@ export class ProjectsComponent implements OnInit {
                 this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
                 this.loading = false;
             });
+
+            let element = document.getElementById('active1');
+            element.childNodes;
     }
     changeProjectStatus(id: number) {
         this.projectService.changeProjectStatus(id, "active").subscribe(e => {
@@ -61,6 +68,32 @@ export class ProjectsComponent implements OnInit {
     isClient() {
         return this.authenticationService.currentUserValue.role == 'client'
     }
+
+
+
+    get filterActiveProjects(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "name";
+        fo.inputValue = this.searchActiveProject;
+        return fo;
+    }
+
+    get filterPendingProjects(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "name";
+        fo.inputValue = this.searchPendingProject;
+        return fo;
+    }
+
+    get filterDoneProjects(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "name";
+        fo.inputValue = this.searchDoneProject;
+        return fo;
+    }
+
+
+
 
     activePage = 1;
     pendingPage = 1;

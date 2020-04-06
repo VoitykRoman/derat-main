@@ -4,6 +4,7 @@ import { PerimeterService } from '../services/perimeters.service';
 import { Perimeter } from '../models/Perimeter.model';
 import { Trap } from '../models/trap.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { IgxFilterOptions } from 'igniteui-angular';
 
 @Component({
     selector: "app-perimeters",
@@ -16,6 +17,7 @@ export class PerimetersComponent implements OnInit {
     loading = true;
     page = 1;
     pageSize = 2;
+    searchTrap;
     constructor(private route: ActivatedRoute,
         private perimeterService: PerimeterService,
         public authenticationService: AuthenticationService) {
@@ -47,6 +49,12 @@ export class PerimetersComponent implements OnInit {
         return this.authenticationService.currentUserValue.role == 'client'
     }
 
+    get filterTraps(): IgxFilterOptions {
+        const fo = new IgxFilterOptions();
+        fo.key = "place";
+        fo.inputValue = this.searchTrap;
+        return fo;
+    }
 
     get pagination(): Trap[] {
         return this.perimeter.traps
