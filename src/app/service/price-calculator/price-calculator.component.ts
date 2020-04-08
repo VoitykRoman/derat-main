@@ -13,6 +13,7 @@ export class PriceCalculatorComponent {
     area: number;
     price: number = 0;
     calculatePrice(e: any) {
+        this.area = Math.abs(this.area);
         this.price = e.target.value * this.serviceCalculator.perMetr + this.serviceCalculator.initialValue;
     }
 }   
