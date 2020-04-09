@@ -9,14 +9,15 @@
                     <label igxLabel for="fullName">Name</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newLicense.name" />
                     <igx-suffix>
-                        <igx-icon>person</igx-icon>
+                        <igx-icon>check</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
                     <label igxLabel for="phone">Issued By</label>
                     <input igxInput autocomplete="off" type="text" name="phone" [(ngModel)]="newLicense.issuedBy" />
                     <igx-suffix>
-                        <igx-icon>phone</igx-icon>
+                        <igx-icon>
+                            people_alt</igx-icon>
                     </igx-suffix>
 
                 </igx-input-group>
@@ -24,21 +25,21 @@
                     <label igxLabel for="email">Image url</label>
                     <input igxInput autocomplete="off" type="text" name="email" [(ngModel)]="newLicense.imageUrl" />
                     <igx-suffix>
-                        <igx-icon>email</igx-icon>
+                        <igx-icon>add_photo_alternate</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
                     <label igxLabel for="fullName">Description</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newLicense.description" />
                     <igx-suffix>
-                        <igx-icon>person</igx-icon>
+                        <igx-icon>edit</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
                     <label igxLabel for="fullName">ReadMore url</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newLicense.readMoreUrl" />
                     <igx-suffix>
-                        <igx-icon>person</igx-icon>
+                        <igx-icon>link</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='createNewLicense()'>Submit</button>

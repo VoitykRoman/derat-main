@@ -268,7 +268,8 @@ const appRoutes: Routes = [
   exports: [CarouselComponent],
   bootstrap: [AppComponent,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    CallBackComponent
   ]
 })
 export class AppModule {
