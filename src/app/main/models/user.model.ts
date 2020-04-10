@@ -1,7 +1,7 @@
 import { Organization } from 'src/app/admin-menu/models/organization.model';
 import { EmployeeProject } from 'src/app/admin-menu/models/project.model';
 import { Trap } from 'src/app/admin-menu/models/trap.model';
-import { Perimeter } from 'src/app/admin-menu/models/Perimeter.model';
+import { Perimeter } from 'src/app/admin-menu/models/perimeter.model';
 
 export class User {
     id: number;

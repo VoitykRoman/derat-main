@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PerimeterService } from '../services/perimeters.service';
-import { Perimeter } from '../models/Perimeter.model';
+import { Perimeter } from '../models/perimeter.model';
 import { Trap } from '../models/trap.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { IgxFilterOptions } from 'igniteui-angular';

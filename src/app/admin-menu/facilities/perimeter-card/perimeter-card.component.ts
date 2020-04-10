@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Perimeter } from '../../models/Perimeter.model';
+import { Perimeter } from '../../models/perimeter.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PerimeterService } from '../../services/perimeters.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';

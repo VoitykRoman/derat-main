@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Perimeter } from '../../models/Perimeter.model';
+import { Perimeter } from '../../models/perimeter.model';
 import { IComboSelectionChangeEventArgs } from 'igniteui-angular';
 import { User } from 'src/app/main/models/user.model';
 import { PerimeterService } from '../../services/perimeters.service';

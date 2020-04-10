@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FacilityService } from '../services/facility.service';
 import { ActivatedRoute } from '@angular/router';
 import { Facility } from '../models/facility.model';
-import { Perimeter } from '../models/Perimeter.model';
+import { Perimeter } from '../models/perimeter.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { IgxFilterOptions } from 'igniteui-angular';
 

@@ -1,5 +1,5 @@
 import { Organization } from './organization.model';
-import { Perimeter } from './Perimeter.model';
+import { Perimeter } from './perimeter.model';
 
 export class Facility{
     id: number;
