@@ -27,7 +27,7 @@ cards: Card[] = [new Card({
 }), new Card({
     buttons: ["read more"],
     content: `Deodorization is a high-temperature, high-vacuum steam-distillation process 
-    to remove volatile, odoriferous materials present in edible fats and oils.`,
+    to remove volatile, odoriferous materials present in edible fats and oils. And also remove bad smell from any area.`,
     icons: ["favorite", "share"],
     imageUrl: "assets/7.jpg",
     subtitle: "DeratControl",
@@ -36,7 +36,7 @@ cards: Card[] = [new Card({
 new Card({
     buttons: ["read more"],
     content: `Disinfection measures are carried out at enterprises of food products 
-    production, supermarkets, food outlets, apartments and offices and its premises, stores`,
+    production, supermarkets, food outlets, apartments, offices, premises, stores, streets any infection or disease.`,
     icons: ["favorite", "share"],
     imageUrl: "assets/9.jfif",
     subtitle: "DeratControl",
