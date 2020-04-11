@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { IndexImageService } from 'src/app/services/index-image.service';
 import { IndexImage } from 'src/app/models/index-image.model';
 import { IgxFilterOptions, slideOutRight, slideInLeft } from 'igniteui-angular';
@@ -23,6 +23,8 @@ export class IndexImageListComponent implements OnInit {
     selectedFile;
     page = 1;
     pageSize = 3;
+    @Output() onCreate = new EventEmitter<any>();
+    @Output() onDelete = new EventEmitter<any>();
     constructor(private indexImageService: IndexImageService,
         private base64Service: Base64Service) {
     }
@@ -33,14 +35,15 @@ export class IndexImageListComponent implements OnInit {
 
     createNewIndexImage() {
         this.indexImageService.createNewIndexImage(this.newIndexImage).toPromise().then(e => {
-            location.reload();
+            this.onCreate.emit();
         })
     }
 
     deleteIndexImage(id: number) {
         this.indexImageService.deleteindexImage(id).toPromise().then(e => {
-            location.reload();
+           
         })
+        this.onDelete.emit(id);
     }
 
     updateIndexImage(indexImage: IndexImage, event) {

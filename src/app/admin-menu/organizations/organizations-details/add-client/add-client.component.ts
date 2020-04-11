@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { OrganizationsService } from 'src/app/admin-menu/services/organizations.service';
 import { Organization } from 'src/app/admin-menu/models/organization.model';
 import { User } from 'src/app/main/models/user.model';
@@ -21,12 +21,17 @@ export class AddClientComponent implements OnInit {
     organization: Organization;
     users: User[];
 
+    @Output() onCreate = new EventEmitter<any>();
     constructor(private organizationService: OrganizationsService,
         private userService: UserService,
         private route: ActivatedRoute) {
     }
 
     ngOnInit() {
+        this.downloadData();
+    }
+
+    downloadData() {
         const organizationId = +this.route.snapshot.paramMap.get('id');
         const orgPromise = this.organizationService.getOrganizationById(organizationId).toPromise();
         orgPromise.then((e: Organization) => {
@@ -47,7 +52,6 @@ export class AddClientComponent implements OnInit {
             });
         });
     }
-
     onSubmit() {
         let clientsIds: number[] = [];
         this.clientsToAdd.forEach(e => {
@@ -58,7 +62,7 @@ export class AddClientComponent implements OnInit {
             organizationId: this.organization.id
         }
         this.organizationService.addClient(body).toPromise().then(e => {
-            location.reload();
-    });
-}
+            this.onCreate.emit();
+        });
+    }
 }

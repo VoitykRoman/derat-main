@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Perimeter } from '../../models/perimeter.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PerimeterService } from '../../services/perimeters.service';
@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
 })
 export class PerimeterCardComponent {
     @Input() perimeter: Perimeter;
-
+    @Output() onDelete = new EventEmitter<any>()
     constructor(private router: Router,
         private route: ActivatedRoute,
         private perimeterService: PerimeterService,
@@ -23,8 +23,9 @@ export class PerimeterCardComponent {
     }
     deletePerimeter() {
         this.perimeterService.deletePerimeter(this.perimeter.id).toPromise().then(e => {
-            location.reload();
+            
         })
+        this.onDelete.emit();
     }
     isAdmin(){
         return this.authenticationService.currentUserValue.role == 'admin'

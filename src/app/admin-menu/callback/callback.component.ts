@@ -17,19 +17,25 @@ export class CallbackAdminComponent implements OnInit {
     constructor(private callbackService: CallBackService,
         private authenticationService: AuthenticationService) {
     }
-    isAdmin(){
+    isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
 
-   
+
     ngOnInit() {
+        this.downloadData();
+    }
+    downloadData() {
         this.obs = this.callbackService.getAll();
         this.callbackService.getAll().toPromise().then((e: CallBack[]) => {
             this.callbacks = e;
             this.loading = false;
         })
     }
+    onDelete(id) {
+        this.callbacks = this.callbacks.filter(e => e.id != id)
 
+    }
     get callbackPagination(): CallBack[] {
         return this.callbacks
             .map((feedback, i) => ({ id: i + 1, ...feedback }))

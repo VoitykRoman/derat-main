@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/main/models/user.model';
 import { ProjectsService } from 'src/app/admin-menu/services/projects.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
@@ -12,6 +12,7 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
 export class EmployeeCardComponent implements OnInit{
     @Input() employee: User;
     @Input() projectId: number;
+    @Output() onDelete = new EventEmitter<any>();
     initials;
     constructor(private projectService: ProjectsService,
         private authenticationService: AuthenticationService) {
@@ -33,7 +34,8 @@ export class EmployeeCardComponent implements OnInit{
 
     removeEmployee() {
         this.projectService.removeEmployeeFromProject(this.employee.id, this.projectId).toPromise().then(e => {
-            location.reload();
+          
         });
+        this.onDelete.emit();
     }
 }

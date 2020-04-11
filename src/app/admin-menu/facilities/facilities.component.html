@@ -24,19 +24,19 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchPerimeter'>
-                <app-petimeter-card *ngFor='let perimeter of perimeters' [perimeter]='perimeter'></app-petimeter-card>
+                <app-petimeter-card (onDelete)='onDelete()' *ngFor='let perimeter of perimeters' [perimeter]='perimeter'></app-petimeter-card>
                 <ngb-pagination [collectionSize]="facility.perimeters.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
                 </ngb-pagination>
             </div>
             <div *ngIf='searchPerimeter'>
-                <app-petimeter-card *ngFor='let perimeter of facility.perimeters | igxFilter: filterPerimeters' [perimeter]='perimeter'></app-petimeter-card>
+                <app-petimeter-card (onDelete)='onDelete()' *ngFor='let perimeter of facility.perimeters | igxFilter: filterPerimeters' [perimeter]='perimeter'></app-petimeter-card>
             </div>
 
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Add perimeter" icon="add" id="active" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-add-perimeter [facility]='facility'></app-add-perimeter>
+            <app-add-perimeter (onCreate)='onCreate()' [facility]='facility'></app-add-perimeter>
         </div>
     </igx-tabs-group>
 </igx-tabs>

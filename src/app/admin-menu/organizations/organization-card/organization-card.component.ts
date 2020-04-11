@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Organization } from '../../models/organization.model';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
@@ -13,9 +13,7 @@ export class OrganizationCardComponent {
 
     @Input() organization: Organization;
 
-    /**
-     *
-     */
+    @Output() onDelete = new EventEmitter<any>();
     constructor(private router: Router,
         private authenticationService: AuthenticationService,
         private organizationsService: OrganizationsService) {
@@ -31,8 +29,9 @@ export class OrganizationCardComponent {
 
     delete() {
         this.organizationsService.deleteOrganization(this.organization.id).toPromise().then(e => {
-            location.reload();
+            
         })
+        this.onDelete.emit(this.organization.id);
     }
 
     openDetails() {

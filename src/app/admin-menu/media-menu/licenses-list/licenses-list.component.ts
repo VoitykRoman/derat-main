@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IndexImage } from 'src/app/models/index-image.model';
 import { IgxFilterOptions, slideOutRight, slideInLeft } from 'igniteui-angular';
 import { Base64Service } from 'src/app/shared/base64.service';
@@ -12,6 +12,8 @@ import { LicenseCard } from 'src/app/models/license-card.model';
     templateUrl: "./licenses-list.component.html"
 })
 export class LicensesListComponent implements OnInit {
+    @Output() onCreate = new EventEmitter<any>();
+    @Output() onDelete = new EventEmitter<any>();
     newLicense = {
         name: '',
         issuedBy: '',
@@ -37,14 +39,15 @@ export class LicensesListComponent implements OnInit {
     createNewLicense() {
 
         this.licenseService.createNewLicense(this.newLicense).toPromise().then(() => {
-            location.reload();
+            this.onCreate.emit();
         })
     }
 
     deleteLicense(id: number) {
         this.licenseService.deleteLicense(id).toPromise().then(() => {
-            location.reload();
+            
         })
+        this.onDelete.emit(id);
     }
 
     updateLicense(license: LicenseCard, event) {

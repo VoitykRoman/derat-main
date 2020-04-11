@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { User } from 'src/app/main/models/user.model';
 import { Facility } from 'src/app/admin-menu/models/facility.model';
 import { OrganizationsService } from 'src/app/admin-menu/services/organizations.service';
@@ -13,7 +13,7 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
 export class FacilitiesListComponent {
     @Input() facility: Facility;
     @Input() organizationId: number;
-
+    @Output() onDelete = new EventEmitter<any>();
     constructor(private organizationService: OrganizationsService,
         private router: Router,
         private authenticationService: AuthenticationService) {
@@ -29,8 +29,9 @@ export class FacilitiesListComponent {
 
     deleteFacility() {
         this.organizationService.deleteFacility(this.facility.id).toPromise().then(e => {
-            location.reload();
+           
         });
+        this.onDelete.emit();
     }
     details() {
         this.router.navigate(['menu', 'facilities', this.facility.id]);

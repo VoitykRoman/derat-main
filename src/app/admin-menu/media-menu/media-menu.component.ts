@@ -29,6 +29,9 @@ export class MediaMenuComponent implements OnInit {
         return this.authenticationService.currentUserValue.role == 'admin';
     }
     ngOnInit() {
+      this.downloadData();
+    }
+    downloadData() {
         this.indexImageService.getImages().toPromise().then((e: IndexImage[]) => {
             this.indexImages = e;
         })
@@ -39,6 +42,20 @@ export class MediaMenuComponent implements OnInit {
             this.teamMembers = e;
             this.loading = false;
         })
-        
+    }
+    onCreate(){
+        this.loading= true;
+      this.downloadData();
+    }
+    onImageDelete(id){
+        this.indexImages =  this.indexImages.filter(e => e.id != id);
+    }
+
+    onLicenseDelete(id){
+        this.licenses =  this.licenses.filter(e => e.id != id);
+    }
+
+    onTeamDelete(id){
+        this.teamMembers =  this.teamMembers.filter(e => e.id != id);
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CallBack } from 'src/app/models/callback.model';
 import { CallBackService } from 'src/app/services/callback.service';
 
@@ -8,7 +8,7 @@ import { CallBackService } from 'src/app/services/callback.service';
 })
 export class CallbackAdminCardComponent {
     @Input() callback: CallBack;
-
+@Output() onDelete = new EventEmitter<any>();
     /**
      *
      */
@@ -17,7 +17,8 @@ export class CallbackAdminCardComponent {
 
     delete() {
         this.callbackService.delete(this.callback.id).toPromise().then(e => {
-            location.reload();
+           
         })
+        this.onDelete.emit(this.callback.id);
     }
 }

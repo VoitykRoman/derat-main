@@ -26,16 +26,19 @@ export class LeftFeedbackComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.downloadData();
+    }
+    downloadData() {
         this.feedbackService
-            .getFeedackByUserId(this.authenticationService.currentUserValue.id)
-            .toPromise().then((e: Feedback) => {
-                if (e) {
-                    this.feedback = e;
-                    this.deletable = true;
-                    this.loading = false;
-                }
+        .getFeedackByUserId(this.authenticationService.currentUserValue.id)
+        .toPromise().then((e: Feedback) => {
+            if (e) {
+                this.feedback = e;
+                this.deletable = true;
                 this.loading = false;
-            })
+            }
+            this.loading = false;
+        })
     }
     onSubmit() {
         const body = {
@@ -45,14 +48,17 @@ export class LeftFeedbackComponent implements OnInit {
             userId: this.authenticationService.currentUserValue.id
         }
         this.feedbackService.postFeedback(body).toPromise().then(e => {
-            location.reload();
+            this.loading = true;
+            this.downloadData();
         })
     }
 
     delete() {
         this.feedbackService.deleteFeedback(this.feedback.id).toPromise().then(e => {
-            location.reload();
+            
         })
+        this.deletable = false;
+        this.feedback.description = ''
     }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'

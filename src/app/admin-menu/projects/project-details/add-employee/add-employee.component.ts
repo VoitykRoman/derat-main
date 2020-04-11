@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
 import { ProjectsService } from 'src/app/admin-menu/services/projects.service';
@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
     templateUrl: "./add-employee.component.html"
 })
 
-export class AddEmployeeComponent  implements OnInit{
+export class AddEmployeeComponent implements OnInit {
     employeesToAdd;
     employees;
     employeesToShow;
@@ -19,12 +19,13 @@ export class AddEmployeeComponent  implements OnInit{
     project: Project;
     users: User[];
 
+    @Output() onCreate = new EventEmitter<any>();
     constructor(private userService: UserService,
         private projectService: ProjectsService,
         private route: ActivatedRoute) {
     }
 
-    ngOnInit(){
+    ngOnInit() {
         const projectId = +this.route.snapshot.paramMap.get('id');
         this.projectService.getProjectById(projectId).subscribe((e: Project) => {
             const stamp = e;
@@ -59,10 +60,12 @@ export class AddEmployeeComponent  implements OnInit{
             projectId: this.project.id
         }
         this.projectService.addEmployeesToProject(body).toPromise().then(() => {
-            location.reload();
+            this.callEmit();
         });
 
     }
 
-
+    callEmit() {
+        this.onCreate.emit();
+    }
 }

@@ -13,19 +13,19 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchOrganization'>
-                <app-organization-card *ngFor='let organization of organizationsPagination ' [organization]='organization'></app-organization-card>
+                <app-organization-card (onDelete)='onDelete($event)' *ngFor='let organization of organizationsPagination ' [organization]='organization'></app-organization-card>
                 <ngb-pagination [collectionSize]="organizations.length" [(page)]="activePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
                 </ngb-pagination>
             </div>
             <div *ngIf='searchOrganization'>
-                <app-organization-card *ngFor='let organization of organizations | igxFilter: filterOrganizations' [organization]='organization'></app-organization-card>
+                <app-organization-card (onDelete)='onDelete($event)' *ngFor='let organization of organizations | igxFilter: filterOrganizations' [organization]='organization'></app-organization-card>
             </div>
 
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Create organization" icon="add" id="active" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-create-organization></app-create-organization>
+            <app-create-organization (onCreate)='onCreate()'></app-create-organization>
         </div>
     </igx-tabs-group>
 </igx-tabs>

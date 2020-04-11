@@ -29,7 +29,7 @@
     </igx-tabs-group>
     <igx-tabs-group label="Employees" icon="work_outline" id="employ">
         <div style="margin: 10px 3px 3px 1px">
-            <app-employee-card *ngFor='let employee of employeesPagination ' [employee]='employee ' [projectId]='project.id '></app-employee-card>
+            <app-employee-card *ngFor='let employee of employeesPagination ' (onDelete)='onEvent()' [employee]='employee ' [projectId]='project.id '></app-employee-card>
 
             <ngb-pagination [collectionSize]="employees.length" [(page)]="ePage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
             </ngb-pagination>
@@ -37,7 +37,7 @@
     </igx-tabs-group>
     <igx-tabs-group label="Add employees" icon="add" id="employ" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-add-employee></app-add-employee>
+            <app-add-employee (onCreate)='onEvent()'></app-add-employee>
         </div>
     </igx-tabs-group>
 </igx-tabs>

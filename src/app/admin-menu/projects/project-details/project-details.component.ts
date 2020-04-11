@@ -26,6 +26,10 @@ export class ProjectsDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.dowloadData();
+    }
+
+    dowloadData(){
         const projectId = +this.route.snapshot.paramMap.get('id');
         this.projectsService.getProjectById(projectId).subscribe((e: Project) => {
             this.project = e;
@@ -33,6 +37,11 @@ export class ProjectsDetailsComponent implements OnInit {
             this.project.events.reverse();
             this.loading = false;
         })
+    }
+
+    onEvent(){
+        this.loading = true;
+        this.dowloadData();
     }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'

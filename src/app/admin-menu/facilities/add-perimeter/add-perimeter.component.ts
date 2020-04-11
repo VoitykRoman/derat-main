@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Facility } from '../../models/facility.model';
 import { IComboSelectionChangeEventArgs } from 'igniteui-angular';
 import { Project, EmployeeProject } from '../../models/project.model';
@@ -15,7 +15,7 @@ import { PerimeterService } from '../../services/perimeters.service';
 export class AddPerimeterComponent implements OnInit {
 
     @Input() facility: Facility;
-
+@Output() onCreate = new EventEmitter<any>();
     types = [
         {
             type: 'inner'
@@ -78,7 +78,7 @@ export class AddPerimeterComponent implements OnInit {
         }
 
         this.perimeterService.createPerimeter(perimeter).toPromise().then(e => {
-            location.reload();
+            this.onCreate.emit();
         })
     }
     public setWeaponsLimit(event: IComboSelectionChangeEventArgs) {

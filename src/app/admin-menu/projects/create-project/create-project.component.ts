@@ -1,4 +1,4 @@
-import { Component, Pipe, PipeTransform, Output } from "@angular/core";
+import { Component, Pipe, PipeTransform, Output, EventEmitter } from "@angular/core";
 import { Base64Service } from 'src/app/shared/base64.service';
 import { IComboSelectionChangeEventArgs, IgxToastPosition } from "igniteui-angular";
 import { Organization } from '../../models/organization.model';
@@ -8,7 +8,6 @@ import { UserService } from 'src/app/main/services/user.service';
 import { ProjectsService } from '../../services/projects.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
-import { EventEmitter } from 'protractor';
 
 @Component({
     selector: "app-create-project",
@@ -32,6 +31,9 @@ export class CreateProjectComponent {
     employees: User[];
     employeesToShow;
     organizationsE: Organization[];
+
+    @Output() onCreate = new EventEmitter<any>();
+
     constructor(private base64Service: Base64Service,
         private organizationsService: OrganizationsService,
         private userService: UserService,
@@ -76,8 +78,12 @@ export class CreateProjectComponent {
         this.toastPosition = IgxToastPosition.Middle;
 
         this.projectService.createProject(this.project).toPromise().then(dd => {
-            location.reload();
+            this.callEmit();
         });
+    }
+
+    callEmit(){
+        this.onCreate.emit();
     }
 
     onFileChanged(event) {

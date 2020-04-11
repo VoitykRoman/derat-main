@@ -17,9 +17,9 @@ import { IgxFilterOptions } from 'igniteui-angular';
 })
 export class ProjectsComponent implements OnInit {
     projects: Project[];
-    activeProjects;
-    pendingProjects;
-    doneProjects;
+    // activeProjects;
+    // pendingProjects;
+    // doneProjects;
 
     organizations: Organization[];
 
@@ -42,25 +42,29 @@ export class ProjectsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.downloadProjects();
+    }
+
+    downloadProjects() {
         this.obs = this.projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise();
         const promise = this.projectService.getAllProjects(this.authenticationService.currentUserValue.id).toPromise()
             .then((p: Project[]) => {
                 this.projects = p;
-                this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
-                this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
-                this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
+                // this.activeProjects = this.projects.filter(p => p.status == ProjectStatuses.Active)
+                // this.pendingProjects = this.projects.filter(p => p.status == ProjectStatuses.Pending)
+                // this.doneProjects = this.projects.filter(p => p.status == ProjectStatuses.Done)
                 this.loading = false;
             });
-
-            let element = document.getElementById('active1');
-            element.childNodes;
     }
-    changeProjectStatus(id: number) {
-        this.projectService.changeProjectStatus(id, "active").subscribe(e => {
-
-        });
+    get activeProjects() {
+        return this.projects.filter(p => p.status == ProjectStatuses.Active);
     }
-
+    get pendingProjects() {
+        return this.projects.filter(p => p.status == ProjectStatuses.Pending)
+    }
+    get doneProjects() {
+        return this.projects.filter(p => p.status == ProjectStatuses.Done)
+    }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
@@ -93,8 +97,15 @@ export class ProjectsComponent implements OnInit {
     }
 
 
+    onDelete() {
+        this.loading = true;
+        this.downloadProjects();
+    }
 
-
+    onCreate(){
+        this.loading = true;
+        this.downloadProjects();
+    }
     activePage = 1;
     pendingPage = 1;
     donePage = 1;

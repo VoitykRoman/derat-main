@@ -20,12 +20,25 @@ export class OrganizationsComponent implements OnInit {
     }
     searchOrganization;
     ngOnInit() {
+        this.downloadData();
+    }
+
+    downloadData() {
         this.organizationsService.getAllOrganizations(this.authenticationService.currentUserValue.id).toPromise().then((w: Organization[]) => {
             this.organizations = w;
             this.loading = false;
         });
     }
+    onCreate() {
+        this.loading = true;
+        this.downloadData();
+    }
 
+    onDelete(id) {
+        this.organizations = this.organizations.filter(e => e.id != id);
+
+
+    }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }
@@ -42,7 +55,7 @@ export class OrganizationsComponent implements OnInit {
         return fo;
     }
 
-    
+
     activePage = 1;
     pendingPage = 1;
     donePage = 1;

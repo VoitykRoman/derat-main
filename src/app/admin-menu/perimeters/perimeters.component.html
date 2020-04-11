@@ -9,7 +9,7 @@
             <h5 class="igx-card-header__subtitle">Service: {{perimeter.service}}</h5>
         </div>
         <div class="igx-card-actions__bgroup" *ngIf='!isClient()'>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='markAsReviewed()' *ngIf='ifStatus() && !isClient()'>Mark as reviewed</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='markAsReviewed()' *ngIf='ifStatus() && !isClient() && perimeter.status != "done" '>Mark as reviewed</button>
         </div>
 
     </igx-tabs-group>
@@ -25,12 +25,12 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchTrap'>
-                <app-trap-card *ngFor='let trap of pagination' [trap]='trap'></app-trap-card>
+                <app-trap-card (onDelete)='onDelete($event)' *ngFor='let trap of pagination' [trap]='trap'></app-trap-card>
                 <ngb-pagination [collectionSize]="perimeter.traps.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
                 </ngb-pagination>
             </div>
             <div *ngIf='searchTrap'>
-                <app-trap-card *ngFor='let trap of perimeter.traps | igxFilter: filterTraps' [trap]='trap'></app-trap-card>
+                <app-trap-card (onDelete)='onDelete($event)' *ngFor='let trap of perimeter.traps | igxFilter: filterTraps' [trap]='trap'></app-trap-card>
             </div>
 
         </div>
@@ -38,7 +38,7 @@
     <igx-tabs-group label="Create Trap" icon="add" id="active" *ngIf='!ifStatus() && !isClient()'>
         <div style="margin: 10px 3px 3px 1px">
 
-            <app-create-trap></app-create-trap>
+            <app-create-trap (onCreate)='onCreate()'></app-create-trap>
         </div>
     </igx-tabs-group>
 

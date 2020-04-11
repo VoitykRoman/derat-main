@@ -18,10 +18,14 @@ export class TrapsComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         public authenticationService: AuthenticationService) {
-        
+
     }
 
     ngOnInit() {
+        this.downloadData();
+    }
+
+    downloadData() {
         const trapId = +this.route.snapshot.paramMap.get('id');
         this.obs = this.trapService.getTrapById(trapId);
         const trapPromise = this.trapService.getTrapById(trapId).toPromise();
@@ -32,7 +36,8 @@ export class TrapsComponent implements OnInit {
     }
     markAsReviewed() {
         this.trapService.markAsReviewed(this.trap.id).toPromise().then(e => {
-            location.reload();
+            this.loading = true;
+            this.downloadData();
         })
     }
 

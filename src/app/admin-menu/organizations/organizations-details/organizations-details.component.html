@@ -20,19 +20,19 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchFacility'>
-                <app-facility-card *ngFor='let facility of fPagination' [facility]='facility'></app-facility-card>
+                <app-facility-card (onDelete)='onClientDelete()' *ngFor='let facility of fPagination' [facility]='facility'></app-facility-card>
                 <ngb-pagination [collectionSize]="organization.facilities.length" [(page)]="fPage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
                 </ngb-pagination>
             </div>
             <div *ngIf='searchFacility'>
-                <app-facility-card *ngFor='let facility of organization.facilities | igxFilter: filterFacilities' [facility]='facility'></app-facility-card>
+                <app-facility-card (onDelete)='onClientDelete()' *ngFor='let facility of organization.facilities | igxFilter: filterFacilities' [facility]='facility'></app-facility-card>
             </div>
 
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Add Facility" icon="add" id="addFacility" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-add-facility [organization]='organization'></app-add-facility>
+            <app-add-facility (onCreate)='onCreate()' [organization]='organization'></app-add-facility>
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Clients" icon="people_alt" id="addFacility" *ngIf='isAdmin() || isClient()'>
@@ -47,19 +47,19 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchClient'>
-                <app-client-card *ngFor='let client of cPagination' [client]='client' [organizationId]='organization.id'></app-client-card>
+                <app-client-card (onDelete)='onClientDelete()' *ngFor='let client of cPagination' [client]='client' [organizationId]='organization.id'></app-client-card>
                 <ngb-pagination [collectionSize]="organization.clients.length" [(page)]="fPage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
                 </ngb-pagination>
             </div>
             <div *ngIf='searchClient'>
-                <app-client-card *ngFor='let client of organization.clients | igxFilter: filterClients' [client]='client' [organizationId]='organization.id'></app-client-card>
+                <app-client-card (onDelete)='onClientDelete()' *ngFor='let client of organization.clients | igxFilter: filterClients' [client]='client' [organizationId]='organization.id'></app-client-card>
             </div>
 
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Add clients" icon="person_add" id="AddClients" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
-            <app-add-client></app-add-client>
+            <app-add-client (onCreate)='onCreate()'></app-add-client>
         </div>
     </igx-tabs-group>
     <igx-tabs-group label="Projects" icon="insert_drive_file" id="AddClients" *ngIf='isAdmin() || isClient()'>

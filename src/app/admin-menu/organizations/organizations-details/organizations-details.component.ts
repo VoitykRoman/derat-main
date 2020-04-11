@@ -30,12 +30,24 @@ export class OrganizationsDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.downloadData();
+    }
+    downloadData() {
         const organizationId = +this.route.snapshot.paramMap.get('id');
         this.obs = this.organizationsService.getOrganizationById(organizationId);
         this.obs.subscribe((org: Organization) => {
             this.organization = org;
             this.loading = false;
         });
+    }
+
+    onCreate() {
+        this.loading = true;
+        this.downloadData();
+    }
+    onClientDelete() {
+        this.loading = true;
+        this.downloadData();
     }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'

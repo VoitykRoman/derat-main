@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Trap } from '../../models/trap.model';
 import { Router } from '@angular/router';
 import { TrapService } from '../../services/trap.service';
@@ -11,7 +11,7 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
 export class TrapCardComponent {
 
     @Input() trap: Trap;
-
+@Output() onDelete = new EventEmitter<any>();
     constructor(private router: Router,
         private trapService: TrapService,
         private authenticationService: AuthenticationService) {
@@ -23,8 +23,9 @@ export class TrapCardComponent {
 
     delete() {
         this.trapService.deleteTrap(this.trap.id).toPromise().then(e => {
-            location.reload();
+           
         })
+        this.onDelete.emit(this.trap.id);
     }
 
     isAdmin() {

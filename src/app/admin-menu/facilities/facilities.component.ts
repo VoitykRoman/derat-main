@@ -19,9 +19,12 @@ export class FacilitiesComponent implements OnInit {
     constructor(private facilityService: FacilityService,
         private route: ActivatedRoute,
         public authenticationService: AuthenticationService) {
-        
+
     }
     ngOnInit() {
+        this.downloadData();
+    }
+    downloadData() {
         const facilityId = +this.route.snapshot.paramMap.get('id');
         this.obs = this.facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id);
         const facilityPromise = this.facilityService.getFacilityById(facilityId, this.authenticationService.currentUserValue.id).toPromise();
@@ -29,6 +32,14 @@ export class FacilitiesComponent implements OnInit {
             this.facility = e;
             this.loading = false;
         })
+    }
+    onDelete() {
+        this.loading = true;
+        this.downloadData();
+    }
+    onCreate() {
+        this.loading = true;
+        this.downloadData();
     }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'

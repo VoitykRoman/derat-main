@@ -17,12 +17,21 @@ export class UsersMenuComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.downloadData();
+    }
+    downloadData() {
         this.userService.getAll().toPromise().then((e: User[]) => {
             this.users = e;
             this.loading = false;
         })
     }
-
+    onDelete(id) {
+        this.users = this.users.filter(e => e.id != id);
+    }
+    onCreate() {
+        this.loading = true;
+        this.downloadData();
+    }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin';
     }

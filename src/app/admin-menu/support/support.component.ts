@@ -26,7 +26,7 @@ this.loading = false;
             role: this.authenticationService.currentUserValue.role
         }
         this.emailService.SendEmailToSupport(body).toPromise().then(e => {
-            location.reload();
+            this.content = ''
         })
     }
     isAdmin() {

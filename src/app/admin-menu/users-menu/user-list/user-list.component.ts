@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IgxFilterOptions } from 'igniteui-angular';
 import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
@@ -32,7 +32,7 @@ export class UsersListComponent implements OnInit {
     }
     public updateUser(user: User, event) {
         const userToUpdate = {
-            id: user.id,
+            userId: user.id,
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
@@ -44,11 +44,13 @@ export class UsersListComponent implements OnInit {
             event.dialog.close();
         })
     }
-
+    @Output() onDelete = new EventEmitter<any>();
     deleteUser(id: number) {
         this.userService.delete(id).toPromise().then(e => {
-            location.reload();
+
         })
+        this.onDelete.emit(id);
+
     }
     get filterUsers(): IgxFilterOptions {
         const fo = new IgxFilterOptions();

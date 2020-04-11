@@ -27,6 +27,9 @@ export class PerimetersComponent implements OnInit {
         return this.perimeter.service != 'Deratization'
     }
     ngOnInit() {
+        this.downloadData();
+    }
+    downloadData() {
         const perimeterId = +this.route.snapshot.paramMap.get('id');
         this.obs = this.perimeterService.getPerimeterById(perimeterId);
         const perimeterPromise = this.perimeterService.getPerimeterById(perimeterId).toPromise();
@@ -35,10 +38,18 @@ export class PerimetersComponent implements OnInit {
             this.loading = false;
         });
     }
-
+    
+    onDelete(id) {
+        this.perimeter.traps = this.perimeter.traps.filter(e => e.id != id);
+    }
+    onCreate() {
+        this.loading = true;
+        this.downloadData();
+    }
     markAsReviewed() {
         this.perimeterService.markAsReviewed(this.perimeter.id).toPromise().then(e => {
-            location.reload();
+            this.loading = true;
+            this.downloadData();
         })
     }
     isAdmin() {

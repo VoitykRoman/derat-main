@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Perimeter } from '../../models/perimeter.model';
 import { IComboSelectionChangeEventArgs } from 'igniteui-angular';
 import { User } from 'src/app/main/models/user.model';
@@ -32,6 +32,7 @@ export class CreateTrapComponent implements OnInit {
     private dayFormatter = new Intl.DateTimeFormat("en", { weekday: "long" });
     private monthFormatter = new Intl.DateTimeFormat("en", { month: "long" });
 
+    @Output() onCreate = new EventEmitter<any>();
     obs;
     perimeter: Perimeter;
     constructor(private perimeterService: PerimeterService,
@@ -73,7 +74,7 @@ export class CreateTrapComponent implements OnInit {
             reviewEveryDays: this.task.completion
         }
         this.trapService.createTrap(body).toPromise().then(e => {
-            location.reload();
+            this.onCreate.emit();
         })
     }
 }

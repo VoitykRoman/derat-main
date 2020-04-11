@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
@@ -54,7 +54,7 @@ export class CreateUserComponent implements OnInit {
 
     // convenience getter for easy access to form fields
     get f() { return this.registerForm.controls; }
-
+@Output() onCreate = new EventEmitter<any>();
     onSubmit() {
         this.submitted = true;
 
@@ -70,7 +70,7 @@ export class CreateUserComponent implements OnInit {
             .subscribe(
                 data => {
                     this.success = 'Registration successful';
-                    location.reload();
+                   this.onCreate.emit();
                 },
                 error => {
                     this.error = error.error;

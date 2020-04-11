@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FacilityService } from 'src/app/admin-menu/services/facility.service';
 import { Organization } from 'src/app/admin-menu/models/organization.model';
 
@@ -9,6 +9,7 @@ import { Organization } from 'src/app/admin-menu/models/organization.model';
 export class AddFacilityComponent {
 
     @Input() organization: Organization;
+    @Output() onCreate = new EventEmitter<any>();
     facility = {
         name: undefined,
         address: undefined,
@@ -20,7 +21,7 @@ export class AddFacilityComponent {
     onSubmit() {
         this.facility.organizationId = this.organization.id;
         this.facilityService.createFacility(this.facility).toPromise().then(e => {
-            location.reload();
+            this.onCreate.emit();
         });
     }
 }

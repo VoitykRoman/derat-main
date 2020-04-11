@@ -12,11 +12,11 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchActiveProject'>
-                <app-project-card *ngFor='let project of activePagination | igxFilter: filterActiveProjects' [project]='project'></app-project-card>
+                <app-project-card *ngFor='let project of activePagination' (onDelete)='onDelete()' [projects]='projects' [project]='project'></app-project-card>
                 <ngb-pagination [collectionSize]="activeProjects.length" [(page)]="activePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"> </ngb-pagination>
             </div>
             <div *ngIf='searchActiveProject'>
-                <app-project-card *ngFor='let project of activeProjects | igxFilter: filterActiveProjects' [project]='project'></app-project-card>
+                <app-project-card (onDelete)='onDelete()' *ngFor='let project of activeProjects | igxFilter: filterActiveProjects' [project]='project'></app-project-card>
             </div>
 
         </div>
@@ -33,12 +33,12 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchPendingProject'>
-                <app-project-card *ngFor='let project of pendingPagination ' [project]='project'></app-project-card>
+                <app-project-card *ngFor='let project of pendingPagination ' (onDelete)='onDelete()' [projects]='projects' [project]='project'></app-project-card>
                 <ngb-pagination [collectionSize]="pendingProjects.length" [(page)]="pendingPage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
                 </ngb-pagination>
             </div>
             <div *ngIf='searchPendingProject'>
-                <app-project-card *ngFor='let project of pendingProjects | igxFilter: filterPendingProjects' [project]='project'></app-project-card>
+                <app-project-card (onDelete)='onDelete()' *ngFor='let project of pendingProjects | igxFilter: filterPendingProjects' [project]='project'></app-project-card>
             </div>
 
         </div>
@@ -55,12 +55,12 @@
                 </igx-suffix>
             </igx-input-group>
             <div *ngIf='!searchDoneProject'>
-                <app-project-card *ngFor='let project of donePagination' [project]='project'></app-project-card>
+                <app-project-card *ngFor='let project of donePagination' (onDelete)='onDelete()' [projects]='projects' [project]='project'></app-project-card>
                 <ngb-pagination [collectionSize]="doneProjects.length" [(page)]="donePage" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">
                 </ngb-pagination>
             </div>
             <div *ngIf='searchDoneProject'>
-                <app-project-card *ngFor='let project of doneProjects | igxFilter: filterDoneProjects' [project]='project'></app-project-card>
+                <app-project-card (onDelete)='onDelete()' *ngFor='let project of doneProjects | igxFilter: filterDoneProjects' [project]='project'></app-project-card>
             </div>
 
         </div>
@@ -68,7 +68,7 @@
     </igx-tabs-group>
     <igx-tabs-group label="Create new project" icon="playlist_add" *ngIf='isAdmin()'>
         <div style="margin: 3px">
-            <app-create-project (init)='ngOnInit()'></app-create-project>
+            <app-create-project (init)='ngOnInit()' (onCreate)='onCreate()'></app-create-project>
         </div>
     </igx-tabs-group>
 

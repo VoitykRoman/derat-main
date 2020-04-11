@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IgxFilterOptions, slideOutRight, slideInLeft } from 'igniteui-angular';
 import { Base64Service } from 'src/app/shared/base64.service';
 import { useAnimation } from '@angular/animations';
@@ -11,6 +11,8 @@ import { TeamMemberService } from 'src/app/services/team-memberservice';
     templateUrl: "./team-member-list.component.html"
 })
 export class TeamMemberListComponent implements OnInit {
+    @Output() onCreate = new EventEmitter<any>();
+    @Output() onDelete = new EventEmitter<any>();
     newTeamMember = {
         name: '',
         age: undefined,
@@ -37,14 +39,15 @@ export class TeamMemberListComponent implements OnInit {
     createNewTeamMember() {
 
         this.teamMemberService.createTeamMember(this.newTeamMember).toPromise().then(() => {
-            location.reload();
+            this.onCreate.emit();
         })
     }
 
     deleteTeamMember(id: number) {
         this.teamMemberService.deleteTeamMember(id).toPromise().then(() => {
-            location.reload();
+           
         })
+        this.onDelete.emit(id);
     }
 
     updateTeamMember(teamMember: TeamCard, event) {
