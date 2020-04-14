@@ -5,10 +5,6 @@
             <h3>{{facility.name}}</h3>
             <p>Address: {{facility.address}}</p>
             <p>Organization: {{facility.organization.name}}</p>
-
-            <div class="igx-card-actions__bgroup">
-                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='delete()' *ngIf='isAdmin()'>Delete</button>
-            </div>
         </div>
 
     </igx-tabs-group>
