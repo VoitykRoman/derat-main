@@ -68,7 +68,7 @@
     font-size: 16px;
     border: none;
     outline: none;
-    color: #333 ;
+    color: #333;
     background-color: #333;
     padding: 14px 16px;
     background-color: inherit;
@@ -104,3 +104,10 @@
 .show {
     display: block;
 }
+
+
+/* .select-wrapper {
+    display: flex;
+    padding-top: 130px;
+    padding-left: 40px;
+} */

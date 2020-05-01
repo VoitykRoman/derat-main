@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { Feedback } from 'src/app/models/feedback.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
   selector: "app-main-feedback-list",
@@ -17,7 +18,8 @@ export class FeedbackListComponent implements OnInit {
   /**
    *
    */
-  constructor(private feedbackService: FeedbackService) {
+  constructor(private feedbackService: FeedbackService,
+    public translateService: TranslateService) {
 
   }
   public ngOnInit() {

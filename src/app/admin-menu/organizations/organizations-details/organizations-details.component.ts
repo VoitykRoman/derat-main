@@ -8,6 +8,7 @@ import { AuthenticationService } from 'src/app/main/services/authentication.serv
 import { Facility } from '../../models/facility.model';
 import { User } from 'src/app/main/models/user.model';
 import { IgxFilterOptions } from 'igniteui-angular';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-project-details",
@@ -26,7 +27,8 @@ export class OrganizationsDetailsComponent implements OnInit {
     searchClient;
     constructor(private route: ActivatedRoute,
         private organizationsService: OrganizationsService,
-        public authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

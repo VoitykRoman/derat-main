@@ -8,11 +8,11 @@
     </igx-card-header>
     <igx-card-actions>
         <div class="igx-card-actions__bgroup">
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='openDetails()'>Details</button>
-            <button *ngIf='project.status!="active"' (click)='changeProjectStatusToActive()' type="button" class="btn btn-primary" style="margin-right: 5px;">Mark as active</button>
-            <button *ngIf='project.status!="pending"' (click)='changeProjectStatusToPending()' type="button" class="btn btn-primary" style="margin-right: 5px;">Mark as pending</button>
-            <button *ngIf='project.status!="done"' (click)='changeProjectStatusToDone()' type="button" class="btn btn-primary" style="margin-right: 5px;">Mark as done</button>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='delete()' *ngIf='isAdmin()'>Delete</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='openDetails()'>{{translateService.get('Details')}}</button>
+            <button *ngIf='project.status!="active"' (click)='changeProjectStatusToActive()' type="button" class="btn btn-primary" style="margin-right: 5px;">{{translateService.get('Mark as active')}}</button>
+            <button *ngIf='project.status!="pending"' (click)='changeProjectStatusToPending()' type="button" class="btn btn-primary" style="margin-right: 5px;">{{translateService.get('Mark as pending')}}</button>
+            <button *ngIf='project.status!="done"' (click)='changeProjectStatusToDone()' type="button" class="btn btn-primary" style="margin-right: 5px;">{{translateService.get('Mark as done')}}</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='delete()' *ngIf='isAdmin()'>{{translateService.get('Delete')}}</button>
         </div>
     </igx-card-actions>
 

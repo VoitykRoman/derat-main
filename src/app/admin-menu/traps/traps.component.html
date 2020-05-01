@@ -3,21 +3,22 @@
     <igx-tabs-group label="Trap" icon="info" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h3 class="igx-card-header__title--small">{{trap.place}}</h3>
-            <h5 class="igx-card-header__subtitle">Type: {{trap.type}}</h5>
-            <h5 class="igx-card-header__subtitle">Status: {{trap.status}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Type')}}: {{translateService.get(trap.type)}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Status')}}: {{translateService.get(trap.status)}}</h5>
             <h5 class="igx-card-header__subtitle">{{trap.comment}}</h5>
 
-            <h5 class="igx-card-header__subtitle">Last review date: {{trap.lastReviewTime | date}}</h5>
-            <h5 class="igx-card-header__subtitle">Next review date: {{trap.nextReviewTime | date}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Last review date')}}: {{trap.lastReviewTime | date}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Next review date')}}: {{trap.nextReviewTime | date}}</h5>
 
-            <h5 class="igx-card-header__subtitle">Created at: {{trap.createdAt | date}}</h5>
-            <h5 class="igx-card-header__subtitle">Expire at: {{trap.endTime | date}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Created at')}}: {{trap.createdAt | date}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Expire at')}}: {{trap.endTime | date}}</h5>
 
-            <h5 class="igx-card-header__subtitle">Assigned to: {{trap.employee.firstName}} {{trap.employee.firstName}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Assigned to')}}: {{trap.employee.firstName}} {{trap.employee.firstName}}</h5>
         </div>
         <div class="igx-card-actions__bgroup">
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='markAsReviewed()' *ngIf='!isClient()'>Mark as reviewed</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='markAsReviewed()' *ngIf='!isClient()'>{{translateService.get('Mark as reviewed')}}</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='goToPerimeter()'>{{translateService.get('Perimeter')}}</button>
         </div>
-        <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='goToPerimeter()'>Perimeter</button>
+
     </igx-tabs-group>
 </igx-tabs>

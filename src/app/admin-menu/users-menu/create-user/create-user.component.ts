@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { UserService } from 'src/app/main/services/user.service';
 import { first } from 'rxjs/operators';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component(
     {
@@ -38,6 +39,7 @@ export class CreateUserComponent implements OnInit {
         private router: Router,
         private authenticationService: AuthenticationService,
         private userService: UserService,
+        public translateService: TranslateService 
     ) {
     }
 

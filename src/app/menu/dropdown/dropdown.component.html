@@ -1,16 +1,16 @@
-<a [igxToggleAction]="dropdown" [igxDropDownItemNavigation]="dropdown">{{name}}</a>
+<a [igxToggleAction]="dropdown" [igxDropDownItemNavigation]="dropdown">{{translateService.get(name)}}</a>
 
 <igx-drop-down #dropdown [width]="'100px'">
 
-    <igx-drop-down-item *ngFor="let item of items" >
+    <igx-drop-down-item *ngFor="let item of items">
         <div *ngIf='isService'>
-            <a  (click)='redirectToService(item.link)'> 
-                {{ item.title }}
+            <a (click)='redirectToService(item.link)'> 
+                {{translateService.get(item.title)}}
                </a>
         </div>
         <div *ngIf='!isService'>
-            <a (click)='redirectTo(item.link)' >
-                    {{ item.title }}
+            <a (click)='redirectTo(item.link)'>
+                {{translateService.get(item.title)}}
                 </a>
         </div>
     </igx-drop-down-item>

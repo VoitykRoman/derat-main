@@ -3,6 +3,7 @@ import { User } from 'src/app/main/models/user.model';
 import { ProjectsService } from 'src/app/admin-menu/services/projects.service';
 import { OrganizationsService } from 'src/app/admin-menu/services/organizations.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-client-card",
@@ -15,7 +16,8 @@ export class ClientCardComponent implements OnInit {
     @Output() onDelete = new EventEmitter<any>(); 
     initials: string;
     constructor(private organizationServce: OrganizationsService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

@@ -9,6 +9,7 @@ import { User } from 'src/app/main/models/user.model';
 import { UserService } from 'src/app/main/services/user.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { IgxFilterOptions } from 'igniteui-angular';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-projects",
@@ -38,7 +39,8 @@ export class ProjectsComponent implements OnInit {
     searchDoneProject;
     loading = true;
     constructor(private projectService: ProjectsService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService) {
     }
 
     ngOnInit() {

@@ -1,4 +1,4 @@
-<igx-expansion-panel>
+<igx-expansion-panel *ngIf='translateService.language=="en"'>
     <igx-expansion-panel-header>
         <igx-expansion-panel-title>
             {{serviceCalculator.customerType}}
@@ -21,5 +21,32 @@
             <label igxLabel for="area">Enter area</label>
         </igx-input-group>
         <p> Total price: {{price}}$</p>
+    </igx-expansion-panel-body>
+</igx-expansion-panel>
+
+
+<igx-expansion-panel *ngIf='translateService.language=="ua"'>
+    <igx-expansion-panel-header>
+        <igx-expansion-panel-title>
+            {{serviceCalculator.customerType}}
+        </igx-expansion-panel-title>
+        <igx-expansion-panel-description>
+            {{serviceCalculator.title}}
+        </igx-expansion-panel-description>
+        <igx-avatar src='./assets/calculator.png'></igx-avatar>
+    </igx-expansion-panel-header>
+    <igx-expansion-panel-body>
+        <igx-list>
+            <igx-list-item isHeader="true">Ціна</igx-list-item>
+            <igx-list-item>Початкова ціна - {{serviceCalculator.initialValue}}$</igx-list-item>
+            <igx-list-item>За квадратний метр - {{serviceCalculator.perMetr}}$</igx-list-item>
+        </igx-list>
+        <hr>
+        <h6>Калькулятор ціни</h6>
+        <igx-input-group>
+            <input igxInput name="area" type="number" [(ngModel)]="area" (input)="calculatePrice($event)" />
+            <label igxLabel for="area">Введіть площу</label>
+        </igx-input-group>
+        <p> Кінцева ціна: {{price}}$</p>
     </igx-expansion-panel-body>
 </igx-expansion-panel>

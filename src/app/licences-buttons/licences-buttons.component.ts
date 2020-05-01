@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LicenseCard } from '../models/license-card.model';
 import { LicenseService } from '../services/license.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
     selector: "app-main-licences-buttons",
@@ -11,7 +12,8 @@ export class LicensesButtonsComponent implements OnInit {
 
     licenses: LicenseCard[];
     loading = true;
-    constructor(private licenseService: LicenseService) {
+    constructor(private licenseService: LicenseService,
+        public translateService: TranslateService) {
 
     }
 

@@ -8,6 +8,7 @@ import { UserService } from 'src/app/main/services/user.service';
 import { ProjectsService } from '../../services/projects.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-create-project",
@@ -31,7 +32,12 @@ export class CreateProjectComponent {
     employees: User[];
     employeesToShow;
     organizationsE: Organization[];
-
+    servicesUa = [
+        { service: "Дератизація" },
+        { service: "Дезінсекція" },
+        { service: "Деодорація" },
+        { service: "Дезінфекція" }
+    ];
     @Output() onCreate = new EventEmitter<any>();
 
     constructor(private base64Service: Base64Service,
@@ -39,7 +45,8 @@ export class CreateProjectComponent {
         private userService: UserService,
         private projectService: ProjectsService,
         private router: Router,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService) {
 
         organizationsService.getAllOrganizations(this.authenticationService.currentUserValue.id).subscribe((o: Organization[]) => {
             this.organizations = o.map(e => {
@@ -61,6 +68,8 @@ export class CreateProjectComponent {
             { service: "Deodorization" },
             { service: "Disinfection" }
         ];
+
+        
     }
     toastPosition: IgxToastPosition;
 

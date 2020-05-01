@@ -4,6 +4,7 @@ import { Organization } from 'src/app/admin-menu/models/organization.model';
 import { User } from 'src/app/main/models/user.model';
 import { UserService } from 'src/app/main/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-add-client",
@@ -24,7 +25,8 @@ export class AddClientComponent implements OnInit {
     @Output() onCreate = new EventEmitter<any>();
     constructor(private organizationService: OrganizationsService,
         private userService: UserService,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

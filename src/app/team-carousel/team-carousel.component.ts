@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { TeamCard } from '../models/team-card.model';
 import { TeamMemberService } from '../services/team-memberservice';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
     selector: 'app-main-team-carousel',
@@ -14,7 +15,8 @@ export class TeamCarouselComponent implements OnInit {
     images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
     teamCards: TeamCard[]
     loading = true;
-    constructor(private teamMembersService: TeamMemberService) {
+    constructor(private teamMembersService: TeamMemberService,
+        public translateService: TranslateService) {
     }
 
     ngOnInit() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CallBack } from '../models/callback.model';
 import { CallBackService } from '../services/callback.service';
 import { ToastService } from '../services/toast.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
     selector: "app-main-callback",
@@ -11,9 +12,9 @@ import { ToastService } from '../services/toast.service';
 export class CallBackComponent implements OnInit {
     loading = true;
     constructor(private callbackService: CallBackService,
-                private toastService: ToastService) {
+                private toastService: ToastService,
+                public translateService: TranslateService) {
     }
-
     ngOnInit() {
         this.loading = false;
     }
@@ -30,6 +31,12 @@ export class CallBackComponent implements OnInit {
         { service: "Disinsection" },
         { service: "Deodorization" },
         { service: "Disinfection" }
+    ];
+    public servicesUa = [
+        { service: "Дератизація" },
+        { service: "Дезінсекція" },
+        { service: "Деодорація" },
+        { service: "Дезінфекція" }
     ];
 
     public onDateSelection(value) {

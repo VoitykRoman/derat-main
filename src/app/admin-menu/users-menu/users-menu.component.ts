@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-users-menu",
@@ -13,7 +14,8 @@ export class UsersMenuComponent implements OnInit {
     users: User[];
     loading = true;
     constructor(private userService: UserService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

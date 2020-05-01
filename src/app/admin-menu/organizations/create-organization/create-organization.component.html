@@ -1,6 +1,6 @@
 <div class="custom-file">
     <input accept="image/*" type="file" class="custom-file-input" id="customFile" (change)="onFileChanged($event)">
-    <label class="custom-file-label" for="customFile">Choose file</label>
+    <label class="custom-file-label" for="customFile">{{translateService.get('Choose file')}}</label>
 </div>
 <div class="sample-wrapper">
     <section class="sample-content">
@@ -8,14 +8,18 @@
             <form>
                 <igx-input-group>
                     <input igxInput name="fullName" type="text" required="required" [(ngModel)]="organization.name" />
-                    <label igxLabel for="fullName">Organization name</label>
+                    <label igxLabel for="fullName">{{translateService.get('Organization name')}}</label>
                 </igx-input-group>
             </form>
         </article>
     </section>
 </div>
-<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="clientsToShow" [valueKey]="'client'" [displayKey]="'client'" [(ngModel)]="organization.clients" placeholder="Select clients" searchPlaceholder="Search..." [type]='"line"'>
+<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="clientsToShow" [valueKey]="'client'" [displayKey]="'client'" [(ngModel)]="organization.clients" placeholder="Select clients" searchPlaceholder="Search..."
+    [type]='"line"'>
+</igx-combo>
+<igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="clientsToShow" [valueKey]="'client'" [displayKey]="'client'" [(ngModel)]="organization.clients" placeholder="Вибрати клієнтів" searchPlaceholder="Пошук..."
+    [type]='"line"'>
 </igx-combo>
 <div class="button-sample-custom">
-    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>{{translateService.get('Submit')}}</button>
 </div>

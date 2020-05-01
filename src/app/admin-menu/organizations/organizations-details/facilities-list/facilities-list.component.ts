@@ -4,6 +4,7 @@ import { Facility } from 'src/app/admin-menu/models/facility.model';
 import { OrganizationsService } from 'src/app/admin-menu/services/organizations.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-facility-card",
@@ -16,7 +17,8 @@ export class FacilitiesListComponent {
     @Output() onDelete = new EventEmitter<any>();
     constructor(private organizationService: OrganizationsService,
         private router: Router,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService) {
     }
 
     isAdmin() {

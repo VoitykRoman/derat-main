@@ -4,6 +4,7 @@ import { Base64Service } from 'src/app/shared/base64.service';
 import { useAnimation } from '@angular/animations';
 import { TeamCard } from 'src/app/models/team-card.model';
 import { TeamMemberService } from 'src/app/services/team-memberservice';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-team-member-list",
@@ -29,7 +30,8 @@ export class TeamMemberListComponent implements OnInit {
     page = 1;
     pageSize = 3;
     constructor(private teamMemberService: TeamMemberService,
-        private base64Service: Base64Service) {
+        private base64Service: Base64Service,
+        public translateService: TranslateService ) {
     }
 
 

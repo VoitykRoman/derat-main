@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CallBack } from 'src/app/models/callback.model';
 import { CallBackService } from 'src/app/services/callback.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-callback-admin-card",
@@ -12,7 +13,8 @@ export class CallbackAdminCardComponent {
     /**
      *
      */
-    constructor(private callbackService: CallBackService) {
+    constructor(private callbackService: CallBackService,
+        public translateService: TranslateService ) {
     }
 
     delete() {

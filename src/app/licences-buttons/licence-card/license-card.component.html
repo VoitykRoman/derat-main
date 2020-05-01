@@ -4,11 +4,11 @@
             {{license.name}}
         </igx-expansion-panel-title>
         <igx-expansion-panel-description *ngIf="panel.collapsed">
-            Issued by {{license.issuedBy}}
+            {{translateService.get('Issued by')}} {{license.issuedBy}}
         </igx-expansion-panel-description>
         <igx-expansion-panel-icon>
-            <span class="example-icon" *ngIf="panel.collapsed">Show more</span>
-            <span class="example-icon" *ngIf="!panel.collapsed">Collapse</span>
+            <span class="example-icon" *ngIf="panel.collapsed">{{translateService.get('Show more')}}</span>
+            <span class="example-icon" *ngIf="!panel.collapsed">{{translateService.get('Collapse')}}</span>
         </igx-expansion-panel-icon>
     </igx-expansion-panel-header>
     <igx-expansion-panel-body>
@@ -19,6 +19,6 @@
         <p>
             {{license.description}}
         </p>
-        <a [href]="license.readMoreUrl" target="_blank">Read more</a>
+        <a [href]="license.readMoreUrl" target="_blank">{{translateService.get('Read more')}}</a>
     </igx-expansion-panel-body>
 </igx-expansion-panel>

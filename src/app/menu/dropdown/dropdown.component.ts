@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 import { MenuReference } from 'src/app/models/menu-reference';
 import { Router } from '@angular/router';
+import { TranslateService } from 'src/app/services/translate.service';
 @Component({
     // tslint:disable-next-line:component-selector
     selector: "app-main-dropdown",
@@ -15,7 +16,8 @@ export class DropDownComponent {
     /**
      *
      */
-    constructor(private router: Router) {
+    constructor(private router: Router,
+        public translateService: TranslateService) {
     }
     redirectToService(order) {
         this.router.navigate(['/services'], {

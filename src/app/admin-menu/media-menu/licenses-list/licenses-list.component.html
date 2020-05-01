@@ -2,18 +2,18 @@
     <div class="sample-wrapper">
         <igx-expansion-panel [animationSettings]="animationSettingsCustom" class="content__collapsible">
             <igx-expansion-panel-header>
-                <igx-expansion-panel-title class="sample-title">Add a new license</igx-expansion-panel-title>
+                <igx-expansion-panel-title class="sample-title">{{translateService.get('Add a new license')}}</igx-expansion-panel-title>
             </igx-expansion-panel-header>
             <igx-expansion-panel-body class="body">
                 <igx-input-group class="group">
-                    <label igxLabel for="fullName">Name</label>
+                    <label igxLabel for="fullName">{{translateService.get('Name')}}</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newLicense.name" />
                     <igx-suffix>
                         <igx-icon>check</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="phone">Issued By</label>
+                    <label igxLabel for="phone">{{translateService.get('Issued by')}}</label>
                     <input igxInput autocomplete="off" type="text" name="phone" [(ngModel)]="newLicense.issuedBy" />
                     <igx-suffix>
                         <igx-icon>
@@ -22,33 +22,33 @@
 
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="email">Image url</label>
+                    <label igxLabel for="email">{{translateService.get('Image url')}}</label>
                     <input igxInput autocomplete="off" type="text" name="email" [(ngModel)]="newLicense.imageUrl" />
                     <igx-suffix>
                         <igx-icon>add_photo_alternate</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="fullName">Description</label>
+                    <label igxLabel for="fullName">{{translateService.get('Description')}}</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newLicense.description" />
                     <igx-suffix>
                         <igx-icon>edit</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="fullName">ReadMore url</label>
+                    <label igxLabel for="fullName">{{translateService.get('ReadMore url')}}</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newLicense.readMoreUrl" />
                     <igx-suffix>
                         <igx-icon>link</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
-                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='createNewLicense()'>Submit</button>
+                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='createNewLicense()'>{{translateService.get('Submit')}}</button>
             </igx-expansion-panel-body>
         </igx-expansion-panel>
     </div>
     <input style="float: right;" accept="image/*" type="file" id="customFile" (change)="onNewFileChanged($event)">
 </div>
-<igx-input-group type="search" class="search">
+<igx-input-group type="search" class="search" *ngIf='translateService.language=="en"'>
     <igx-prefix>
         <igx-icon>search</igx-icon>
     </igx-prefix>
@@ -58,51 +58,62 @@
     </igx-suffix>
 </igx-input-group>
 
+<igx-input-group type="search" class="search" *ngIf='translateService.language=="ua"'>
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <input #search igxInput placeholder="Пошук сертифікату" [(ngModel)]="searchLicense">
+    <igx-suffix *ngIf="search.value.length > 0" (click)="searchLicense = null">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+
 <div class="list-sample">
     <igx-list [displayDensity]="density">
-        <igx-list-item isHeader="true">Licenses</igx-list-item>
+        <igx-list-item isHeader="true">{{translateService.get('Licenses')}}</igx-list-item>
         <igx-list-item igxRipple igxRippleTarget=".igx-list__item-content" #item *ngFor="let license of licenses | igxFilter: filterLicenses;">
             <igx-avatar igxListThumbnail [src]="license.imageUrl" roundShape="true"></igx-avatar>
             <span igxListLineTitle>{{ license.name }}</span>
             <span igxListLineSubTitle>{{ license.issuedBy }}</span>
             <input accept="image/*" type="file" id="customFile" (change)="onFileChanged($event, license)">
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">Edit</button>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)=' deleteLicense(license.id) '>Delete</button>
-            <igx-dialog #form title="Update user" leftButtonLabel="Cancel" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateLicense(license, $event)" rightButtonLabel="Update" [closeOnOutsideSelect]="true">
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">{{translateService.get('Edit')}}</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)=' deleteLicense(license.id) '>{{translateService.get('Delete')}}</button>
+            <igx-dialog #form title="Update user" [leftButtonLabel]="translateService.get('Cancel')" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateLicense(license, $event)" [rightButtonLabel]="translateService.get('Update')" [closeOnOutsideSelect]="true">
                 <form class="signInForm">
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="username">Name</label>
+                        <label igxLabel for="username">{{translateService.get('Name')}}
+</label>
                         <input igxInput id="username" type="text" [(ngModel)]='license.name' value='ngModel ' name='name ' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="username">Issued By</label>
+                        <label igxLabel for="username">{{translateService.get('Issued by')}}</label>
                         <input igxInput id="username" type="text" [(ngModel)]='license.issuedBy ' value='ngModel ' name='issuedBy' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="username">Image url</label>
+                        <label igxLabel for="username">{{translateService.get('Image url')}}</label>
                         <input igxInput id="username" type="text" [(ngModel)]='license.imageUrl ' value='ngModel ' name='imageUrl ' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="lasname">Description</label>
+                        <label igxLabel for="lasname">{{translateService.get('Description')}}</label>
                         <input igxInput id="lastname" type="text" [(ngModel)]='license.description ' value='ngModel ' name='description ' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="email">ReadMore url</label>
+                        <label igxLabel for="email">{{translateService.get('ReadMore url')}}</label>
                         <input igxInput id="email" type="text" [(ngModel)]='license.readMoreUrl ' value='ngModel ' name='readMoreUrl ' />
                     </igx-input-group>
                 </form>

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 
 @Component({ templateUrl: 'login.component.html' })
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService
     ) { 
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 

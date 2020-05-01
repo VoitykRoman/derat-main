@@ -2,16 +2,29 @@
 </div>
 
 
+<div *ngIf='translateService.language=="en"'>
+    <h1>{{services[i].title}}</h1>
+    <p style="text-align: justify; margin-left: 30px; margin-right: 30px;">
+        <img src="{{services[i].imageUrl}}" style="float:right; width:40%; margin: 1rem 0rem 0rem 1.5rem; "> {{services[i].description}}
+    </p>
 
-<h1>{{services[i].title}}</h1>
-<p style="text-align: justify; margin-left: 30px; margin-right: 30px;">
-    <img src="{{services[i].imageUrl}}" style="float:right; width:40%; margin: 1rem 0rem 0rem 1.5rem; "> {{services[i].description}}
-</p>
-
-<h3>How it works</h3>
-<p style="margin-left:30px; margin-right: 30px; text-align:justify;">{{services[i].instruction}}</p>
-<div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="center center">
-    <app-main-price-calculator *ngFor='let calc of services[i].priceCalculator' [serviceCalculator]="calc"></app-main-price-calculator>
+    <h3>How it works</h3>
+    <p style="margin-left:30px; margin-right: 30px; text-align:justify;">{{services[i].instruction}}</p>
+    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="center center">
+        <app-main-price-calculator *ngFor='let calc of services[i].priceCalculator' [serviceCalculator]="calc"></app-main-price-calculator>
+    </div>
 </div>
 
+<div *ngIf='translateService.language=="ua"'>
+    <h1>{{servicesUa[i].title}}</h1>
+    <p style="text-align: justify; margin-left: 30px; margin-right: 30px;">
+        <img src="{{services[i].imageUrl}}" style="float:right; width:40%; margin: 1rem 0rem 0rem 1.5rem; "> {{servicesUa[i].description}}
+    </p>
+
+    <h3>Як це працює?</h3>
+    <p style="margin-left:30px; margin-right: 30px; text-align:justify;">{{servicesUa[i].instruction}}</p>
+    <div fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="center center">
+        <app-main-price-calculator *ngFor='let calc of servicesUa[i].priceCalculator' [serviceCalculator]="calc"></app-main-price-calculator>
+    </div>
+</div>
 <app-main-callback id="callback"></app-main-callback>

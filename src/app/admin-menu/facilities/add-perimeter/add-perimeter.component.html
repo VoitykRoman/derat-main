@@ -4,22 +4,31 @@
             <form>
                 <igx-input-group>
                     <input igxInput name="fullName" type="text" required="required" [(ngModel)]="selectedName" />
-                    <label igxLabel for="fullName">Perimeter name</label>
+                    <label igxLabel for="fullName">{{translateService.get('Perimeter name')}}</label>
                 </igx-input-group>
             </form>
         </article>
     </section>
 </div>
-<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="types" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Select perimeter type" searchPlaceholder="Search..." [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="types" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Select perimeter type" searchPlaceholder="Search..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
 </igx-combo>
-
-<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="services" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="serviceSelected" placeholder="Select service" searchPlaceholder="Search..." [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+<igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="typesUa" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Вибрати тип периметру" searchPlaceholder="Пошук..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
 </igx-combo>
-
-<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'employee'" [displayKey]="'employee'" [(ngModel)]="selectedEmployee" placeholder="Select employee" searchPlaceholder="Search..." [type]='"line"'
-    (onSelectionChange)="setWeaponsLimit($event)">
+<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="getServices()" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="serviceSelected" placeholder="Select service" searchPlaceholder="Search..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+<igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="getServices()" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="serviceSelected" placeholder="Вибрати послугу" searchPlaceholder="Пошук..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="serviceSelected" placeholder="Select employee" searchPlaceholder="Search..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
+<igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'employee'" [displayKey]="'employee'" [(ngModel)]="selectedEmployee" placeholder="Вибрати працівника"
+    searchPlaceholder="Пошук..." [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
 </igx-combo>
 
 <div class="button-sample-custom">
-    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>{{translateService.get('Submit')}}</button>
 </div>

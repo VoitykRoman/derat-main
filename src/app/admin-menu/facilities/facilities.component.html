@@ -1,20 +1,29 @@
 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==">
 <igx-tabs *ngIf='!loading   && authenticationService.currentUserValue && obs | async'>
-    <igx-tabs-group label="Facility" icon="info" id="active">
+    <igx-tabs-group [label]="translateService.get('Facility')" icon="info" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h3>{{facility.name}}</h3>
-            <p>Address: {{facility.address}}</p>
-            <p>Organization: {{facility.organization.name}}</p>
+            <p>{{translateService.get('Address')}}: {{facility.address}}</p>
+            <p>{{translateService.get('Organization')}}: {{facility.organization.name}}</p>
         </div>
 
     </igx-tabs-group>
-    <igx-tabs-group label="Perimeters" icon="layers" id="active">
+    <igx-tabs-group [label]="translateService.get('Perimeters')" icon="layers" id="active">
         <div style="margin: 10px 3px 3px 1px">
-            <igx-input-group type="search" class="search">
+            <igx-input-group type="search" class="search" *ngIf='translateService.language=="en"'>
                 <igx-prefix>
                     <igx-icon>search</igx-icon>
                 </igx-prefix>
                 <input #search igxInput placeholder="Search perimeter" [(ngModel)]="searchPerimeter">
+                <igx-suffix *ngIf="search.value.length > 0" (click)="searchPerimeter = null">
+                    <igx-icon>clear</igx-icon>
+                </igx-suffix>
+            </igx-input-group>
+            <igx-input-group type="search" class="search" *ngIf='translateService.language=="ua"'>
+                <igx-prefix>
+                    <igx-icon>search</igx-icon>
+                </igx-prefix>
+                <input #search igxInput placeholder="Пошук периметру" [(ngModel)]="searchPerimeter">
                 <igx-suffix *ngIf="search.value.length > 0" (click)="searchPerimeter = null">
                     <igx-icon>clear</igx-icon>
                 </igx-suffix>
@@ -30,7 +39,7 @@
 
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Add perimeter" icon="add" id="active" *ngIf='isAdmin()'>
+    <igx-tabs-group [label]="translateService.get('Add perimeter')" icon="add" id="active" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-add-perimeter (onCreate)='onCreate()' [facility]='facility'></app-add-perimeter>
         </div>

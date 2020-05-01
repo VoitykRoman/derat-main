@@ -1,6 +1,7 @@
 import { Organization } from './organization.model';
 import { User } from 'src/app/main/models/user.model';
 import { ProjectStatuses } from 'src/app/shared/project-statuses.enum';
+import { Event } from './event.model';
 
 export class Project {
     id: number;

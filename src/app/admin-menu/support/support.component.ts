@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { EmailService } from '../services/email.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-support",
@@ -12,7 +13,8 @@ export class SupportComponent implements OnInit {
     content;
     loading = true;
     constructor(private authenticationService: AuthenticationService,
-        private emailService: EmailService) {
+        private emailService: EmailService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

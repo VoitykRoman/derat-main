@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CallBackService } from 'src/app/services/callback.service';
 import { CallBack } from 'src/app/models/callback.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-callback-admin",
@@ -15,7 +16,8 @@ export class CallbackAdminComponent implements OnInit {
     pageSize = 3;
     loading = true;
     constructor(private callbackService: CallBackService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'

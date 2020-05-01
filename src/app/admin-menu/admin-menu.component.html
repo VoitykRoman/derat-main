@@ -3,30 +3,30 @@
 <div class="content-wrap" igxLayout *ngIf='isAdmin()'>
     <igx-nav-drawer id="navigation" [pin]="true" [pinThreshold]="0">
         <ng-template igxDrawer>
-            <span igxDrawerItem [isHeader]="true"> Admin menu </span>
+            <span igxDrawerItem [isHeader]="true">{{translateService.get('Admin menu')}}  </span>
             <span igxDrawerItem igxRipple routerLink='projects'>
                 <igx-icon name="project" fontSet="filter-icons"></igx-icon>
-              <span >Projects</span>
+              <span >{{translateService.get('Projects')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='organizations'>
                 <igx-icon name="organization" fontSet="filter-icons"></igx-icon>
-                <span>Organizations</span>
+                <span>{{translateService.get('Organizations')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='usersmenu'>
                 <igx-icon name="client" fontSet="filter-icons"></igx-icon>
-                <span>Users</span>
+                <span>{{translateService.get('Users')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='mediamenu'>
                 <igx-icon name="media" fontSet="filter-icons"></igx-icon>
-                <span>Main page media menu</span>
+                <span>{{translateService.get('Main page media menu')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='email'>
                 <igx-icon name="send_email" fontSet="filter-icons"></igx-icon>
-                <span>Send email</span>
+                <span>{{translateService.get('Send email')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='callback'>
                 <igx-icon name="callback" fontSet="filter-icons"></igx-icon>
-                <span>Callbacks menu</span>
+                <span>{{translateService.get('Callbacks menu')}}</span>
             </span>
         </ng-template>
         <ng-template igxDrawerMini>
@@ -66,18 +66,18 @@
 <div class="content-wrap" igxLayout *ngIf='isClient()'>
     <igx-nav-drawer id="navigation" [pin]="true" [pinThreshold]="0">
         <ng-template igxDrawer>
-            <span igxDrawerItem [isHeader]="true"> Client menu </span>
+            <span igxDrawerItem [isHeader]="true">{{translateService.get('Client menu')}}  </span>
             <span igxDrawerItem igxRipple routerLink='organizations'>
                 <igx-icon name="organization" fontSet="filter-icons"></igx-icon>
-                <span>Organizations</span>
+                <span>{{translateService.get('Organizations')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='feedback'>
                 <igx-icon name="feedback" fontSet="filter-icons"></igx-icon>
-                <span>Feedback</span>
+                <span>{{translateService.get('Feedbacks')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='support'>
                 <igx-icon name="help" fontSet="filter-icons"></igx-icon>
-                <span>Support</span>
+                <span>{{translateService.get('Support')}}</span>
             </span>
         </ng-template>
         <ng-template igxDrawerMini>
@@ -109,14 +109,14 @@
 <div class="content-wrap" igxLayout *ngIf='isEmployee()'>
     <igx-nav-drawer id="navigation" [pin]="true" [pinThreshold]="0">
         <ng-template igxDrawer>
-            <span igxDrawerItem [isHeader]="true"> Employee menu </span>
+            <span igxDrawerItem [isHeader]="true">{{translateService.get('Employee menu')}}  </span>
             <span igxDrawerItem igxRipple routerLink='projects'>
                 <igx-icon name="project" fontSet="filter-icons"></igx-icon>
-                <span>Projects</span>
+                <span>{{translateService.get('Projects')}}</span>
             </span>
             <span igxDrawerItem igxRipple routerLink='support'>
                 <igx-icon name="help" fontSet="filter-icons"></igx-icon>
-                <span>Support</span>
+                <span>{{translateService.get('Support')}}</span>
             </span>
         </ng-template>
         <ng-template igxDrawerMini>

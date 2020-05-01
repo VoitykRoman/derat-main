@@ -10,7 +10,7 @@
     </igx-card-header>
     <igx-card-actions>
         <div class="igx-card-actions__bgroup">
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='removeClient()' *ngIf='isAdmin()'>Delete</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='removeClient()' *ngIf='isAdmin()'>{{translateService.get('Delete')}}</button>
         </div>
     </igx-card-actions>
 

@@ -1,5 +1,9 @@
-<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="clientsToShow" [valueKey]="'client'" [displayKey]="'client'" [(ngModel)]="clientsToAdd" placeholder="Select client" searchPlaceholder="Search..." [type]='"line"'>
+<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="clientsToShow" [valueKey]="'client'" [displayKey]="'client'" [(ngModel)]="clientsToAdd" placeholder="Select client" searchPlaceholder="Search..."
+    [type]='"line"'>
+</igx-combo>
+<igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="clientsToShow" [valueKey]="'client'" [displayKey]="'client'" [(ngModel)]="clientsToAdd" placeholder="Виберіть клієнтів" searchPlaceholder="Пошук..."
+    [type]='"line"'>
 </igx-combo>
 <div class="button-sample-custom">
-    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>{{translateService.get('Submit')}}</button>
 </div>

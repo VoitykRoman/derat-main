@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Card } from '../models/service-card.model';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
     selector: 'app-main-services-cards',
@@ -42,6 +43,45 @@ new Card({
     subtitle: "DeratControl",
     title: "Disinfection"
 })];
+
+cardsUa: Card[] = [new Card({
+    buttons: ["Детальніше"],
+    content: `Комплекс заходів щодо дератизації означає не тільки знищення гризунів, але також запобігання їх виникненню щури є джерелом інфекційних захворювань. `,
+    icons: ["favorite", "share"],
+    imageUrl: "assets/5.jpg",
+    subtitle: "DeratControl",
+    title: "Дератизація"
+}), new Card({
+    buttons: ["Детальніше"],
+    content: `Служба дезінсекції включає комплекс заходів, спрямованих на знищення та запобігання появі багатьох різних комах (мух, гострих, тарганів, комарів, бліх, клопів).`,
+    icons: ["favorite", "share"],
+    imageUrl: "assets/6.jpg",
+    subtitle: "DeratControl",
+    title: "Дезінсекція"
+}), new Card({
+    buttons: ["Детальніше"],
+    content: `Дезодорація - високотемпературний, вакуумний пародистиляційний процес для видалення запашних речовин, присутніх у харчових жирах. Також видалити неприємний запах.`,
+    icons: ["favorite", "share"],
+    imageUrl: "assets/7.jpg",
+    subtitle: "DeratControl",
+    title: "Деодорація"
+}),
+new Card({
+    buttons: ["Детальніше"],
+    content: `Заходи з дезінфекції проводяться на підприємствах виробництва харчових продуктів, супермаркетах, квартирах, офісах, магазинах, на вулицях будь-якої інфекції чи захворювання.`,
+    icons: ["favorite", "share"],
+    imageUrl: "assets/9.jfif",
+    subtitle: "DeratControl",
+    title: "Дезінфекція"
+})];
+
+/**
+ *
+ */
+constructor(public translateService: TranslateService) {
+
+
+}
 sw(){
    if(window.innerWidth <= 450)
    return 1;

@@ -3,6 +3,7 @@ import { MenuReference } from '../models/menu-reference';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../main/services/authentication.service';
 import { User } from '../main/models/user.model';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
     selector: 'app-main-menu',
@@ -11,7 +12,7 @@ import { User } from '../main/models/user.model';
 })
 
 export class MenuComponent {
-
+    
     aboutUsReferences: MenuReference[] = [{
         title: "Our team",
         link: "team",
@@ -44,7 +45,8 @@ export class MenuComponent {
     }]
     currentUser: User;
 
-    constructor(private router: Router, public authenticationService: AuthenticationService) {
+    constructor(private router: Router, public authenticationService: AuthenticationService,
+        public translateService: TranslateService) {
         this.authenticationService.currentUser.subscribe(u => {
             this.currentUser = u;
         })
@@ -62,7 +64,7 @@ export class MenuComponent {
     //redirects
     redirectToHome() {
         if (this.router.url.split('?')[0] == '/') {
-           document.getElementById('home').scrollIntoView({ block: "start", behavior: "smooth" });
+            document.getElementById('home').scrollIntoView({ block: "start", behavior: "smooth" });
             console.log(this.router.url);
         }
         else {

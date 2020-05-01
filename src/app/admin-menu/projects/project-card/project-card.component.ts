@@ -4,6 +4,7 @@ import { ProjectsService } from '../../services/projects.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { ProjectStatuses } from 'src/app/shared/project-statuses.enum';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-project-card",
@@ -18,7 +19,8 @@ export class ProjectCardComponent implements OnInit {
     @Output() onDelete = new EventEmitter<number>();
     constructor(private projectService: ProjectsService,
         private router: Router,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

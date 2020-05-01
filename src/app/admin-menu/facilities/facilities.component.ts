@@ -5,6 +5,7 @@ import { Facility } from '../models/facility.model';
 import { Perimeter } from '../models/perimeter.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { IgxFilterOptions } from 'igniteui-angular';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-projects",
@@ -18,7 +19,8 @@ export class FacilitiesComponent implements OnInit {
     searchPerimeter;
     constructor(private facilityService: FacilityService,
         private route: ActivatedRoute,
-        public authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
 
     }
     ngOnInit() {

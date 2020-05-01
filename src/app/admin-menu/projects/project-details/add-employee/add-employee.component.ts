@@ -4,6 +4,7 @@ import { User } from 'src/app/main/models/user.model';
 import { ProjectsService } from 'src/app/admin-menu/services/projects.service';
 import { EmployeeProject, Project } from 'src/app/admin-menu/models/project.model';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-add-employee",
@@ -22,7 +23,8 @@ export class AddEmployeeComponent implements OnInit {
     @Output() onCreate = new EventEmitter<any>();
     constructor(private userService: UserService,
         private projectService: ProjectsService,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

@@ -4,6 +4,7 @@ import { Organization } from '../models/organization.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { User } from 'src/app/main/models/user.model';
 import { IgxFilterOptions } from 'igniteui-angular';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-projects",
@@ -16,7 +17,8 @@ export class OrganizationsComponent implements OnInit {
     organizations: Organization[];
     currentUser: User;
     constructor(private organizationsService: OrganizationsService,
-        public authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
     searchOrganization;
     ngOnInit() {

@@ -7,6 +7,7 @@ import { UserService } from 'src/app/main/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { FacilityService } from '../../services/facility.service';
 import { PerimeterService } from '../../services/perimeters.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-add-perimeter",
@@ -15,7 +16,7 @@ import { PerimeterService } from '../../services/perimeters.service';
 export class AddPerimeterComponent implements OnInit {
 
     @Input() facility: Facility;
-@Output() onCreate = new EventEmitter<any>();
+    @Output() onCreate = new EventEmitter<any>();
     types = [
         {
             type: 'inner'
@@ -24,7 +25,14 @@ export class AddPerimeterComponent implements OnInit {
             type: 'outer'
         }
     ];
-
+    typesUa = [
+        {
+            type: 'внутрішній'
+        },
+        {
+            type: 'зовнішній'
+        }
+    ];
     selectedType;
 
     serviceSelected;
@@ -36,32 +44,74 @@ export class AddPerimeterComponent implements OnInit {
     constructor(private userSerivce: UserService,
         private route: ActivatedRoute,
         private facilityService: FacilityService,
-        private perimeterService: PerimeterService) {
+        private perimeterService: PerimeterService,
+        public translateService: TranslateService) {
     }
 
     ngOnInit() {
         // if (this.facility.organization.projects && this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0] != undefined)
-            this.employees = this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0].employeesLnk
-                .map((emp: EmployeeProject) => {
-                    return emp.employee
-                });
+        this.employees = this.facility.organization.projects.filter((p: Project) => p.organizationId == this.facility.organization.id)[0].employeesLnk
+            .map((emp: EmployeeProject) => {
+                return emp.employee
+            });
 
         // if (this.employees)
-            this.employeesToShow = this.employees.map(e => {
-                return { employee: e.firstName + " " + e.lastName + " " + e.id }
-            })
+        this.employeesToShow = this.employees.map(e => {
+            return { employee: e.firstName + " " + e.lastName + " " + e.id }
+        })
 
         // if (this.facility.organization.projects
         //     .filter((e: Project) => e.organizationId == this.facility.organization.id)[0] != undefined) {
-            const services = this.facility.organization.projects
-                .filter((e: Project) => e.organizationId == this.facility.organization.id)[0].services.split(',');
+        const services = this.facility.organization.projects
+            .filter((e: Project) => e.organizationId == this.facility.organization.id)[0].services.split(',');
 
-            this.services = services.map(e => {
-                return {
-                    service: e
-                }
-            });
+        this.services = services.map(e => {
+            return {
+                service: e
+            }
+        });
         // }
+    }
+    getServices() {
+        let result;
+        if (this.translateService.language == 'ua') {
+            result = this.services.map(e => {
+                let ser;
+                if (e.service.includes('Deratization'))
+                    return { service: e.service.replace('Deratization', 'Дератизація') }
+
+                if (e.service.includes('Disinsection'))
+                    return {
+                        service: e.service.replace('Disinsection', 'Дезінсекція')
+                    }
+
+                if (e.service.includes('Deodorization'))
+                    return {
+                        service: e.service.replace('Deodorization', 'Деодорація')
+                    }
+
+                if (e.service.includes('Disinfection'))
+                    return {
+                        service: e.service.replace('Disinfection', 'Дезінфекція')
+                    }
+
+            })
+            return result;
+        }
+        if (this.translateService.language == 'en') {
+            result = this.services.map(e => {
+                let ser;
+                ser = e.service.replace('Дератизація', 'Deratization');
+                ser = e.service.replace('Дезінсекція', 'Disinsection');
+                ser = e.service.replace('Деодорація', 'Deodorization');
+                ser = e.service.replace('Дезінфекція', 'Disinfection');
+                return {
+                    service: ser
+                }
+            })
+            return result;
+        }
+
     }
     onSubmit() {
         let employeesIds: number[] = [];

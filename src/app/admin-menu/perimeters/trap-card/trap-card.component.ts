@@ -3,6 +3,7 @@ import { Trap } from '../../models/trap.model';
 import { Router } from '@angular/router';
 import { TrapService } from '../../services/trap.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-trap-card",
@@ -14,7 +15,8 @@ export class TrapCardComponent {
 @Output() onDelete = new EventEmitter<any>();
     constructor(private router: Router,
         private trapService: TrapService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
 
     openDetails() {

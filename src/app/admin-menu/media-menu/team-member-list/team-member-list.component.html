@@ -2,18 +2,18 @@
     <div class="sample-wrapper">
         <igx-expansion-panel [animationSettings]="animationSettingsCustom" class="content__collapsible">
             <igx-expansion-panel-header>
-                <igx-expansion-panel-title class="sample-title">Add a new team member</igx-expansion-panel-title>
+                <igx-expansion-panel-title class="sample-title">{{translateService.get('Add a new team member')}}</igx-expansion-panel-title>
             </igx-expansion-panel-header>
             <igx-expansion-panel-body class="body">
                 <igx-input-group class="group">
-                    <label igxLabel for="fullName">Name</label>
+                    <label igxLabel for="fullName">{{translateService.get('NameT')}}</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newTeamMember.name" />
                     <igx-suffix>
                         <igx-icon>check</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="phone">Age</label>
+                    <label igxLabel for="phone">{{translateService.get('Age')}}</label>
                     <input igxInput autocomplete="off" type="text" name="phone" [(ngModel)]="newTeamMember.age" />
                     <igx-suffix>
                         <igx-icon>how_to_reg</igx-icon>
@@ -21,40 +21,40 @@
 
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="email">Position</label>
+                    <label igxLabel for="email">{{translateService.get('Position')}}</label>
                     <input igxInput autocomplete="off" type="text" name="email" [(ngModel)]="newTeamMember.position" />
                     <igx-suffix>
                         <igx-icon>location_searching</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="fullName">Phone</label>
+                    <label igxLabel for="fullName">{{translateService.get('Phone')}}</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newTeamMember.phone" />
                     <igx-suffix>
                         <igx-icon>phone</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="fullName">Experience</label>
+                    <label igxLabel for="fullName">{{translateService.get('Experience')}}</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newTeamMember.experience" />
                     <igx-suffix>
                         <igx-icon>create</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
                 <igx-input-group class="group">
-                    <label igxLabel for="fullName">Image url</label>
+                    <label igxLabel for="fullName">{{translateService.get('Image url')}}</label>
                     <input igxInput autocomplete="off" type="text" name="fullName" [(ngModel)]="newTeamMember.imageUrl" />
                     <igx-suffix>
                         <igx-icon>add_photo_alternate</igx-icon>
                     </igx-suffix>
                 </igx-input-group>
-                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='createNewTeamMember()'>Submit</button>
+                <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='createNewTeamMember()'>{{translateService.get('Submit')}}</button>
             </igx-expansion-panel-body>
         </igx-expansion-panel>
     </div>
     <input style="float: right;" accept="image/*" type="file" id="customFile" (change)="onNewFileChanged($event)">
 </div>
-<igx-input-group type="search" class="search">
+<igx-input-group type="search" class="search" *ngIf='translateService.language=="en"'>
     <igx-prefix>
         <igx-icon>search</igx-icon>
     </igx-prefix>
@@ -64,58 +64,68 @@
     </igx-suffix>
 </igx-input-group>
 
+<igx-input-group type="search" class="search" *ngIf='translateService.language=="ua"'>
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <input #search igxInput placeholder="Пошук члена команди" [(ngModel)]="searchTeamMember">
+    <igx-suffix *ngIf="search.value.length > 0" (click)="searchTeamMember = null">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+
 <div class="list-sample">
     <igx-list [displayDensity]="density">
-        <igx-list-item isHeader="true">Team members</igx-list-item>
+        <igx-list-item isHeader="true">{{translateService.get('Team members')}}</igx-list-item>
         <igx-list-item igxRipple igxRippleTarget=".igx-list__item-content" #item *ngFor="let teamMember of teamMembers | igxFilter: filterLicenses;">
             <igx-avatar igxListThumbnail [src]="teamMember.imageUrl" roundShape="true"></igx-avatar>
             <span igxListLineTitle>{{ teamMember.name }}</span>
             <span igxListLineSubTitle>{{ teamMember.issuedBy }}</span>
             <input accept="image/*" type="file" id="customFile" (change)="onFileChanged($event, teamMember)">
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">Edit</button>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)=' deleteTeamMember(teamMember.id) '>Delete</button>
-            <igx-dialog #form title="Update user" leftButtonLabel="Cancel" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateTeamMember(teamMember, $event)" rightButtonLabel="Update" [closeOnOutsideSelect]="true">
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">{{translateService.get('Edit')}}</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)=' deleteTeamMember(teamMember.id) '>{{translateService.get('Delete')}}</button>
+            <igx-dialog #form title="Update user" [leftButtonLabel]="translateService.get('Cancel')" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateTeamMember(teamMember, $event)" [rightButtonLabel]="translateService.get('Update')" [closeOnOutsideSelect]="true">
                 <form class="signInForm">
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="username">Name</label>
+                        <label igxLabel for="username">{{translateService.get('NameT')}}</label>
                         <input igxInput id="username" type="text" [(ngModel)]='teamMember.name' value='ngModel ' name='name ' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="username">Age</label>
+                        <label igxLabel for="username">{{translateService.get('Age')}}</label>
                         <input igxInput id="username" type="text" [(ngModel)]='teamMember.age ' value='ngModel ' name='age' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="username">Position</label>
+                        <label igxLabel for="username">{{translateService.get('Position')}}</label>
                         <input igxInput id="username" type="text" [(ngModel)]='teamMember.position ' value='ngModel ' name='position ' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="lasname">Phone</label>
+                        <label igxLabel for="lasname">{{translateService.get('Phone')}}</label>
                         <input igxInput id="lastname" type="text" [(ngModel)]='teamMember.phone ' value='ngModel ' name='phone ' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="email">Experience</label>
+                        <label igxLabel for="email">{{translateService.get('Experience')}}</label>
                         <input igxInput id="email" type="text" [(ngModel)]='teamMember.experience ' value='ngModel ' name='experience ' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="email">Image url</label>
+                        <label igxLabel for="email">{{translateService.get('Image url')}}</label>
                         <input igxInput id="email" type="text" [(ngModel)]='teamMember.imageUrl ' value='ngModel ' name='imageUrl ' />
                     </igx-input-group>
                 </form>

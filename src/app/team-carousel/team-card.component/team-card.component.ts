@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TeamCard } from 'src/app/models/team-card.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: 'app-main-team-card',
@@ -9,4 +10,12 @@ import { TeamCard } from 'src/app/models/team-card.model';
 
 export class TeamCardComponent{
 @Input() teamCard: TeamCard;
+
+/**
+ *
+ */
+constructor(public translateService: TranslateService) {
+    
+
+}
 }   

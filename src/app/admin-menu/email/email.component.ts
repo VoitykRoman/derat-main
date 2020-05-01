@@ -12,6 +12,7 @@ import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
 import { EmailService } from '../services/email.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-email",
@@ -70,7 +71,8 @@ export class EmailComponent implements OnInit {
     constructor(public cdr: ChangeDetectorRef,
         private userService: UserService,
         private emailService: EmailService,
-        private authenticationService: AuthenticationService) { }
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) { }
     isAdmin() {
         return this.authenticationService.currentUserValue.role == 'admin'
     }

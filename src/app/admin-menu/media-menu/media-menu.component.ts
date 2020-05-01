@@ -6,6 +6,7 @@ import { LicenseCard } from 'src/app/models/license-card.model';
 import { TeamMemberService } from 'src/app/services/team-memberservice';
 import { TeamCard } from 'src/app/models/team-card.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-media-menu",
@@ -21,7 +22,8 @@ export class MediaMenuComponent implements OnInit {
     constructor(private indexImageService: IndexImageService,
         private licenseService: LicenseService,
         private teamMemberService: TeamMemberService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
 
     }
 

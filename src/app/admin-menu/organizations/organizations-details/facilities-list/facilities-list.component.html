@@ -7,8 +7,8 @@
     </igx-card-header>
     <igx-card-actions>
         <div class="igx-card-actions__bgroup">
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='details()'>Details</button>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='deleteFacility()' *ngIf='isAdmin()'>Delete</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='details()'>{{translateService.get('Details')}}</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='deleteFacility()' *ngIf='isAdmin()'>{{translateService.get('Delete')}}</button>
         </div>
     </igx-card-actions>
 

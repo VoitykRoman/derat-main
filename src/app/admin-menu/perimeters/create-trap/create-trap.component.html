@@ -4,15 +4,18 @@
             <form>
                 <igx-input-group>
                     <input igxInput name="fullName" type="text" required="required" [(ngModel)]="selectedPlace" />
-                    <label igxLabel for="fullName">Trap place</label>
+                    <label igxLabel for="fullName">{{translateService.get('Trap place')}}</label>
                 </igx-input-group>
             </form>
         </article>
     </section>
 </div>
-<igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="types" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Select trap type" searchPlaceholder="Search..." [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="types" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Select trap type" searchPlaceholder="Search..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
 </igx-combo>
-
+<igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="typesUa" [valueKey]="'type'" [displayKey]="'type'" [(ngModel)]="selectedType" placeholder="Вибрати тип пастки" searchPlaceholder="Пошук..."
+    [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
+</igx-combo>
 <div class="sample-wrapper date-picker-wrapper">
     <div>
         <igx-date-picker id="date-picker" [(ngModel)]='date'></igx-date-picker>
@@ -21,7 +24,7 @@
 
 <div class="container">
     <igx-slider [minValue]="1" [maxValue]="7" [step]="1" [(ngModel)]="task.completion"></igx-slider>
-    <h5 class="igx-card-header__subtitle">Review every {{task.completion}} days</h5>
+    <h5 class="igx-card-header__subtitle">{{translateService.get('Review every')}} {{task.completion}} {{translateService.get('days')}}</h5>
 </div>
 
 <div class="sample-wrapper">
@@ -30,7 +33,7 @@
             <form>
                 <igx-input-group>
                     <input igxInput name="Comment" type="text" required="required" [(ngModel)]="selectedComment" />
-                    <label igxLabel for="Comment">Comment</label>
+                    <label igxLabel for="Comment">{{translateService.get('Comment')}}</label>
                 </igx-input-group>
             </form>
         </article>
@@ -38,5 +41,5 @@
 </div>
 
 <div class="button-sample-custom">
-    <button igxButton="raised" igxRipple="white" (click)='createTrap()'>Submit</button>
+    <button igxButton="raised" igxRipple="white" (click)='createTrap()'>{{translateService.get('Submit')}}</button>
 </div>

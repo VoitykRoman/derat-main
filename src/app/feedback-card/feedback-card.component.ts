@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeedbackService } from '../services/feedback.service';
 import { Feedback } from '../models/feedback.model';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: 'app-main-feedback-card',
@@ -14,7 +15,8 @@ export class FeedbackCardComponent implements OnInit {
   summaryRating: number = 0;
   rating: number;
   loading = true;
-  constructor(private feedbackService: FeedbackService) {
+  constructor(private feedbackService: FeedbackService,
+    public translateService: TranslateService) {
   }
   obs;
   ngOnInit() {

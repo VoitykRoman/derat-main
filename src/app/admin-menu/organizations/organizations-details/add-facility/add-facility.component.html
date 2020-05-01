@@ -4,7 +4,7 @@
             <form>
                 <igx-input-group>
                     <input igxInput name="fullName" type="text" required="required" [(ngModel)]="facility.name" />
-                    <label igxLabel for="fullName">Facility name</label>
+                    <label igxLabel for="fullName">{{translateService.get('Facility name')}}</label>
                 </igx-input-group>
             </form>
         </article>
@@ -16,12 +16,12 @@
             <form>
                 <igx-input-group>
                     <input igxInput name="address" type="text" required="required" [(ngModel)]="facility.address" />
-                    <label igxLabel for="address">Facility address</label>
+                    <label igxLabel for="address">{{translateService.get('Facility address')}}</label>
                 </igx-input-group>
             </form>
         </article>
     </section>
 </div>
 <div class="button-sample-custom">
-    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>Submit</button>
+    <button igxButton="raised" igxRipple="white" (click)='onSubmit()'>{{translateService.get('Submit')}}</button>
 </div>

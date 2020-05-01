@@ -6,17 +6,17 @@
 
 
 <div class="topnav" id="myTopnav">
-    <a class="active" (click)='redirectToHome()'>Home</a>
+    <a class="active" (click)='redirectToHome()'>{{translateService.get('Home')}}</a>
     <a>
         <app-main-dropdown [items]="aboutUsReferences" name="About us" [isService]='false'></app-main-dropdown>
     </a>
     <a>
         <app-main-dropdown [items]="servicesReferences" name="Services" [isService]='true'></app-main-dropdown>
     </a>
-    <a (click)='redirectToContacts()'>Contact us</a>
-    <a *ngIf='authenticationService.currentUserValue' (click)='redirectToAdminMenu()'>Menu</a>
-    <a (click)="redirectToLogin()" *ngIf='!currentUser'>Sign up</a>
-    <a (click)="logout()" *ngIf='currentUser'>Logout</a>
+    <a (click)='redirectToContacts()'>{{translateService.get('Contact us')}}</a>
+    <a *ngIf='authenticationService.currentUserValue' (click)='redirectToAdminMenu()'>{{translateService.get('Menu')}}</a>
+    <a (click)="redirectToLogin()" *ngIf='!currentUser'>{{translateService.get('Sign in')}}</a>
+    <a (click)="logout()" *ngIf='currentUser'>{{translateService.get('Logout')}}</a>
     <a href="javascript:void(0);" class="icon" (click)="zoom()">
         <i class="fa fa-bars "></i>
     </a>
@@ -29,4 +29,11 @@
     <a href="https://www.instagram.com/kistudent/" target="_blank">
         <igx-icon name="white-instagram" fontSet="filter-icons"></igx-icon>
     </a>
+    <div style="display: flex; padding-top: 1rem ; ">
+        <select name="" id="" [(ngModel)]=translateService.language>
+            <option value="ua">ua</option>
+            <option value="en">en</option>
+        </select>
+    </div>
+
 </div>

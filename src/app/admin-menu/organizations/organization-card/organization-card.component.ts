@@ -3,6 +3,7 @@ import { Organization } from '../../models/organization.model';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { OrganizationsService } from '../../services/organizations.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-organization-card",
@@ -16,7 +17,8 @@ export class OrganizationCardComponent {
     @Output() onDelete = new EventEmitter<any>();
     constructor(private router: Router,
         private authenticationService: AuthenticationService,
-        private organizationsService: OrganizationsService) {
+        private organizationsService: OrganizationsService,
+        public translateService: TranslateService ) {
     }
 
     isAdmin() {

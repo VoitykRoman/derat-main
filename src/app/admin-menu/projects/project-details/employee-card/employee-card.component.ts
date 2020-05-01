@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/main/models/user.model';
 import { ProjectsService } from 'src/app/admin-menu/services/projects.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-employee-card",
@@ -15,7 +16,8 @@ export class EmployeeCardComponent implements OnInit{
     @Output() onDelete = new EventEmitter<any>();
     initials;
     constructor(private projectService: ProjectsService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

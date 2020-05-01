@@ -2,18 +2,18 @@
     <section class="sample-content">
         <article class="sample-column">
             <form class="input-group-form" (submit)="onSubmit()">
-                <h4 class="sample-title">Order a call back</h4>
+                <h4 class="sample-title">{{translateService.get('Order a call back')}}</h4>
                 <div class="container">
                     <igx-input-group>
                         <input igxInput name="fullName" type="text" [(ngModel)]="callBack.fullName" required="required" />
-                        <label igxLabel for="fullName">Full Name</label>
+                        <label igxLabel for="fullName">{{translateService.get('Full Name')}}</label>
                         <igx-suffix>
                             <igx-icon>person</igx-icon>
                         </igx-suffix>
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>+38</igx-prefix>
-                        <label igxLabel for="phone">Phone</label>
+                        <label igxLabel for="phone">{{translateService.get('Phone')}}</label>
                         <input type="number" igxInput name="phone" [(ngModel)]="callBack.phone" />
                         <igx-suffix>
                             <igx-icon>phone</igx-icon>
@@ -21,19 +21,22 @@
                         <igx-hint position="start">Ex.: +380 123 456 789</igx-hint>
                     </igx-input-group>
                     <igx-input-group>
-                        <label igxLabel for="email">Email address</label>
+                        <label igxLabel for="email">{{translateService.get('Email')}} </label>
                         <input igxInput name="email" type="email" [(ngModel)]="callBack.email" required />
                         <igx-suffix>
                             <igx-icon>email</igx-icon>
                         </igx-suffix>
                     </igx-input-group>
-                    <igx-combo name="genres" class="input-container" [itemsMaxHeight]="130" [data]="services" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="callBack.services" placeholder="Select services that you interested for" searchPlaceholder="Search..."
-                        [type]='"line"'>
+                    <igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="services" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="callBack.services" placeholder="Select services that you interested for"
+                        searchPlaceholder="Search..." [type]='"line"'>
+                    </igx-combo>
+                    <igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="servicesUa" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="callBack.services" placeholder="Виберіть послуги, що вас зацікавили"
+                        searchPlaceholder="Пошук..." [type]='"line"'>
                     </igx-combo>
                     <igx-date-picker name="date" (onSelection)="onDateSelection($event)">
                         <ng-template igxDatePickerTemplate let-openDialog="openDialog" let-value="value" let-displayData="displayData">
                             <igx-input-group (click)="openDialog()">
-                                <label igxLabel>Date </label>
+                                <label igxLabel>{{translateService.get('Date')}} </label>
                                 <input igxInput [value]="displayData" />
                                 <igx-suffix>
                                     <igx-icon>today</igx-icon>
@@ -44,7 +47,7 @@
                     <igx-time-picker name="dateTime" (onValueChanged)="onTimeSelection($event)">
                         <ng-template igxTimePickerTemplate let-openDialog="openDialog" let-value="value" let-displayTime="displayTime">
                             <igx-input-group (click)="openDialog()">
-                                <label igxLabel>Time </label>
+                                <label igxLabel>{{translateService.get('Time')}} </label>
                                 <input igxInput [value]="displayTime" />
                                 <igx-suffix>
                                     <igx-icon>access_time</igx-icon>
@@ -52,7 +55,7 @@
                             </igx-input-group>
                         </ng-template>
                     </igx-time-picker>
-                    <button igxButton="raised" igxRipple>Submit</button>
+                    <button igxButton="raised" igxRipple>{{translateService.get('SubmitOrder')}}</button>
                 </div>
             </form>
         </article>

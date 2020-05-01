@@ -5,7 +5,7 @@
             <form>
                 <igx-input-group>
                     <input igxInput name="fullName" type="text" required="required" [(ngModel)]='feedback.description' />
-                    <label igxLabel for="fullName">Feedback</label>
+                    <label igxLabel for="fullName">{{translateService.get('Feedback')}}</label>
                 </igx-input-group>
             </form>
         </article>
@@ -14,10 +14,10 @@
 <ngb-rating [(rate)]="feedback.rating" (hover)="hovered=$event" (leave)="hovered=0" [readonly]="false"></ngb-rating>
 
 <pre>
-    Selected: <b>{{feedback.rating}}</b>
-    Hovered: <b>{{hovered}}</b>
+    {{translateService.get('Selected')}}: <b>{{feedback.rating}}</b>
+    {{translateService.get('Hovered')}}: <b>{{hovered}}</b>
     </pre>
 
 
-<button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="onSubmit()">Submit</button>
-<button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="delete()" *ngIf='deletable'>Delete</button>
+<button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="onSubmit()">{{translateService.get('Submit')}}</button>
+<button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="delete()" *ngIf='deletable'>{{translateService.get('Delete')}}</button>

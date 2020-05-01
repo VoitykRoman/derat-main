@@ -3,6 +3,7 @@ import { Trap } from '../models/trap.model';
 import { TrapService } from '../services/trap.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-traps",
@@ -17,7 +18,8 @@ export class TrapsComponent implements OnInit {
     constructor(private trapService: TrapService,
         private route: ActivatedRoute,
         private router: Router,
-        public authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
 
     }
 

@@ -4,6 +4,7 @@ import { IndexImage } from 'src/app/models/index-image.model';
 import { IgxFilterOptions, slideOutRight, slideInLeft } from 'igniteui-angular';
 import { Base64Service } from 'src/app/shared/base64.service';
 import { useAnimation } from '@angular/animations';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-index-image-list",
@@ -26,7 +27,8 @@ export class IndexImageListComponent implements OnInit {
     @Output() onCreate = new EventEmitter<any>();
     @Output() onDelete = new EventEmitter<any>();
     constructor(private indexImageService: IndexImageService,
-        private base64Service: Base64Service) {
+        private base64Service: Base64Service,
+        public translateService: TranslateService ) {
     }
 
 

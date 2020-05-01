@@ -1,4 +1,4 @@
-<igx-input-group type="search" class="search">
+<igx-input-group type="search" class="search" *ngIf='translateService.language=="en"'>
     <igx-prefix>
         <igx-icon>search</igx-icon>
     </igx-prefix>
@@ -8,51 +8,61 @@
     </igx-suffix>
 </igx-input-group>
 
+<igx-input-group type="search" class="search" *ngIf='translateService.language=="ua"'>
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <input #search igxInput placeholder="Пошук користувачів" [(ngModel)]="searchUser">
+    <igx-suffix *ngIf="search.value.length > 0" (click)="searchUser = null">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+
 <div class="list-sample">
     <igx-list [displayDensity]="density">
-        <igx-list-item isHeader="true">Users</igx-list-item>
+        <igx-list-item isHeader="true">{{translateService.get('Users')}}</igx-list-item>
         <igx-list-item igxRipple igxRippleTarget=".igx-list__item-content" #item *ngFor="let user of users | igxFilter: filterUsers;">
             <igx-avatar igxListThumbnail [src]="user.avatarUrl" roundShape="true" *ngIf='user.avatarUrl'></igx-avatar>
             <igx-avatar igxListThumbnail initials='{{getInitials(user)}}' roundShape="true" *ngIf='!user.avatarUrl'></igx-avatar>
             <span igxListLineTitle>{{ user.fullName }}</span>
             <span igxListLineSubTitle>{{ user.phone }}</span>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">Edit</button>
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='deleteUser(user.id)'>Delete</button>
-            <igx-dialog #form title="Update user" leftButtonLabel="Cancel" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateUser(user, $event)" rightButtonLabel="Update" [closeOnOutsideSelect]="true">
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="form.open()">{{translateService.get('Edit')}}</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='deleteUser(user.id)'>{{translateService.get('Delete')}}</button>
+            <igx-dialog #form title="Update user" [leftButtonLabel]="translateService.get('Cancel')" (onLeftButtonSelect)="form.close()" (onRightButtonSelect)="updateUser(user, $event)" [rightButtonLabel]="translateService.get('Update')" [closeOnOutsideSelect]="true">
                 <form class="signInForm">
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="username">First name</label>
+                        <label igxLabel for="username">{{translateService.get('First Name')}}</label>
                         <input igxInput id="username" type="text" [(ngModel)]='user.firstName' value='ngModel' name='firstName' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="lasname">Last name</label>
+                        <label igxLabel for="lasname">{{translateService.get('Last Name')}}</label>
                         <input igxInput id="lastname" type="text" [(ngModel)]='user.lastName' value='ngModel' name='lastName' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="email">Email</label>
+                        <label igxLabel for="email">{{translateService.get('Email')}}</label>
                         <input igxInput id="email" type="text" [(ngModel)]='user.email' value='ngModel' name='email' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>person</igx-icon>
                         </igx-prefix>
-                        <label igxLabel for="phone">Phone</label>
+                        <label igxLabel for="phone">{{translateService.get('Phone')}}</label>
                         <input igxInput id="phone" type="text" [(ngModel)]='user.phone' value='ngModel' name='phone' />
                     </igx-input-group>
                     <igx-input-group>
                         <igx-prefix>
                             <igx-icon>lock</igx-icon>
                         </igx-prefix>
-                        <label igxLabel>Password</label>
+                        <label igxLabel>{{translateService.get('Password')}}</label>
                         <input igxInput id="password" type="password" [(ngModel)]='user.password' value='ngModel' name='password' />
                     </igx-input-group>
                 </form>

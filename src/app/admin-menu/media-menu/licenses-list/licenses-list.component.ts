@@ -5,6 +5,7 @@ import { Base64Service } from 'src/app/shared/base64.service';
 import { useAnimation } from '@angular/animations';
 import { LicenseService } from 'src/app/services/license.service';
 import { LicenseCard } from 'src/app/models/license-card.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-licenses-list",
@@ -29,7 +30,8 @@ export class LicensesListComponent implements OnInit {
     page = 1;
     pageSize = 3;
     constructor(private licenseService: LicenseService,
-        private base64Service: Base64Service) {
+        private base64Service: Base64Service,
+        public translateService: TranslateService ) {
     }
 
 

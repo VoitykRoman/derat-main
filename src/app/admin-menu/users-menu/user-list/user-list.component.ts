@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IgxFilterOptions } from 'igniteui-angular';
 import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-user-list",
@@ -16,7 +17,8 @@ export class UsersListComponent implements OnInit {
     /**
      *
      */
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,
+        public translateService: TranslateService ) {
     }
     ngOnInit() {
         this.users.forEach(element => {

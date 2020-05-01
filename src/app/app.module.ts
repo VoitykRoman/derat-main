@@ -83,6 +83,7 @@ import { CallbackAdminCardComponent } from './admin-menu/callback/callback-card/
 import { ProfileComponent } from './admin-menu/profile/profile.component';
 import { LeftFeedbackComponent } from './admin-menu/left-feedback/left-feedback.component';
 import { SupportComponent } from './admin-menu/support/support.component';
+import { TranslateService } from './services/translate.service';
 
 const adminRoutes: Routes = [
   {
@@ -263,7 +264,8 @@ const appRoutes: Routes = [
     FacilityService,
     PerimeterService,
     TrapService,
-    EmailService],
+    EmailService,
+    TranslateService],
 
   exports: [CarouselComponent],
   bootstrap: [AppComponent,

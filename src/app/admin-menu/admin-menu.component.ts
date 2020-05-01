@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../main/services/authentication.service';
+import { TranslateService } from '../services/translate.service';
 
 @Component({
   selector: "app-nav-drawer-mini",
@@ -9,7 +10,7 @@ import { AuthenticationService } from '../main/services/authentication.service';
 })
 export class AdminMenuComponent implements OnInit {
   currentUser
-  constructor(private router: Router, public authenticationService: AuthenticationService) {
+  constructor(private router: Router, public authenticationService: AuthenticationService,public translateService: TranslateService) {
   }
 
   ngOnInit() {

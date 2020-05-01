@@ -2,17 +2,17 @@
     <igx-card-header class="compact">
         <div class="igx-card-header__tgroup">
             <h3 class="igx-card-header__title--small">{{trap.place}}</h3>
-            <h5 class="igx-card-header__subtitle">Type: {{trap.type}}</h5>
-            <h5 class="igx-card-header__subtitle">Status: {{trap.status}}</h5>
-            <h5 class="igx-card-header__subtitle">Next review date: {{trap.nextReviewTime | date}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Type')}}: {{translateService.get(trap.type)}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Status')}}: {{translateService.get(trap.status)}}</h5>
+            <h5 class="igx-card-header__subtitle">{{translateService.get('Next review date')}}: {{trap.nextReviewTime | date}}</h5>
         </div>
     </igx-card-header>
     <igx-card-actions>
         <div class="igx-card-actions__bgroup">
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='openDetails()'>Details</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='openDetails()'>{{translateService.get('Details')}}</button>
 
 
-            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='delete()' *ngIf='isAdmin()'>Delete</button>
+            <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)='delete()' *ngIf='isAdmin()'>{{translateService.get('Delete')}}</button>
         </div>
     </igx-card-actions>
 </igx-card>

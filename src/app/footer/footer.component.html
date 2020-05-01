@@ -12,7 +12,7 @@
 
                 <!-- Content -->
                 <h5 class="text-uppercase">DeratControl</h5>
-                <p>We work with the best that's why we are the best.</p>
+                <p>{{translateService.get('We work with the best that`s why we are the best')}}.</p>
 
             </div>
             <!-- Grid column -->
@@ -23,20 +23,20 @@
             <div class="col-md-3 mb-md-0 mb-3">
 
                 <!-- Links -->
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">{{translateService.get('Links')}}</h5>
 
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#!">Home</a>
+                        <p class="hov" (click)='redirectTo("home")'>{{translateService.get('Home')}}</p>
                     </li>
                     <li>
-                        <a href="#!">Our services</a>
+                        <p class="hov" (click)='redirectTo("services")'>{{translateService.get('Services')}}</p>
                     </li>
                     <li>
-                        <a href="#!">Our team</a>
+                        <p class="hov" (click)='redirectTo("team")'>{{translateService.get('Our team')}}</p>
                     </li>
                     <li>
-                        <a href="#!">Our licenses</a>
+                        <p class="hov" (click)='redirectTo("licenses")'>{{translateService.get('Our licenses')}}</p>
                     </li>
                 </ul>
 
@@ -47,12 +47,12 @@
             <div class="col-md-3 mb-md-0 mb-3">
 
                 <!-- Links -->
-                <h5 class="text-uppercase">Contacts</h5>
+                <h5 class="text-uppercase">{{translateService.get('Contact us')}}</h5>
 
                 <ul class="list-unstyled">
                     <li>
                         <igx-icon color="black">home</igx-icon>
-                        <h6 style="display: inline-block; ;">Lviv, Gorodocka 241a</h6>
+                        <h6 style="display: inline-block; ;">{{translateService.get('Lviv, Gorodocka 123a')}}</h6>
                     </li>
                     <li>
                         <igx-icon color="black">phone_iphone</igx-icon>

@@ -3,6 +3,7 @@ import { Base64Service } from 'src/app/shared/base64.service';
 import { OrganizationsService } from '../../services/organizations.service';
 import { UserService } from 'src/app/main/services/user.service';
 import { User } from 'src/app/main/models/user.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-create-organization",
@@ -23,7 +24,8 @@ export class CreateOrganizationComponent implements OnInit {
     @Output()  onCreate = new EventEmitter<any>();
     constructor(private base64Service: Base64Service,
         private organizationsService: OrganizationsService,
-        private userService: UserService) {
+        private userService: UserService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

@@ -1,6 +1,7 @@
 import { Component, ViewChild, Input } from "@angular/core";
 import { IgxExpansionPanelComponent, IgxToastComponent } from 'igniteui-angular';
 import { LicenseCard } from 'src/app/models/license-card.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: `app-main-license-card`,
@@ -24,7 +25,12 @@ export class LicenseCardComponent {
        this.eventToast.message = "Expanded Event Fired!";
       // this.eventToast.show();
    }
-
+/**
+ *
+ */
+constructor(public translateService: TranslateService) {
+   
+}
    public handleCollapse(evt?: {event: Event}) {
        this.eventToast.hide();
        console.log("Collapsed event thrown ", (evt ? "with event: " + evt.event : "with no event"));

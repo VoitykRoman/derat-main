@@ -5,6 +5,7 @@ import { Perimeter } from '../models/perimeter.model';
 import { Trap } from '../models/trap.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { IgxFilterOptions } from 'igniteui-angular';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-perimeters",
@@ -20,11 +21,12 @@ export class PerimetersComponent implements OnInit {
     searchTrap;
     constructor(private route: ActivatedRoute,
         private perimeterService: PerimeterService,
-        public authenticationService: AuthenticationService) {
+        public authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
     }
 
     ifStatus() {
-        return this.perimeter.service != 'Deratization'
+        return this.perimeter.service != 'Deratization' &&  this.perimeter.service != 'Дератизація'
     }
     ngOnInit() {
         this.downloadData();

@@ -1,6 +1,6 @@
 <div class="list-sample">
     <igx-list [displayDensity]="density">
-        <igx-list-item isHeader="true">Feedbacks</igx-list-item>
+        <igx-list-item isHeader="true">{{translateService.get('Feedbacks')}}</igx-list-item>
         <igx-list-item igxRipple igxRippleTarget=".igx-list__item-content" #item *ngFor="let feedback of feedbacks">
             <span igxListLineTitle>{{ feedback.description }}</span>
             <span igxListLineSubTitle>{{ feedback.userName }}</span>
@@ -13,8 +13,8 @@
     </ngb-pagination>
 
     <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-        <option [ngValue]="2">2 items per page</option>
-        <option [ngValue]="4">4 items per page</option>
-        <option [ngValue]="6">6 items per page</option>
+        <option [ngValue]="2">2 {{translateService.get('items per page')}}</option>
+        <option [ngValue]="4">4 {{translateService.get('items per page')}}</option>
+        <option [ngValue]="6">6 {{translateService.get('items per page')}}</option>
       </select>
 </div>

@@ -5,6 +5,7 @@ import { User } from 'src/app/main/models/user.model';
 import { PerimeterService } from '../../services/perimeters.service';
 import { ActivatedRoute } from '@angular/router';
 import { TrapService } from '../../services/trap.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-create-trap",
@@ -14,6 +15,11 @@ export class CreateTrapComponent implements OnInit {
     types = [
         { type: 'mechanical' },
         { type: 'glue' }
+    ];
+
+    typesUa = [
+        { type: 'механічна' },
+        { type: 'клейова' }
     ];
 
     selectedPlace;
@@ -37,7 +43,8 @@ export class CreateTrapComponent implements OnInit {
     perimeter: Perimeter;
     constructor(private perimeterService: PerimeterService,
         private route: ActivatedRoute,
-        private trapService: TrapService) {
+        private trapService: TrapService,
+        public translateService: TranslateService ) {
     }
 
     ngOnInit() {

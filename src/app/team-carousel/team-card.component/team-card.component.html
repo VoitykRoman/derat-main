@@ -10,7 +10,7 @@
         </igx-card-media>
 
         <igx-card-content>
-            <p>Age: {{teamCard.age}} years Phone: {{teamCard.phone}} Experience: {{teamCard.experience}} year(s)</p>
+            <p>{{translateService.get('Age')}}: {{teamCard.age}} {{translateService.get('Phone')}}: {{teamCard.phone}} {{translateService.get('Experience')}}: {{teamCard.experience}} {{translateService.get('year(s)')}}</p>
         </igx-card-content>
     </igx-card>
 </article>

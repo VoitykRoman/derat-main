@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FacilityService } from 'src/app/admin-menu/services/facility.service';
 import { Organization } from 'src/app/admin-menu/models/organization.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-add-facility",
@@ -15,7 +16,8 @@ export class AddFacilityComponent {
         address: undefined,
         organizationId: undefined
     }
-    constructor(private facilityService: FacilityService) {
+    constructor(private facilityService: FacilityService,
+        public translateService: TranslateService ) {
     }
 
     onSubmit() {

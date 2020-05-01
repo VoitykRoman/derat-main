@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { Feedback } from 'src/app/models/feedback.model';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-left-feedback",
@@ -21,7 +22,8 @@ export class LeftFeedbackComponent implements OnInit {
         userName: ''
     }
     constructor(private authenticationService: AuthenticationService,
-        private feedbackService: FeedbackService) {
+        private feedbackService: FeedbackService,
+        public translateService: TranslateService) {
 
     }
 

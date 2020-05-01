@@ -3,6 +3,7 @@ import { User } from 'src/app/main/models/user.model';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
 import { Base64Service } from 'src/app/shared/base64.service';
 import { UserService } from 'src/app/main/services/user.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
   selector: "app-profile",
@@ -16,7 +17,8 @@ export class ProfileComponent implements OnInit {
   selectedFile;
   constructor(public authenticationService: AuthenticationService,
     private base64Service: Base64Service,
-    private userService: UserService) {
+    private userService: UserService,
+    public translateService: TranslateService) {
   }
 
   ngOnInit() {

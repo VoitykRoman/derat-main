@@ -1,6 +1,6 @@
 <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==">
 <igx-tabs *ngIf='!loading && authenticationService.currentUserValue && obs | async'>
-    <igx-tabs-group label="Organization details" icon="info" id="active">
+    <igx-tabs-group [label]="translateService.get('Organization details')" icon="info" id="active">
         <div style="margin: 10px 3px 3px 1px">
             <h2>{{organization.name}}</h2>
             <igx-avatar src={{organization.avatarUrl}} roundShape="true" *ngIf='organization.avatarUrl'></igx-avatar>
@@ -8,13 +8,22 @@
 
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Facilities" icon="store" id="active">
+    <igx-tabs-group [label]="translateService.get('Facilities')" icon="store" id="active">
         <div style="margin: 10px 3px 3px 1px">
-            <igx-input-group type="search" class="search">
+            <igx-input-group type="search" class="search" *ngIf='translateService.language=="en"'>
                 <igx-prefix>
                     <igx-icon>search</igx-icon>
                 </igx-prefix>
                 <input #search igxInput placeholder="Search facility" [(ngModel)]="searchFacility">
+                <igx-suffix *ngIf="search.value.length > 0" (click)="searchFacility = null">
+                    <igx-icon>clear</igx-icon>
+                </igx-suffix>
+            </igx-input-group>
+            <igx-input-group type="search" class="search" *ngIf='translateService.language=="ua"'>
+                <igx-prefix>
+                    <igx-icon>search</igx-icon>
+                </igx-prefix>
+                <input #search igxInput placeholder="Пошук об`єкту" [(ngModel)]="searchFacility">
                 <igx-suffix *ngIf="search.value.length > 0" (click)="searchFacility = null">
                     <igx-icon>clear</igx-icon>
                 </igx-suffix>
@@ -30,18 +39,27 @@
 
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Add Facility" icon="add" id="addFacility" *ngIf='isAdmin()'>
+    <igx-tabs-group [label]="translateService.get('Add Facility')" icon="add" id="addFacility" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-add-facility (onCreate)='onCreate()' [organization]='organization'></app-add-facility>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Clients" icon="people_alt" id="addFacility" *ngIf='isAdmin() || isClient()'>
+    <igx-tabs-group [label]="translateService.get('Clients')" icon="people_alt" id="addFacility" *ngIf='isAdmin() || isClient()'>
         <div style="margin: 10px 3px 3px 1px">
-            <igx-input-group type="search" class="search">
+            <igx-input-group type="search" class="search" *ngIf='translateService.language=="en"'>
                 <igx-prefix>
                     <igx-icon>search</igx-icon>
                 </igx-prefix>
                 <input #search igxInput placeholder="Search client" [(ngModel)]="searchClient">
+                <igx-suffix *ngIf="search.value.length > 0" (click)="searchClient = null">
+                    <igx-icon>clear</igx-icon>
+                </igx-suffix>
+            </igx-input-group>
+            <igx-input-group type="search" class="search" *ngIf='translateService.language=="ua"'>
+                <igx-prefix>
+                    <igx-icon>search</igx-icon>
+                </igx-prefix>
+                <input #search igxInput placeholder="Пошук клієнтів" [(ngModel)]="searchClient">
                 <igx-suffix *ngIf="search.value.length > 0" (click)="searchClient = null">
                     <igx-icon>clear</igx-icon>
                 </igx-suffix>
@@ -57,12 +75,12 @@
 
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Add clients" icon="person_add" id="AddClients" *ngIf='isAdmin()'>
+    <igx-tabs-group [label]="translateService.get('Add clients')" icon="person_add" id="AddClients" *ngIf='isAdmin()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-add-client (onCreate)='onCreate()'></app-add-client>
         </div>
     </igx-tabs-group>
-    <igx-tabs-group label="Projects" icon="insert_drive_file" id="AddClients" *ngIf='isAdmin() || isClient()'>
+    <igx-tabs-group [label]="translateService.get('Projects')" icon="insert_drive_file" id="AddClients" *ngIf='isAdmin() || isClient()'>
         <div style="margin: 10px 3px 3px 1px">
             <app-projects-org-card *ngFor='let project of projectsPagination' [project]='project'></app-projects-org-card>
             <ngb-pagination [collectionSize]="organization.projects.length" [(page)]="projectsPage" [pageSize]="pageSize" [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true">

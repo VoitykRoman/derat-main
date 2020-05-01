@@ -3,6 +3,7 @@ import { Perimeter } from '../../models/perimeter.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PerimeterService } from '../../services/perimeters.service';
 import { AuthenticationService } from 'src/app/main/services/authentication.service';
+import { TranslateService } from 'src/app/services/translate.service';
 
 @Component({
     selector: "app-petimeter-card",
@@ -14,7 +15,8 @@ export class PerimeterCardComponent {
     constructor(private router: Router,
         private route: ActivatedRoute,
         private perimeterService: PerimeterService,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        public translateService: TranslateService ) {
             
     }
 
