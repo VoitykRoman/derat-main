@@ -194,7 +194,7 @@ export class TranslateService {
         this.map.set('uaSupport', 'Підтримка');
 
         this.map.set('enEmployee menu', 'Employee menu');
-        this.map.set('uaEmployee menu', 'Меню клієнта');
+        this.map.set('uaEmployee menu', 'Меню працівника');
 
         this.map.set('enActive', 'Active');
         this.map.set('uaActive', 'Активні');

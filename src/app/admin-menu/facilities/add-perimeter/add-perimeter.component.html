@@ -22,7 +22,7 @@
 <igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="getServices()" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="serviceSelected" placeholder="Вибрати послугу" searchPlaceholder="Пошук..."
     [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
 </igx-combo>
-<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'service'" [displayKey]="'service'" [(ngModel)]="serviceSelected" placeholder="Select employee" searchPlaceholder="Search..."
+<igx-combo *ngIf='translateService.language=="en"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'employee'" [displayKey]="'employee'" [(ngModel)]="selectedEmployee" placeholder="Select employee" searchPlaceholder="Search..."
     [type]='"line"' (onSelectionChange)="setWeaponsLimit($event)">
 </igx-combo>
 <igx-combo *ngIf='translateService.language=="ua"' name="genres" class="input-container" [itemsMaxHeight]="130" [data]="employeesToShow" [valueKey]="'employee'" [displayKey]="'employee'" [(ngModel)]="selectedEmployee" placeholder="Вибрати працівника"

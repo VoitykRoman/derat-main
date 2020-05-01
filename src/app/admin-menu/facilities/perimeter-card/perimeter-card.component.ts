@@ -21,7 +21,7 @@ export class PerimeterCardComponent {
     }
 
     ifStatus(){
-        return this.perimeter.service != 'Deratization'
+        return this.perimeter.service != 'Deratization' && this.perimeter.service != 'Дератизація'
     }
     deletePerimeter() {
         this.perimeterService.deletePerimeter(this.perimeter.id).toPromise().then(e => {

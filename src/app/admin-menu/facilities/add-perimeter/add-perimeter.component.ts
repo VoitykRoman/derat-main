@@ -80,12 +80,12 @@ export class AddPerimeterComponent implements OnInit {
                 if (e.service.includes('Deratization'))
                     return { service: e.service.replace('Deratization', 'Дератизація') }
 
-                if (e.service.includes('Disinsection'))
+                 if (e.service.includes('Disinsection'))
                     return {
                         service: e.service.replace('Disinsection', 'Дезінсекція')
                     }
 
-                if (e.service.includes('Deodorization'))
+                 if (e.service.includes('Deodorization'))
                     return {
                         service: e.service.replace('Deodorization', 'Деодорація')
                     }
@@ -94,6 +94,23 @@ export class AddPerimeterComponent implements OnInit {
                     return {
                         service: e.service.replace('Disinfection', 'Дезінфекція')
                     }
+                    if (e.service.includes('Дератизація'))
+                    return {
+                        service: e.service.replace('Дератизація', 'Дератизація')
+                    }
+                    if (e.service.includes('Дезінсекція'))
+                    return {
+                        service: e.service.replace('Дезінсекція', 'Дезінсекція')
+                    }
+                    if (e.service.includes('Деодорація'))
+                    return {
+                        service: e.service.replace('Деодорація', 'Деодорація')
+                    }
+                    if (e.service.includes('Дезінфекція'))
+                    return {
+                        service: e.service.replace('Дезінфекція', 'Дезінфекція')
+                    }
+                
 
             })
             return result;
@@ -101,13 +118,40 @@ export class AddPerimeterComponent implements OnInit {
         if (this.translateService.language == 'en') {
             result = this.services.map(e => {
                 let ser;
-                ser = e.service.replace('Дератизація', 'Deratization');
-                ser = e.service.replace('Дезінсекція', 'Disinsection');
-                ser = e.service.replace('Деодорація', 'Deodorization');
-                ser = e.service.replace('Дезінфекція', 'Disinfection');
-                return {
-                    service: ser
-                }
+                if (e.service.includes('Дератизація'))
+                    return { service: e.service.replace('Дератизація', 'Deratization') }
+
+                if (e.service.includes('Дезінсекція'))
+                    return {
+                        service: e.service.replace('Дезінсекція', 'Disinsection')
+                    }
+
+                if (e.service.includes('Деодорація'))
+                    return {
+                        service: e.service.replace('Деодорація', 'Deodorization')
+                    }
+
+                if (e.service.includes('Дезінфекція'))
+                    return {
+                        service: e.service.replace('Дезінфекція', 'Disinfection')
+                    }
+
+                    if (e.service.includes('Deratization'))
+                    return {
+                        service: e.service.replace('Deratization', 'Deratization')
+                    }
+                    if (e.service.includes('Disinsection'))
+                    return {
+                        service: e.service.replace('Disinsection', 'Disinsection')
+                    }
+                    if (e.service.includes('Deodorization'))
+                    return {
+                        service: e.service.replace('Deodorization', 'Deodorization')
+                    }
+                    if (e.service.includes('Disinfection'))
+                    return {
+                        service: e.service.replace('Disinfection', 'Disinfection')
+                    }
             })
             return result;
         }
